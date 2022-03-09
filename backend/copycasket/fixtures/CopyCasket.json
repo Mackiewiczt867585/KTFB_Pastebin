@@ -1,0 +1,35 @@
+[
+{
+  "model": "copycasket.CopyCasket",
+  "pk": 1,
+  "fields": {
+    "title": "first",
+    "author": "me",
+    "creation_date": "2022-03-23T17:45:03Z",
+    "type": "us",
+    "content": "sample_text"
+  }
+},
+{
+  "model": "copycasket.CopyCasket",
+  "pk": 2,
+  "fields": {
+    "title": "first",
+    "author": "me",
+    "creation_date": "2022-03-23T17:45:03Z",
+    "type": "us",
+    "content": "sample_text"
+  }
+},
+{
+  "model": "copycasket.CopyCasket",
+  "pk": 3,
+  "fields": {
+    "title": "first",
+    "author": "me",
+    "creation_date": "2022-03-23T17:45:03Z",
+    "type": "us",
+    "content": "sample_text"
+  }
+}
+]
