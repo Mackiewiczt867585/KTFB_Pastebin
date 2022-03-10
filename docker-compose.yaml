@@ -7,9 +7,13 @@ services:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=qwerty
-  web: 
-    build: .
-    command: python manage.py runserver 0.0.0.0:5432
+    volumes: 
+      - .:/code/db
+  backend: 
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    command: python ./backend/manage.py runserver 0.0.0.0:5432
     volumes: 
       - .:/code/backend
     ports:
@@ -25,4 +29,4 @@ services:
       - "3000:3000"
     stdin_open: true
     depends_on:
-      - web
+      - backend
