@@ -7,19 +7,31 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='CopyCasket',
+            name="CopyCasket",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('title', models.CharField(max_length=30)),
-                ('author', models.CharField(max_length=30)),
-                ('creation_date', models.DateTimeField(auto_now_add=True)),
-                ('type', models.CharField(choices=[('jk', 'Joke'), ('cd', 'Code'), ('in', 'Information'), ('as', 'ASCII'), ('us', 'Unspecified')], default='us', max_length=2)),
-                ('content', models.TextField(blank=True)),
+                ("id", models.AutoField(primary_key=True, serialize=False)),
+                ("title", models.CharField(max_length=30)),
+                ("author", models.CharField(max_length=30)),
+                ("creation_date", models.DateTimeField(auto_now_add=True)),
+                (
+                    "type",
+                    models.CharField(
+                        choices=[
+                            ("jk", "Joke"),
+                            ("cd", "Code"),
+                            ("in", "Information"),
+                            ("as", "ASCII"),
+                            ("us", "Unspecified"),
+                        ],
+                        default="us",
+                        max_length=2,
+                    ),
+                ),
+                ("content", models.TextField(blank=True)),
             ],
         ),
     ]
