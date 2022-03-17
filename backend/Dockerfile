@@ -1,6 +1,7 @@
 FROM python:3
-WORKDIR /code/backend
+WORKDIR /backend
+ENV PYTHONUNBUFFERED 1
 RUN pip install --upgrade pip
-COPY requirements.txt /code/backend
+COPY requirements.txt /backend
 RUN pip install -r requirements.txt
-COPY . /code/backend
+COPY . /backend

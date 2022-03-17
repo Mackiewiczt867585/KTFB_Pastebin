@@ -8,14 +8,17 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=qwerty
     volumes: 
-      - .:/code/db
+      - db-data:/var/lib/postgresql/data
   backend: 
     build:
       context: ./backend/
       dockerfile: Dockerfile
-    command: python ./backend/manage.py runserver 0.0.0.0:5432
+    #command: sh -c "cd ./backend && gunicorn project.wsgi --bind 0.0.0.0:5432"
+    command: >
+      sh -c "python ./backend/manage.py migrate &&
+             python ./backend/manage.py runserver 0.0.0.0:5432"
     volumes: 
-      - .:/code/backend
+      - .:/backend
     ports:
       - "5432:5432"
     depends_on:
@@ -25,8 +28,24 @@ services:
     build:
       context: ./frontend/
       dockerfile: Dockerfile
+    volumes:
+      - react_build:/frontend/build
     ports:
       - "3000:3000"
     stdin_open: true
     depends_on:
       - backend
+  nginx:
+    image: nginx:1.21
+    ports: 
+      - "80:80"
+    volumes:
+      - ./nginx/nginx-setup.conf:/etc/nginx/conf.d/default.conf
+      - react_build:/var/www/react
+    depends_on:
+      - backend
+      - frontend
+volumes:
+  react_build:
+  db-data:
+
