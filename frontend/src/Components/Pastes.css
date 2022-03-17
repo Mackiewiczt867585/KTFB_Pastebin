@@ -22,11 +22,9 @@ input,select{
     border-radius: 5px;
 }
 textarea{
+    resize: none;
     box-shadow: 1em 1em 1em rgb(121, 113, 113);
     border-radius: 5px;
-    max-width: 90%; 
-    max-height: 90%;
-    resize: none;
 }
 button{
 display: inline-block;

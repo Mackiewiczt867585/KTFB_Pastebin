@@ -1,17 +1,22 @@
 import React from 'react';
-import Navbar from './Components/Navbar';
 import './App.css';
-import Home from './Components/pages/Home';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './Components/Navbar';
+import Home from './Components/pages/Home';
 import Recent from './Components/pages/Recent';
 import Popular from './Components/pages/Popular';
 import About from './Components/pages/About';
-import Wklejka from './Components/Wklejka';
 import Footer from './Components/Footer';
+
+
+
+
+
+
 
 function App() {
   return (
-    <>
+      <>
       <Router>
         <Navbar />
         <Routes>
@@ -23,7 +28,7 @@ function App() {
         </Routes>
       </Router>
       <Footer />
-    </>
+      </>
   );
 }
 

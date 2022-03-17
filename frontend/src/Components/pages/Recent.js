@@ -1,13 +1,13 @@
 import React from 'react';
 import '../../App.css';
-import Table from '../Table';
+import GetPastes from '../GetPastes';
 
 
 function Recent() {
   return (
     <>
     <h1 className='title'>Aktualne wklejki</h1>
-      <Table />
+                <GetPastes />
     </>
   );
 }
