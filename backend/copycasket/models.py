@@ -28,5 +28,7 @@ class CopyCasket(models.Model):
 
     def update(self, **kwargs):
         for key, val in kwargs.items():
+            if val is None:
+                val = getattr(self, key)
             setattr(self, key, val)
         self.save()
