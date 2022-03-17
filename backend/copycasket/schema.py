@@ -23,10 +23,10 @@ class Query(graphene.ObjectType):
 
 class CopyCasketUpdateMutation(graphene.Mutation):
     class Arguments:
-        title = graphene.String(required=True)
-        author = graphene.String(required=True)
-        type = graphene.String(required=True)
-        content = graphene.String(required=True)
+        title = graphene.String(required=False)
+        author = graphene.String(required=False)
+        type = graphene.String(required=False)
+        content = graphene.String(required=False)
         id = graphene.ID(required=True)
 
     copycasket = graphene.Field(CopyCasketTypes)
