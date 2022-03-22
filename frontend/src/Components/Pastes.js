@@ -1,119 +1,68 @@
 import React, { useState } from 'react';
-import { CREAET_PASTE_MUTATION } from '../GraphQL/Mutations';
+import { CREATE_PASTE_MUTATION } from '../GraphQL/Mutations';
+import { useMutation } from '@apollo/client'
+import './Pastes.css'
 
 
-// const CREATE_PASTE = gql`
-// mutation createPaste ($author: String!, $content: String!, $title: String!, $type: String!){
-//     createPaste (author: $author, content: $content, title: $title, type: $type)
-// }
-// `;
 
 
-function Pastes(){
-  const [title, setTitle] = useState("");
-  const [author, setAuthor] = useState("");
-  const [type, setType] = useState("");
-  const [content, setContent] = useState("");
 
+const Pastes = () => {
+  let author, title, content, type;
+  const [createPaste] = useMutation(CREATE_PASTE_MUTATION);
 
-  // const [createPaste, {error}] = useMutation(CREAET_PASTE_MUTATION);
-
-  // const addPaste = () => {};
-  // return(
-  //   <div className='outer-box'>
-  //     <div className='input-item-top'>
-  //         <label>Autor</label>
-  //     <input 
-  //       type="text"
-  //       placeholder="author"
-  //       onChange={(e) => {
-  //         setAuthor(e.target.value);
-  //     }}
-  //     />
-  //     </div>
-  //     <div className='input-item-top'>
-  //     <label>Tytuł</label>         
-  //     <input 
-  //       type="text"
-  //       placeholder="title"
-  //       onChange={(e) => {
-  //         setTitle(e.target.value);
-  //     }}
-  //     />
-  //     </div>
-  //     <div className='input-item-top'>
-          
-  //     <input 
-  //       type="text"
-  //       placeholder="type"
-  //       onChange={(e) => {
-  //         setType(e.target.value);
-  //     }}
-  //     />
-  //     </div>
-  //     <div>
-          
-  //     <input 
-  //       type="text"
-  //       placeholder='content'
-  //       onChange={(e) => {
-  //         setContent(e.target.value);
-  //       }}
-  //       />
-  //       <button onClick={addPaste}> Utwórz</button>
-  //       </div>
-  //       </div>
-  // );
+return(
+<div className='outer-box'>
+<form onSubmit={ e => {
+  e.preventDefault();
+  createPaste ( { variables: { title: title.value, author:author.value, content:content.value, type:type.value}});
+  
+}}>
+  <div className='input-item-top'>
+    <label for='title'>Title</label><br />
+    <input
+    ref={value => title = value}
+    id = "title"
+    placeholder='enter title'/>
+  </div>
+  <div className='input-item-top'>
+    <label for='author'>Author</label><br />
+    <input
+    ref={value => author = value}
+    id = "author"
+    placeholder='enter author'/>
+  </div>
+  <div className='input-item-top'>
+    <label for='type'>Type</label><br />
+    <input
+    ref={value => type = value}
+    id = "type"
+    placeholder='enter type'/>
+  </div>
+  {/* <div className='input-item-top'>
+    <label for='type'>Type</label><br />
+      <option value='jk'>Joke</option>
+      <option value='cd'>Code</option>
+      <option value='in'>Information</option>
+      <option value='as'>ASCII</option>
+      <option value='us'>Unspecified</option>
+    </select>
+  </div> */}
+  <div>
+    <label for='content'>Content</label><br />
+    <textarea
+    ref={value => content = value}
+    id = "content"
+    placeholder='enter content'
+    rows='25' cols='200'/>
+  </div>
+  <div>
+    <button type='submit'>add</button>
+  </div>
+  </form>
+  </div>
+);
 }
 
 
-//   const addPaste = () => {};
-//   return(
-//     <div className='outer-box'>
-//       <div className='input-item-top'>
-//           <label>Autor</label>
-//       <input 
-//         type="text"
-//         placeholder="author"
-//       />
-//       </div>
-//       <div className='input-item-top'>
-//       <label>Tytuł</label>         
-//       <input 
-//         type="text"
-//         placeholder="title"
-//         onChange={(e) => {
-//           setTitle(e.target.value);
-//       }}
-//       />
-//       </div>
-//       <div className='input-item-top'>
-          
-//       <input 
-//         type="text"
-//         placeholder="type"
-//         onChange={(e) => {
-//           setType(e.target.value);
-//       }}
-//       />
-//       </div>
-//       <div>
-          
-//       <input 
-//         type="text"
-//         placeholder='content'
-//         onChange={(e) => {
-//           setContent(e.target.value);
-//         }}
-//         />
-//         <button onClick={addPaste}> Utwórz</button>
-//         </div>
-//         </div>
-//   );
-// }
-
-
-
-
-export default Pastes
-
+    export default Pastes;

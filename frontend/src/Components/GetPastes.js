@@ -4,51 +4,25 @@ import {LOAD_PASTES} from '../GraphQL/Queries'
 import './GetPastes.css'
 
 
-const tempVal = [
-    {
-      id: 1,
-      author:'txapmle1',
-      title: "test",
-      type: "ASCII",
-      creation_date: 'wczoraj',
-    },
-    {
-        id: 2,
-        author:'txapmle2',
-        title: "test",
-        type: "ASCII",
-        creation_date: 'wczoraj',
-    },
-    {
-        id: 3,
-        author:'txapmle3',
-        title: "test",
-        type: "ASCII",
-        creation_date: 'dzisiaj',
-    },
-    {
-        id: 4,
-        author:'txapmle4',
-        title: "Go to Market",
-        type: "ASCII",
-        creation_date: 'dzisiaj',
-    },
-  ];
 
 
 function GetPastes(){
 
-    // const {error, loading, data} = useQuery(LOAD_PASTES)
+    const {error, loading, data} = useQuery(LOAD_PASTES);
+    const [ pastes, setPastes ] = useState([]);
+    useEffect(() => {
+        console.log('loading:', loading)
+        console.log('Error:', error)
+        console.log('Pastes:', data)
+        if (data){
+        setPastes(data.allCopies);
+        }
+    }, [data, loading, error]);
 
-    // useEffect(() => {
-    //     console.log('loading:', loading)
-    //     console.log('Error:', error)
-    //     console.log('Pastes:', data)
-    // }, [data, loading, error])
 
-    // loading ? (
-        //     <p>Loading...</p>
-        return(
+
+    if (loading) return <p>Loading...</p>;
+    if (data) return(
         <div className='table-box'>
         <table>
             <thead>
@@ -60,13 +34,13 @@ function GetPastes(){
                 </tr>
             </thead>
             <tbody>
-        {tempVal.map((val) => {
+        {pastes.map((val, pos) => {
             return (
-                <tr>
+                <tr key={pos}>
                     <td> {val.title}</td>
                     <td> {val.author}</td>
                     <td> {val.type}</td>
-                    <td> {val.creation_date}</td>
+                    <td> {val.creationDate}</td>
                 </tr>)})}
             </tbody>
         </table>

@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../App.css';
-import Pastes from '../Wklejka';
+import Pastes from '../Pastes';
 
 
 function Home() {

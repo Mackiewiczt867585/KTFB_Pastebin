@@ -5,9 +5,9 @@ const LOAD_PASTES = gql`
         allCopies{
             author
             title
-            type
             content
             creationDate
+            type
         }
     }
 `;
