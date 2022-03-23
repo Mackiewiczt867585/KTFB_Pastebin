@@ -19,12 +19,18 @@ th {
     border-collapse: collapse;
     width: 100%;
   }
-table thead th:first-child{
-  width: 50%;
-}
-table thead th{
-  width: 20;
-}
+  table thead th:first-child{
+    width: 50%;
+  }
+  table thead th:nth-child(2){
+    width: 25%;
+  }
+  table thead th:nth-child(3){
+    width: 10%;
+  }
+  table thead th:nth-child(3){
+    width: 15%;
+  }
 
 tr:nth-child(even){background-color: #f2f2f2;}
 tr:hover {background-color: #ddd;}

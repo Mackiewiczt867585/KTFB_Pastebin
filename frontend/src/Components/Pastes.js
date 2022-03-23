@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import { CREATE_PASTE_MUTATION } from '../GraphQL/Mutations';
-import { useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client';
 import './Pastes.css'
 
 
-
+const options = [
+  {value: 'jk' ,label: 'Joke'},
+  {value: 'cd' ,label: 'Code'},
+  {value: 'in' ,label: 'Information'},
+  {value: 'as ',label: 'ASCII'},
+  {value: 'us' ,label: 'Unspecified'}
+]
 
 
 const Pastes = () => {
@@ -14,7 +20,6 @@ const Pastes = () => {
 return(
 <div className='outer-box'>
 <form onSubmit={ e => {
-  e.preventDefault();
   createPaste ( { variables: { title: title.value, author:author.value, content:content.value, type:type.value}});
   
 }}>
@@ -33,21 +38,16 @@ return(
     placeholder='enter author'/>
   </div>
   <div className='input-item-top'>
-    <label for='type'>Type</label><br />
-    <input
-    ref={value => type = value}
-    id = "type"
-    placeholder='enter type'/>
-  </div>
-  {/* <div className='input-item-top'>
-    <label for='type'>Type</label><br />
+    <select ref={value => type = value}>
+      <label for='type'>Type</label><br />
+      <option value="" selected disabled hidden>Choose type</option>
       <option value='jk'>Joke</option>
       <option value='cd'>Code</option>
       <option value='in'>Information</option>
       <option value='as'>ASCII</option>
       <option value='us'>Unspecified</option>
     </select>
-  </div> */}
+  </div>
   <div>
     <label for='content'>Content</label><br />
     <textarea

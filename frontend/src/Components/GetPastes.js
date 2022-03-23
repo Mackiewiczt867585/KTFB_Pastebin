@@ -2,8 +2,11 @@ import React, {useEffect, useState} from 'react'
 import { useQuery, gql } from '@apollo/client'
 import {LOAD_PASTES} from '../GraphQL/Queries'
 import './GetPastes.css'
+import TimeAgo from 'javascript-time-ago'
 
-
+import en from 'javascript-time-ago/locale/en.json'
+import ReactTimeAgo from 'react-time-ago'
+TimeAgo.addDefaultLocale(en)
 
 
 function GetPastes(){
@@ -40,7 +43,7 @@ function GetPastes(){
                     <td> {val.title}</td>
                     <td> {val.author}</td>
                     <td> {val.type}</td>
-                    <td> {val.creationDate}</td>
+                    <td> <ReactTimeAgo date={val.creationDate} locale='en-US'/></td>
                 </tr>)})}
             </tbody>
         </table>
