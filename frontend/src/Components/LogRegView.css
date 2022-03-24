@@ -1,0 +1,14 @@
+.inner-box{
+
+    text-align: center;
+    
+}
+.login-box{
+        background-color: rgb(224, 220, 220);
+        box-shadow: 0 0 1em rgb(121, 113, 113);
+        max-width: 40%;
+        margin: auto;
+        border-radius: 5px;
+        text-align: left;
+        margin-top: 50px;
+}
