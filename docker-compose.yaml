@@ -26,16 +26,14 @@ services:
     depends_on:
       - db
   frontend:
-    command : 
-      npm start
-      npm run build
+    #command : npm start
     build:
       context: ./frontend/
       dockerfile: Dockerfile
     volumes:
       - react_build:/frontend/build
     ports:
-      - "3000:3000"
+      - 80:80
     stdin_open: true
     depends_on:
       - backend

@@ -1,4 +1,4 @@
-FROM node:17-alpine3.14
+FROM node:17-alpine3.14 as build
 WORKDIR /frontend
 COPY package.json package-lock.json ./
 RUN npm install 
@@ -11,4 +11,13 @@ RUN npm install react-time-ago
 RUN npm install javascript-time-ago
 >>>>>>> [10a][DO]nginx setup (work in progress)
 COPY . ./
-EXPOSE 3000
+RUN npm run build
+
+#nginx
+FROM nginx:1.21-alpine
+
+COPY --from=build /frontend/build /usr/share/nginx/html
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx-setup.conf /etc/nginx/conf.d
+EXPOSE 80
+
