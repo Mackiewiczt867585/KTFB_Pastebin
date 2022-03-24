@@ -1,13 +1,13 @@
 import React from 'react';
 import '../../App.css';
-import Register from '../Register';
+import RegisterView from '../RegisterView';
 
 
 function Register() {
   return (
     <>
       <h1 className='title'>Rejestracja</h1>
-      <Register />
+      <RegisterView />
     </>
   );
 }

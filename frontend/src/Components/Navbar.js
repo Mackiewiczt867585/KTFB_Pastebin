@@ -11,6 +11,8 @@ function Navbar() {
           <Link to='/recent' className="nav-item">Aktualne</Link>
           <Link to='/popular' className="nav-item">Popularne</Link>
           <Link to='/about' className="nav-item">O KFTB</Link>
+          <Link to='/profile' className="nav-item">Profile</Link>
+          <Link to='/login' className="nav-item">Login</Link>
           <Link to='/register' className="nav-item">Register</Link>
         </div>
       </nav>

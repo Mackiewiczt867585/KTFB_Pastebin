@@ -31,6 +31,7 @@ return(
     placeholder='enter author'/>
   </div>
   <div className='input-item-top'>
+    <label for='type'>Type</label><br/>
     <select ref={value => type = value}>
       <label for='type'>Type</label><br />
       <option value="" selected disabled hidden>Choose type</option>

@@ -5,7 +5,7 @@ import './LogRegView.css'
 
 
 
-const Register = () => {
+const RegisterView = () => {
   let email, firstName, password, organisation, username;
   const [createUser] = useMutation(CREATE_USER_MUTATION);
 
@@ -59,4 +59,4 @@ return(
 }
 
 
-    export default Register;
+    export default RegisterView;
