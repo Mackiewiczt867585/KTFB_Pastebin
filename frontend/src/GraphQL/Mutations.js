@@ -14,4 +14,17 @@ const CREATE_PASTE_MUTATION = gql`
     }
 `;
 
-export { CREATE_PASTE_MUTATION }
+const CREATE_USER_MUTATION = gql`
+    mutation createUser($email: String!, $firstName: String,$organisation: String, $password: String!, $username: String!) {
+        createUser( email: $email, firstName: $firstName,organisation: $organisation, password: $password, username: $username){
+            user{
+                email
+                firstName
+                creationDate
+                username
+            }
+        }
+    }
+`;
+
+export { CREATE_PASTE_MUTATION, CREATE_USER_MUTATION }
