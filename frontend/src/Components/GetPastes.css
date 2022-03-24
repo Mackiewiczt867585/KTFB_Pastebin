@@ -8,6 +8,9 @@
     margin-top: 50px;
 
 }
+table{
+  min-width: 100%;
+}
 
 th {
     padding-top: 12px;
@@ -26,10 +29,7 @@ th {
     width: 25%;
   }
   table thead th:nth-child(3){
-    width: 10%;
-  }
-  table thead th:nth-child(3){
-    width: 15%;
+    width: 11%;
   }
 
 tr:nth-child(even){background-color: #f2f2f2;}
