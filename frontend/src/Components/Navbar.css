@@ -31,6 +31,10 @@
     height: 100%;
     position: relative;
 }
+.nav-item:nth-child(6){
+    position: absolute;
+    right: 2em;
+}
 .nav-item:hover{
     background-color: rgb(59, 56, 50);
     color: aliceblue;

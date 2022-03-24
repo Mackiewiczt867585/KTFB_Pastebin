@@ -7,7 +7,7 @@ import Recent from './Components/pages/Recent';
 import Popular from './Components/pages/Popular';
 import About from './Components/pages/About';
 import Footer from './Components/Footer';
-
+import Register from './Components/Register';
 
 
 
@@ -26,6 +26,7 @@ function App() {
           <Route path='/recent' element={<Recent />} />
           <Route path='/popular' element={<Popular />} />
           <Route path='/about' element={<About />} />
+          <Route path='/register' element={<Register />} />
         </Routes>
       </Router>
       <Footer />
