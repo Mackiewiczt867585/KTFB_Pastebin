@@ -4,13 +4,6 @@ import { useMutation } from '@apollo/client';
 import './Pastes.css'
 
 
-const options = [
-  {value: 'jk' ,label: 'Joke'},
-  {value: 'cd' ,label: 'Code'},
-  {value: 'in' ,label: 'Information'},
-  {value: 'as ',label: 'ASCII'},
-  {value: 'us' ,label: 'Unspecified'}
-]
 
 
 const Pastes = () => {
