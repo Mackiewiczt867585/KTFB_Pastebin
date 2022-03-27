@@ -3,7 +3,6 @@ FROM python:3
 ENV MICRO_SERVICE=/home/app/microservice
 # set work directory
 
-
 RUN mkdir -p $MICRO_SERVICE
 RUN mkdir -p $MICRO_SERVICE/static
 

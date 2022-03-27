@@ -1,0 +1,62 @@
+#To (re)build services using production environment use command below:
+# docker-compose -f docker-compose.prod.yaml build
+
+#To start containers using production environment use command:
+# docker-compose -f docker-compose.prod.yaml up
+
+# If you want to use other docker command refering to production environment,
+# use docker-compose as usual but with "-f docker-compose.prod.yaml" flag using examples above
+
+# !NOTE: sudo prefix may be needed for docker commands to function properly
+
+version: '3'
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=qwerty
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+  backend: 
+    build:
+      context: ./backend/
+      dockerfile: Dockerfile
+    command: sh -c "python manage.py makemigrations &&
+                    python manage.py migrate &&
+                    python manage.py collectstatic --noinput &&
+                    gunicorn project.wsgi:application --bind 0.0.0.0:5432"
+    volumes:
+      - .:/microservice:rw
+      - static_volume:/home/app/microservice/static
+    expose:
+      - 5432
+    depends_on:
+      - db
+  frontend:
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    volumes:
+      - react_build:/frontend/build
+    ports:
+      - 80:80
+    stdin_open: true
+    depends_on:
+      - backend
+  nginx:
+    build: ./nginx
+    ports:
+      - 5432:80
+    volumes:
+      - static_volume:/home/app/microservice/static
+    depends_on:
+      - backend
+    
+volumes:
+  postgres_data:
+  static_volume:
+  react_build:
+
