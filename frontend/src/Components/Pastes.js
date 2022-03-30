@@ -34,12 +34,11 @@ return(
     <label for='type'>Type</label><br/>
     <select ref={value => type = value}>
       <label for='type'>Type</label><br />
-      <option value="" selected disabled hidden>Choose type</option>
       <option value='jk'>Joke</option>
       <option value='cd'>Code</option>
       <option value='in'>Information</option>
       <option value='as'>ASCII</option>
-      <option value='us'>Unspecified</option>
+      <option value='us' selected>Unspecified</option>
     </select>
   </div>
   <div>
