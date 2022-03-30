@@ -3,6 +3,9 @@ from graphene_django import DjangoObjectType
 
 from .models import CopyCasket, CustomUser
 
+from graphql_auth.schema import UserQuery, MeQuery
+from graphql_auth import mutations
+
 
 class CopyCasketTypes(DjangoObjectType):
     class Meta:
@@ -16,7 +19,7 @@ class CustomUserTypes(DjangoObjectType):
         fields = ("email", "username", "first_name", "creation_date", "organisation")
 
 
-class Query(graphene.ObjectType):
+class Query(UserQuery, MeQuery, graphene.ObjectType):
     all_copies = graphene.List(CopyCasketTypes)
     copy = graphene.Field(CopyCasketTypes, copy_id=graphene.ID())
 
@@ -135,6 +138,24 @@ class Mutation(graphene.ObjectType):
     create_user = CustomUserCreateMutation.Field()
     update_user = CustomUserUpdateMutation.Field()
     delete_user = CustomUserDeleteMutation.Field()
+
+    register = mutations.Register.Field()       #register
+    verify_account = mutations.VerifyAccount.Field()    #veryfication
+    resend_activation_email = mutations.ResendActivationEmail.Field()
+    send_password_reset_email = mutations.SendPasswordResetEmail.Field()
+    password_reset = mutations.PasswordReset.Field()
+    password_change = mutations.PasswordChange.Field()
+    archive_account = mutations.ArchiveAccount.Field()
+    delete_account = mutations.DeleteAccount.Field()
+    update_account = mutations.UpdateAccount.Field()
+    send_secondary_email_activation = mutations.SendSecondaryEmailActivation.Field()
+    verify_secondary_email = mutations.VerifySecondaryEmail.Field()
+    swap_emails = mutations.SwapEmails.Field()
+
+    token_auth = mutations.ObtainJSONWebToken.Field()   #login
+    verify_token = mutations.VerifyToken.Field()
+    refresh_token = mutations.RefreshToken.Field()
+    revoke_token = mutations.RevokeToken.Field()
 
 
 schema = graphene.Schema(query=Query, mutation=Mutation)

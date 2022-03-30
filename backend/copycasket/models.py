@@ -69,9 +69,10 @@ class CustomAccountManager(BaseUserManager):
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(unique=True)
-    username = models.CharField(max_length=30, unique=True)
-    first_name = models.CharField(max_length=150, blank=True)
+    email = models.EmailField(unique=True, verbose_name="email")
+    username = models.CharField(max_length=30, unique=True, verbose_name="username")
+    first_name = models.CharField(max_length=150)
+    last_name = models.CharField(max_length=150)
     creation_date = models.DateTimeField(default=timezone.now)
     organisation = models.CharField(max_length=150)
 
@@ -81,7 +82,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     is_superuser = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'first_name']
+    EMAIL_FIELD = 'email'
 
     objects = CustomAccountManager()
 
