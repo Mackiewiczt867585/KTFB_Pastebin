@@ -108,7 +108,7 @@ class CustomUserUpdateMutation(graphene.Mutation):
     user = graphene.Field(CustomUserTypes)
 
     @classmethod
-    def mutate(cls, root, info, **kwargs):
+    def mutate(cls, root, info, id, **kwargs):
         instance = CustomUser.objects.get(pk=id)
         instance.update(**kwargs)
         return CustomUserCreateMutation(user=instance)
