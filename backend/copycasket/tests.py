@@ -42,3 +42,20 @@ class TestCase(TestCase):
         query = Query()
         self.assertEqual(2, len(query.resolve_all_users(self)))
 
+    def test_createcasket_mut(self):
+        createq = CopyCasketCreateMutation()
+        createq.mutate(self, None, id=3, title="trzecia_strona", author="zawiso", creation_date=self.aware_datetime,
+                       type="cd", content="lorem ipsum")
+        self.assertEqual("trzecia_strona", CopyCasket.objects.get(id=3).title)
+
+    def test_updatecasket_mut(self):
+        updateq = CopyCasketUpdateMutation()
+        updateq.mutate(self, None, id=2, title="nowe_testowe", author="zawis", creation_date=self.aware_datetime,
+                       type="cd", content="lorem ipsum")
+        self.assertEqual("nowe_testowe", CopyCasket.objects.get(id=2).title)
+
+    def test_deletecasket_mut(self):
+        query = Query()
+        delq = CopyCasketDeleteMutation()
+        delq.mutate(self, None, id=2)
+        self.assertEqual(1, len(query.resolve_all_copies(self)))
