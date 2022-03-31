@@ -59,3 +59,21 @@ class TestCase(TestCase):
         delq = CopyCasketDeleteMutation()
         delq.mutate(self, None, id=2)
         self.assertEqual(1, len(query.resolve_all_copies(self)))
+
+    def test_createuser_mut(self):
+        createu=CustomUserCreateMutation()
+        createu.mutate(self, None, id=3, email="test3@op.pl", username="randomuser", first_name="pablo",
+                       creation_date=self.aware_datetime, organisation="brak")
+        self.assertEqual("brak", CustomUser.objects.get(id=3).organisation)
+
+    def test_updateuser_mut(self):
+        updateu=CustomUserUpdateMutation()
+        updateu.mutate(self, None, id=2, email="rodzynek@op.pl", username="usernamexd", first_name="adrian",
+                       creation_date=self.aware_datetime, organisation="cukiernia")
+        self.assertEqual("cukiernia", CustomUser.objects.get(id=2).organisation)
+
+    def test_deleteuser_mut(self):
+        query = Query()
+        delu = CustomUserDeleteMutation()
+        delu.mutate(self, None, id=2)
+        self.assertEqual(1, len(query.resolve_all_users(self)))
