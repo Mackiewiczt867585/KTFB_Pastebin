@@ -1,8 +1,9 @@
-from django.utils import timezone
-
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
+from django.utils import timezone
+
+from django.conf import settings
 
 COPY_TYPE_CHOICES = [
     ("jk", "Joke"),
@@ -11,31 +12,6 @@ COPY_TYPE_CHOICES = [
     ("as", "ASCII"),
     ("us", "Unspecified"),
 ]
-
-
-class CopyCasket(models.Model):
-    id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=100, blank=False)
-    author = models.CharField(
-        max_length=30, blank=False
-    )  # TODO Implement custom users and make this FK
-    creation_date = models.DateTimeField(auto_now_add=True)
-    type = models.CharField(
-        max_length=2,
-        default="us",
-        choices=COPY_TYPE_CHOICES,
-    )
-    content = models.TextField(blank=True)
-
-    def __str__(self):
-        return self.title
-
-    def update(self, **kwargs):
-        for key, val in kwargs.items():
-            if val is None:
-                val = getattr(self, key)
-            setattr(self, key, val)
-        self.save()
 
 
 class CustomAccountManager(BaseUserManager):
@@ -88,6 +64,34 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.username
+
+    def update(self, **kwargs):
+        for key, val in kwargs.items():
+            if val is None:
+                val = getattr(self, key)
+            setattr(self, key, val)
+        self.save()
+
+
+class CopyCasket(models.Model):
+    id = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=100, blank=False)
+    author = models.CharField(
+        max_length=30, blank=False
+    )
+    creation_date = models.DateTimeField(auto_now_add=True)
+    type = models.CharField(
+        max_length=2,
+        default="us",
+        choices=COPY_TYPE_CHOICES,
+    )
+    content = models.TextField(blank=True)
+
+    creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_DEFAULT, default=1)
+    private = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title
 
     def update(self, **kwargs):
         for key, val in kwargs.items():
