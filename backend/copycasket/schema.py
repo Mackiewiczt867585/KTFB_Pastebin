@@ -88,13 +88,14 @@ class CopyCasketCreateMutation(graphene.Mutation):
         type = graphene.String(required=False)
         content = graphene.String(required=False)
         private = graphene.Boolean(required=False)
-        creator = graphene.ID(required=True)
+        creator = graphene.String(required=True)
 
     copycasket = graphene.Field(CopyCasketTypes)
 
     @classmethod
-    def mutate(cls, root, info, **kwargs):
+    def mutate(cls, root, info, creator, **kwargs):
         instance = CopyCasket.objects.create(**kwargs)
+        instance.creator = CustomUser.objects.get(email=creator)
         instance.save()
         return CopyCasketUpdateMutation(copycasket=instance)
 
