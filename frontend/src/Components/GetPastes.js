@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react'
 import { useQuery, gql } from '@apollo/client'
 import {LOAD_PASTES} from '../GraphQL/Queries'
 import './GetPastes.css'
+import {Link} from 'react-router-dom'
 import TimeAgo from 'javascript-time-ago'
 
 import en from 'javascript-time-ago/locale/en.json'
@@ -30,7 +31,7 @@ function GetPastes({currentItems}){
         {currentItems.map((val, pos) => {
             return (
                 <tr key={pos}>
-                    <td> {val.title}</td>
+                    <td><Link to={"/paste/"+val.id}>{val.title}</Link></td>
                     <td> {val.author}</td>
                     <td> {val.type}</td>
                     <td> <ReactTimeAgo date={val.creationDate} locale='en-US'/></td>

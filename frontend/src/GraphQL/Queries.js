@@ -3,6 +3,7 @@ import {gql} from '@apollo/client'
 const LOAD_PASTES = gql`
     query{
         allCopies{
+            id
             author
             title
             content
@@ -12,5 +13,18 @@ const LOAD_PASTES = gql`
     }
 `;
 
+const PASTE_BY_ID = gql`
+query copy ($copyId: ID!){
+    copy(copyId: $copyId){
+        id
+        author
+        title
+        creationDate
+        type
+        content
+    }
+}
+`
 
-export { LOAD_PASTES }
+
+export { LOAD_PASTES, PASTE_BY_ID }
