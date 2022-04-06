@@ -1,4 +1,4 @@
-FROM python:3
+FROM python:3.10
 
 ENV MICRO_SERVICE=/home/app/microservice
 # set work directory

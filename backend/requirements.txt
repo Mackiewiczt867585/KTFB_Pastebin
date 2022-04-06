@@ -6,12 +6,13 @@ django-filter==21.1
 django-graphql-auth==0.3.16
 #django-graphql-jwt with deprecated function calls replaced
 git+https://github.com/Chacinskik/django-graphql-jwt.git@0.3.0-fix
-graphene==2.1.9
 #forked version of graphene-django to fix calls to methods removed in Django v4
 git+https://github.com/Chacinskik/graphene-django.git@v2
+graphene==2.1.9
 graphql-core==2.3.2
 graphql-relay==2.0.1
 gunicorn==20.1.0
+pre-commit==2.18.1
 promise==2.3
 psycopg2-binary==2.9.3
 PyJWT==1.7.1
