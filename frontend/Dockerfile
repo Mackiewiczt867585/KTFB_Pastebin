@@ -1,8 +1,8 @@
 FROM node:17-alpine3.14 as build
 WORKDIR /frontend
 COPY package.json package-lock.json ./
-RUN npm install 
-RUN npm install react-scripts@5.0.0 -g 
+RUN npm install
+RUN npm install react-scripts@5.0.0 -g
 RUN npm install react-time-ago
 RUN npm install javascript-time-ago
 RUN npm install react-paginate
@@ -16,4 +16,3 @@ COPY --from=build /frontend/build /usr/share/nginx/html
 RUN rm /etc/nginx/conf.d/default.conf
 COPY nginx-setup.conf /etc/nginx/conf.d
 EXPOSE 80
-

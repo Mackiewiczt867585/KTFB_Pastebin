@@ -14,7 +14,7 @@ return(
 <div className='outer-box'>
 <form onSubmit={ e => {
   createPaste ( { variables: { title: title.value, author:author.value, content:content.value, type:type.value}});
-  
+
 }}>
   <div className='input-item-top'>
     <label for='title'>Title</label><br />

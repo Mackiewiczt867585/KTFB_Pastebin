@@ -1,9 +1,8 @@
+from django.apps import apps
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
 from .models import CopyCasket, CustomUser
-
-from django.apps import apps
 
 
 @admin.register(CopyCasket)
@@ -26,12 +25,14 @@ class CustomUserAdmin(UserAdmin):
         "first_name",
     ]
 
-    readonly_fields = ['creation_date']
+    readonly_fields = ["creation_date"]
 
     fieldsets = (
-        ("Login data", {'fields': ('email', 'password')}),
-        ("Basic info", {'fields': ('username', 'first_name', 'creation_date', 'organisation')})
-
+        ("Login data", {"fields": ("email", "password")}),
+        (
+            "Basic info",
+            {"fields": ("username", "first_name", "creation_date", "organisation")},
+        ),
     )
 
 

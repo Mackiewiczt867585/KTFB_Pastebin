@@ -1,16 +1,17 @@
 import datetime
 
-from django.utils.timezone import make_aware
 from django.test import TestCase
+from django.utils.timezone import make_aware
+
 from .models import CopyCasket, CustomUser
 from .schema import (
-    Query,
-    CopyCasketUpdateMutation,
-    CustomUserUpdateMutation,
     CopyCasketCreateMutation,
-    CustomUserCreateMutation,
     CopyCasketDeleteMutation,
+    CopyCasketUpdateMutation,
+    CustomUserCreateMutation,
     CustomUserDeleteMutation,
+    CustomUserUpdateMutation,
+    Query,
 )
 
 

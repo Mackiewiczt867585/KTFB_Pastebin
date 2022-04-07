@@ -6,28 +6,28 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('copycasket', '0002_customuser_last_name'),
+        ("copycasket", "0002_customuser_last_name"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='customuser',
-            name='email',
-            field=models.EmailField(max_length=254, unique=True, verbose_name='email'),
+            model_name="customuser",
+            name="email",
+            field=models.EmailField(max_length=254, unique=True, verbose_name="email"),
         ),
         migrations.AlterField(
-            model_name='customuser',
-            name='first_name',
+            model_name="customuser",
+            name="first_name",
             field=models.CharField(max_length=150),
         ),
         migrations.AlterField(
-            model_name='customuser',
-            name='last_name',
+            model_name="customuser",
+            name="last_name",
             field=models.CharField(max_length=150),
         ),
         migrations.AlterField(
-            model_name='customuser',
-            name='username',
-            field=models.CharField(max_length=30, unique=True, verbose_name='username'),
+            model_name="customuser",
+            name="username",
+            field=models.CharField(max_length=30, unique=True, verbose_name="username"),
         ),
     ]

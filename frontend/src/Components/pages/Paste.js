@@ -19,7 +19,7 @@ function Paste() {
   }, [data,loading,error]);
   return (
     <>
-      
+
       <h1 className='title'>Wklejka</h1>
       <div className='outer-box'>
         <div>

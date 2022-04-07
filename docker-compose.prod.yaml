@@ -20,7 +20,7 @@ services:
       - POSTGRES_PASSWORD=qwerty
     volumes:
       - postgres_data:/var/lib/postgresql/data/
-  backend: 
+  backend:
     build:
       context: ./backend/
       dockerfile: Dockerfile
@@ -54,9 +54,8 @@ services:
       - static_volume:/home/app/microservice/static
     depends_on:
       - backend
-    
+
 volumes:
   postgres_data:
   static_volume:
   react_build:
-

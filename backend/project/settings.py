@@ -26,7 +26,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-AUTH_USER_MODEL = 'copycasket.CustomUser'
+AUTH_USER_MODEL = "copycasket.CustomUser"
 
 # Application definition
 
@@ -52,7 +52,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'corsheaders.middleware.CorsMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "project.urls"
@@ -133,23 +133,23 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 GRAPHENE = {
     "SCHEMA": "app.schema.schema",
     "MIDDLEWARE": [
-        'graphql_jwt.middleware.JSONWebTokenMiddleware',
-    ]
+        "graphql_jwt.middleware.JSONWebTokenMiddleware",
+    ],
 }
 
 AUTHENTICATION_BACKENDS = [
-    'graphql_auth.backends.GraphQLAuthBackend',
-    'django.contrib.auth.backends.AllowAllUsersModelBackend',
+    "graphql_auth.backends.GraphQLAuthBackend",
+    "django.contrib.auth.backends.AllowAllUsersModelBackend",
 ]
 
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000',
-    'http://127.0.0.1:3000',
-    'http://0.0.0.0:3000',
-    'http://0.0.0.0'
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://0.0.0.0:3000",
+    "http://0.0.0.0",
 ]
 
-CSRF_TRUSTED_ORIGINS = ['http://0.0.0.0:5432']
+CSRF_TRUSTED_ORIGINS = ["http://0.0.0.0:5432"]
 
 GRAPHQL_JWT = {
     "JWT_ALLOW_ANY_CLASSES": [
@@ -169,8 +169,8 @@ GRAPHQL_JWT = {
 }
 
 GRAPHQL_AUTH = {
-    'LOGIN_ALLOWED_FIELDS': ['username'],
-    'REGISTER_MUTATION_FIELDS': {
+    "LOGIN_ALLOWED_FIELDS": ["username"],
+    "REGISTER_MUTATION_FIELDS": {
         "email": "String",
         "username": "String",
         "first_name": "String",

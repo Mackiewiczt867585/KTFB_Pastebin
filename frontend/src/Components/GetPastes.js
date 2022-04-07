@@ -26,7 +26,7 @@ function GetPastes({currentItems}){
                     <th>Dodano</th>
                 </tr>
             </thead>
-            
+
             <tbody>
         {currentItems.map((val, pos) => {
             return (
@@ -57,9 +57,9 @@ function PaginatedItems() {
   useEffect(() => {
     if(data){
     setPastes(data.allCopies)
- 
+
     const endOffset = itemOffset + itemsPerPage;
-  
+
     setCurrentItems(pastes.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(pastes.length / itemsPerPage));
   }

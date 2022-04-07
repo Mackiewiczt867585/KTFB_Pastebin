@@ -1,10 +1,9 @@
 import graphene
 from graphene_django import DjangoObjectType
+from graphql_auth import mutations
+from graphql_auth.schema import MeQuery, UserQuery
 
 from .models import CopyCasket, CustomUser
-
-from graphql_auth.schema import UserQuery, MeQuery
-from graphql_auth import mutations
 
 
 class CopyCasketTypes(DjangoObjectType):
@@ -139,8 +138,8 @@ class Mutation(graphene.ObjectType):
     update_user = CustomUserUpdateMutation.Field()
     delete_user = CustomUserDeleteMutation.Field()
 
-    register = mutations.Register.Field()       #register
-    verify_account = mutations.VerifyAccount.Field()    #veryfication
+    register = mutations.Register.Field()  # register
+    verify_account = mutations.VerifyAccount.Field()  # veryfication
     resend_activation_email = mutations.ResendActivationEmail.Field()
     send_password_reset_email = mutations.SendPasswordResetEmail.Field()
     password_reset = mutations.PasswordReset.Field()
@@ -152,7 +151,7 @@ class Mutation(graphene.ObjectType):
     verify_secondary_email = mutations.VerifySecondaryEmail.Field()
     swap_emails = mutations.SwapEmails.Field()
 
-    token_auth = mutations.ObtainJSONWebToken.Field()   #login
+    token_auth = mutations.ObtainJSONWebToken.Field()  # login
     verify_token = mutations.VerifyToken.Field()
     refresh_token = mutations.RefreshToken.Field()
     revoke_token = mutations.RevokeToken.Field()
