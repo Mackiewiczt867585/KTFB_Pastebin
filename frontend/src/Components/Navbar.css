@@ -1,49 +1,49 @@
 .fixed-nav-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    width: 100%;
-    height: 40px;
-    background-color: rgb(236, 232, 232);
-    box-shadow: 0 0 1em rgb(121, 113, 113);
-    margin-bottom: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  width: 100%;
+  height: 40px;
+  background-color: rgb(236, 232, 232);
+  box-shadow: 0 0 1em rgb(121, 113, 113);
+  margin-bottom: 10px;
 }
-.navbar-container{
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: rgb(236, 232, 232);
-    text-align: left;
-    margin-left: 25em;
-    position: relative;
-    height: 100%;
+.navbar-container {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(236, 232, 232);
+  text-align: left;
+  margin-left: 25em;
+  position: relative;
+  height: 100%;
 }
 
-.nav-item{
-    display: inline-block;
-    color: rgb(148, 57, 57);
-    text-align: center;
-    padding: 1px 50px;
-    text-decoration: none;
-    height: 100%;
-    position: relative;
+.nav-item {
+  display: inline-block;
+  color: rgb(148, 57, 57);
+  text-align: center;
+  padding: 1px 50px;
+  text-decoration: none;
+  height: 100%;
+  position: relative;
 }
-.nav-item:nth-child(8){
-    position: absolute;
-    right: 2em;
+.nav-item:nth-child(8) {
+  position: absolute;
+  right: 2em;
 }
-.nav-item:nth-child(7){
-    position: absolute;
-    right: 12em;
+.nav-item:nth-child(7) {
+  position: absolute;
+  right: 12em;
 }
-.nav-item:nth-child(6){
-    position: absolute;
-    right: 20em;
+.nav-item:nth-child(6) {
+  position: absolute;
+  right: 20em;
 }
-.nav-item:hover{
-    background-color: rgb(59, 56, 50);
-    color: aliceblue;
+.nav-item:hover {
+  background-color: rgb(59, 56, 50);
+  color: aliceblue;
 }

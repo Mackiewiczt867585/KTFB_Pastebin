@@ -9,7 +9,7 @@
 
 # !NOTE: sudo prefix may be needed for docker commands to function properly
 
-version: '3'
+version: "3"
 
 services:
   db:
@@ -25,9 +25,9 @@ services:
       context: ./backend/
       dockerfile: Dockerfile
     command: sh -c "python manage.py makemigrations &&
-                    python manage.py migrate &&
-                    python manage.py collectstatic --noinput &&
-                    gunicorn project.wsgi:application --bind 0.0.0.0:5432"
+      python manage.py migrate &&
+      python manage.py collectstatic --noinput &&
+      gunicorn project.wsgi:application --bind 0.0.0.0:5432"
     volumes:
       - .:/microservice:rw
       - static_volume:/home/app/microservice/static

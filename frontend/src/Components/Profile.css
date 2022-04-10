@@ -1,17 +1,17 @@
-.settings-box{
-    position: fixed;
-    top: 50%;
-    right: 2%;
-    display: flex;
-    flex-direction: column;
+.settings-box {
+  position: fixed;
+  top: 50%;
+  right: 2%;
+  display: flex;
+  flex-direction: column;
 }
-.settings-item{
-        display: inline-block;
-        color: rgb(138, 51, 189);
-        text-align: center;
-        text-decoration: none;
-        font-size: 1.3em;
+.settings-item {
+  display: inline-block;
+  color: rgb(138, 51, 189);
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.3em;
 }
-.settings-item:hover{
-    color: rgb(214, 51, 214);
+.settings-item:hover {
+  color: rgb(214, 51, 214);
 }

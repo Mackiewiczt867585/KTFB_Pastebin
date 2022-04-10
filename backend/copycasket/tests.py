@@ -15,7 +15,7 @@ from .schema import (
 )
 
 
-class TestCase(TestCase):
+class CustomTestCase(TestCase):
     def setUp(self):
         naive_datetime = datetime.datetime.now()
         self.aware_datetime = make_aware(naive_datetime)

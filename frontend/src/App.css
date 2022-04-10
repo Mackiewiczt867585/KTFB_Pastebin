@@ -12,15 +12,15 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-html{
+html {
   height: 100%;
 }
-body{
+body {
   height: 100%;
   margin: 0;
-  background-attachment:fixed ;
+  background-attachment: fixed;
   background-repeat: no-repeat;
-  background-image: linear-gradient(rgb(167, 161, 161), rgb(68, 68, 67))
+  background-image: linear-gradient(rgb(167, 161, 161), rgb(68, 68, 67));
 }
 .App-header {
   background-color: #282c34;
@@ -36,15 +36,7 @@ body{
 .App-link {
   color: #61dafb;
 }
-.title{
-    max-width: 60%;
-    margin: auto;
-    border-radius: 5px;
-    text-align: left;
-    margin-top: 50px;
-}
-
-.info{
+.title {
   max-width: 60%;
   margin: auto;
   border-radius: 5px;
@@ -52,9 +44,15 @@ body{
   margin-top: 50px;
 }
 
+.info {
+  max-width: 60%;
+  margin: auto;
+  border-radius: 5px;
+  text-align: left;
+  margin-top: 50px;
+}
 
-
-body{
+body {
   background-color: rgb(207, 203, 203);
 }
 

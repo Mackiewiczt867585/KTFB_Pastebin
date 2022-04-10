@@ -1,46 +1,46 @@
 [
-{
-  "model": "copycasket.CopyCasket",
-  "pk": 1,
-  "fields": {
-    "title": "first",
-    "author": "Tom",
-    "creation_date": "2022-03-23T17:45:03Z",
-    "type": "cd",
-    "content": "sample_text"
-  }
-},
-{
-  "model": "copycasket.CopyCasket",
-  "pk": 2,
-  "fields": {
-    "title": "second",
-    "author": "Filip",
-    "creation_date": "2022-03-23T17:45:03Z",
-    "type": "in",
-    "content": "da baby car lets go"
-  }
-},
-{
-  "model": "copycasket.CopyCasket",
-  "pk": 3,
-  "fields": {
-    "title": "third",
-    "author": "Bartek",
-    "creation_date": "2022-03-23T17:45:03Z",
-    "type": "us",
-    "content": "some random sample text"
-  }
-},
   {
-  "model": "copycasket.CopyCasket",
-  "pk": 4,
-  "fields": {
-    "title": "fourth",
-    "author": "Krzysztof",
-    "creation_date": "2022-03-23T17:45:03Z",
-    "type": "jk",
-    "content": "very refined sample text"
+    "model": "copycasket.CopyCasket",
+    "pk": 1,
+    "fields": {
+      "title": "first",
+      "author": "Tom",
+      "creation_date": "2022-03-23T17:45:03Z",
+      "type": "cd",
+      "content": "sample_text"
+    }
+  },
+  {
+    "model": "copycasket.CopyCasket",
+    "pk": 2,
+    "fields": {
+      "title": "second",
+      "author": "Filip",
+      "creation_date": "2022-03-23T17:45:03Z",
+      "type": "in",
+      "content": "da baby car lets go"
+    }
+  },
+  {
+    "model": "copycasket.CopyCasket",
+    "pk": 3,
+    "fields": {
+      "title": "third",
+      "author": "Bartek",
+      "creation_date": "2022-03-23T17:45:03Z",
+      "type": "us",
+      "content": "some random sample text"
+    }
+  },
+  {
+    "model": "copycasket.CopyCasket",
+    "pk": 4,
+    "fields": {
+      "title": "fourth",
+      "author": "Krzysztof",
+      "creation_date": "2022-03-23T17:45:03Z",
+      "type": "jk",
+      "content": "very refined sample text"
+    }
   }
-}
 ]

@@ -6,7 +6,7 @@
 
 # !NOTE: sudo prefix may be needed for docker commands to function properly
 
-version: '3'
+version: "3"
 
 services:
   db:
@@ -33,7 +33,7 @@ services:
     depends_on:
       - db
   frontend:
-    command : npm start
+    command: npm start
     build:
       context: ./frontend/
       dockerfile: Dockerfile.dev
