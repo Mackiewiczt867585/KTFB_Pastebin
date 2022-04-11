@@ -18,6 +18,3 @@ RUN pip install --upgrade pip
 # copy project
 COPY . $MICRO_SERVICE
 RUN pip install -r requirements.txt
-#COPY ./entrypoint.sh $MICRO_SERVICE
-
-#CMD ["/bin/bash", "/home/app/microservice/entrypoint.sh"]

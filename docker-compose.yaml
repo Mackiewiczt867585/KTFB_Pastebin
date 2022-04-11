@@ -37,7 +37,6 @@ services:
     build:
       context: ./frontend/
       dockerfile: Dockerfile.dev
-    #command: sh -c "chmod 777 node_modules -R"
     environment:
       CHOKIDAR_USEPOLLING: "true"
     volumes:
