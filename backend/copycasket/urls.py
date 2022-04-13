@@ -1,4 +1,4 @@
-from copycasket.schema import schema
+from .schema import schema
 from django.urls import path
 from django.views.decorators.csrf import csrf_exempt
 from graphene_file_upload.django import FileUploadGraphQLView
