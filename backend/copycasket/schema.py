@@ -1,8 +1,8 @@
 import graphene
 from graphene_django import DjangoObjectType
+from graphene_file_upload.scalars import Upload
 from graphql_auth import mutations
 from graphql_auth.schema import MeQuery, UserQuery
-from graphene_file_upload.scalars import Upload
 
 from .models import CopyCasket, CustomUser
 
@@ -16,7 +16,13 @@ class CopyCasketTypes(DjangoObjectType):
 class CustomUserTypes(DjangoObjectType):
     class Meta:
         model = CustomUser
-        fields = ("email", "username", "first_name", "creation_date", "organisation")
+        fields = (
+            "email",
+            "username",
+            "first_name",
+            "creation_date",
+            "organisation",
+        )
 
 
 class Query(UserQuery, MeQuery, graphene.ObjectType):
@@ -45,7 +51,9 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
     def resolve_all_public_copies(self, info):
         return CustomUser.objects.all().filter(private=False)
 
-    def resolve_all_private_copies(self, info, creator):  # take logged in user from context to show his private pastes
+    def resolve_all_private_copies(
+        self, info, creator
+    ):  # take logged in user from context to show his private pastes
         return CustomUser.objects.all().filter(private=True, creator=creator)
 
     def resolve_all_users_copies(self, info, creator):
@@ -160,15 +168,12 @@ class Mutation(graphene.ObjectType):
     register = mutations.Register.Field()  # register
     verify_account = mutations.VerifyAccount.Field()  # veryfication
     resend_activation_email = mutations.ResendActivationEmail.Field()
-    send_password_reset_email = mutations.SendPasswordResetEmail.Field()
+    reset_email = mutations.SendPasswordResetEmail.Field()
     password_reset = mutations.PasswordReset.Field()
     password_change = mutations.PasswordChange.Field()
     archive_account = mutations.ArchiveAccount.Field()
     delete_account = mutations.DeleteAccount.Field()
     update_account = mutations.UpdateAccount.Field()
-    send_secondary_email_activation = mutations.SendSecondaryEmailActivation.Field()
-    verify_secondary_email = mutations.VerifySecondaryEmail.Field()
-    swap_emails = mutations.SwapEmails.Field()
 
     token_auth = mutations.ObtainJSONWebToken.Field()  # login
     verify_token = mutations.VerifyToken.Field()

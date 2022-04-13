@@ -132,7 +132,10 @@ class CustomTestCase(TestCase):
             creation_date=self.aware_datetime,
             organisation="cukiernia",
         )
-        self.assertEqual("cukiernia", CustomUser.objects.get(id=2).organisation)
+        self.assertEqual(
+            "cukiernia",
+            CustomUser.objects.get(id=2).organisation
+        )
 
     def test_deleteuser_mut(self):
         query = Query()
