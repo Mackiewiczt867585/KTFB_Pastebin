@@ -22,6 +22,10 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
     all_copies = graphene.List(CopyCasketTypes)
     copy = graphene.Field(CopyCasketTypes, copy_id=graphene.ID())
 
+    all_private_copies = graphene.List(CopyCasketTypes, creator=graphene.ID())
+    all_public_copies = graphene.List(CopyCasketTypes)
+    all_users_copies = graphene.List(CopyCasketTypes, creator=graphene.ID())
+
     all_users = graphene.List(CustomUserTypes)
     user = graphene.Field(CustomUserTypes, user_id=graphene.ID())
 
@@ -37,6 +41,15 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
     def resolve_user(self, info, user_id):
         return CustomUser.objects.get(pk=user_id)
 
+    def resolve_all_public_copies(self, info):
+        return CustomUser.objects.all().filter(private=False)
+
+    def resolve_all_private_copies(self, info, creator):  # take logged in user from context to show his private pastes
+        return CustomUser.objects.all().filter(private=True, creator=creator)
+
+    def resolve_all_users_copies(self, info, creator):
+        return CustomUser.objects.all().filter(creator=creator)
+
 
 class CopyCasketUpdateMutation(graphene.Mutation):
     class Arguments:
@@ -44,6 +57,7 @@ class CopyCasketUpdateMutation(graphene.Mutation):
         author = graphene.String(required=False)
         type = graphene.String(required=False)
         content = graphene.String(required=False)
+        private = graphene.Boolean(required=False)
         id = graphene.ID(required=True)
 
     copycasket = graphene.Field(CopyCasketTypes)
@@ -72,12 +86,15 @@ class CopyCasketCreateMutation(graphene.Mutation):
         author = graphene.String(required=False)
         type = graphene.String(required=False)
         content = graphene.String(required=False)
+        private = graphene.Boolean(required=False)
+        creator = graphene.String(required=True)
 
     copycasket = graphene.Field(CopyCasketTypes)
 
     @classmethod
-    def mutate(cls, root, info, **kwargs):
+    def mutate(cls, root, info, creator, **kwargs):
         instance = CopyCasket.objects.create(**kwargs)
+        instance.creator = CustomUser.objects.get(email=creator)
         instance.save()
         return CopyCasketUpdateMutation(copycasket=instance)
 
