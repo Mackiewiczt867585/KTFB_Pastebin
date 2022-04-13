@@ -2,6 +2,7 @@ import graphene
 from graphene_django import DjangoObjectType
 from graphql_auth import mutations
 from graphql_auth.schema import MeQuery, UserQuery
+from graphene_file_upload.scalars import Upload
 
 from .models import CopyCasket, CustomUser
 
@@ -88,6 +89,7 @@ class CopyCasketCreateMutation(graphene.Mutation):
         content = graphene.String(required=False)
         private = graphene.Boolean(required=False)
         creator = graphene.String(required=True)
+        image = Upload(required=False)
 
     copycasket = graphene.Field(CopyCasketTypes)
 
