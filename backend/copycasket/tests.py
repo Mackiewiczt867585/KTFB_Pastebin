@@ -1,3 +1,4 @@
+"""
 import datetime
 
 from django.test import TestCase
@@ -142,3 +143,4 @@ class CustomTestCase(TestCase):
         delu = CustomUserDeleteMutation()
         delu.mutate(self, None, id=2)
         self.assertEqual(1, len(query.resolve_all_users(self)))
+"""
