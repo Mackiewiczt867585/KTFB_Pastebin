@@ -1,9 +1,21 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+
+import { AuthContext} from './context'
+
+
 function Navbar() {
-  return (
-    <>
+
+  const {user, logout } = useContext(AuthContext);
+  console.log(AuthContext)
+  const pathname = window.location.pathname;
+  console.log(user)
+
+
+  const navbar = user ? (
+    <h1>fsdfds</h1>) : (
+        <>
       <nav className="fixed-nav-bar">
         <div className="navbar-container">
           <Link to="/" className="nav-item">
@@ -34,6 +46,8 @@ function Navbar() {
       </nav>
     </>
   );
+
+  return navbar;
 }
 
 export default Navbar;

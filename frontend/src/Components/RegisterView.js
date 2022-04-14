@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/client";
 import "./LogRegView.css";
 
 const RegisterView = () => {
-  let email, firstName, password, organisation, username;
+  let email, firstName, password1,password2, organisation, username;
   const [createUser] = useMutation(CREATE_USER_MUTATION);
 
   return (
@@ -16,7 +16,8 @@ const RegisterView = () => {
               email: email.value,
               firstName: firstName.value,
               organisation: organisation.value,
-              password: password.value,
+              password1: password1.value,
+              password2: password2.value,
               username: username.value,
             },
           });
@@ -59,12 +60,22 @@ const RegisterView = () => {
           />
         </div>
         <div className="inner-box">
-          <label for="password">password</label>
+          <label for="password1">password</label>
           <br />
           <input
             type="password"
-            ref={(value) => (password = value)}
-            id="password"
+            ref={(value) => (password1 = value)}
+            id="password1"
+            placeholder="enter password"
+          />
+        </div>
+        <div className="inner-box">
+          <label for="password2">confirm password</label>
+          <br />
+          <input
+            type="password"
+            ref={(value) => (password2 = value)}
+            id="password2"
             placeholder="enter password"
           />
         </div>
