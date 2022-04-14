@@ -62,17 +62,20 @@ const LOGIN_USER = gql`
   }`
 
 
-const PASSWORD_RESET = gql`
-mutation passwordReset(
-  $token: String!
+const PASSWORD_CHANGE = gql`
+mutation passwordChange(
+  $oldPassword: String!
   $newPassword1: String!
   $newPassword2: String!
 ){
   passwordReset(
-    token: $token
+    oldPassword: $oldPassword
     newPassword1: $newPassword1
     newPassword2: $newPassword2
   )
+  {
+    token
+  }
 }`
 
 export { CREATE_PASTE_MUTATION, CREATE_USER_MUTATION, LOGIN_USER};
