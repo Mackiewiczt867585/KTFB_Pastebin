@@ -6,6 +6,7 @@ RUN npm install && \
     npm install javascript-time-ago && \
     npm install react-time-ago && \
     npm install react-paginate
+
 COPY . /
 RUN chmod 777 node_modules -R
 EXPOSE 3000
