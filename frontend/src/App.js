@@ -13,7 +13,9 @@ import Profile from "./Components/pages/Profile";
 import EditProfile from "./Components/pages/EditProfile";
 import ChangePass from "./Components/pages/ChangePass";
 import Paste from "./Components/pages/Paste";
-import { AuthProvider } from './Components/context'
+import { AuthProvider } from './Components/Context/Auth'
+// import AuthRoute from "./Components/AuthRoute";
+
 function App() {
   return (
     <>
