@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 import { LOGIN_USER } from '../GraphQL/Mutations';
 import { useMutation } from '@apollo/client';
 
-import {AuthContext} from './context';
+import {AuthContext} from './Context/Auth';
 import { useForm } from './hooks';
 
 function LoginView(props) {
@@ -16,15 +16,11 @@ function LoginView(props) {
   });
 
   const [loginUser, { loading }] = useMutation(LOGIN_USER, {
-    update(
-      _,
+    update(_, { data: { tokenAuth: userData}})
       {
-        data: { login: userData }
-      }
-    ) {
-      context.login(userData);
-      props.history.push('/');
-    },
+        context.login(userData);
+        props.history.push('/');
+      },
     onError(err){
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
     },
@@ -36,9 +32,11 @@ function LoginView(props) {
   }
 
   return (
-    <div className="form-container">
+    <div className="login-box">
       <form onSubmit={onSubmit} noValidate className={loading ? 'loading' : ''}>
-        <h1>Login</h1>
+      <div className='inner-box'>
+        <label for='username'>Username</label>
+        <br/>
         <input
           label="Username"
           placeholder="Username.."
@@ -47,7 +45,11 @@ function LoginView(props) {
           value={values.username}
           error={errors.username ? true : false}
           onChange={onChange}
-        />
+          />
+          </div>
+        <div className='inner-box'>
+        <label for='password'>Password</label>
+        <br/>
         <input
           label="Password"
           placeholder="Password.."
@@ -56,10 +58,13 @@ function LoginView(props) {
           value={values.password}
           error={errors.password ? true : false}
           onChange={onChange}
-        />
+          />
+          </div>
+        <div className='inner-box'>
         <button type="submit" primary>
           Login
         </button>
+        </div>
       </form>
       {Object.keys(errors).length > 0 && (
         <div className="ui error message">
