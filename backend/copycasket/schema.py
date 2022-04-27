@@ -1,4 +1,5 @@
 import graphene
+from django.db.models.functions import Now
 from graphene_django import DjangoObjectType
 from graphene_django.filter import DjangoFilterConnectionField
 from graphene_file_upload.scalars import Upload
@@ -102,13 +103,15 @@ class CopyCasketCreateMutation(graphene.Mutation):
         private = graphene.Boolean(required=False)
         creator = graphene.String(required=True)
         image = Upload(required=False)
+        expiration_time = graphene.DateTime(required=False)
 
     copycasket = graphene.Field(CopyCasketTypes)
 
     @classmethod
-    def mutate(cls, root, info, creator, **kwargs):
+    def mutate(cls, root, info, creator, expiration_time=None, **kwargs):
         instance = CopyCasket.objects.create(**kwargs)
         instance.creator = CustomUser.objects.get(email=creator)
+        instance.expiration_date = Now() + expiration_time
         instance.save()
         return CopyCasketUpdateMutation(copycasket=instance)
 
@@ -170,7 +173,7 @@ class Mutation(graphene.ObjectType):
     delete_user = CustomUserDeleteMutation.Field()
 
     register = mutations.Register.Field()  # register
-    verify_account = mutations.VerifyAccount.Field()  # veryfication
+    verify_account = mutations.VerifyAccount.Field()  # verification
     resend_activation_email = mutations.ResendActivationEmail.Field()
     reset_email = mutations.SendPasswordResetEmail.Field()
     password_reset = mutations.PasswordReset.Field()

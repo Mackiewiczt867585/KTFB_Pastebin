@@ -113,6 +113,8 @@ class CopyCasket(models.Model):
     )
     private = models.BooleanField(default=False)
 
+    expiration_date = models.DateTimeField(blank=True, null=True)
+
     def __str__(self):
         return self.title
 
