@@ -1,5 +1,6 @@
 import graphene
 from graphene_django import DjangoObjectType
+from graphene_django.filter import DjangoFilterConnectionField
 from graphene_file_upload.scalars import Upload
 from graphql_auth import mutations
 from graphql_auth.schema import MeQuery, UserQuery
@@ -11,6 +12,8 @@ class CopyCasketTypes(DjangoObjectType):
     class Meta:
         model = CopyCasket
         fields = ("id", "title", "author", "creation_date", "type", "content")
+        filter_fields = ["title", "author", "type", "creation_date"]
+        interfaces = (graphene.relay.Node, )
 
 
 class CustomUserTypes(DjangoObjectType):
@@ -32,6 +35,7 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
     all_private_copies = graphene.List(CopyCasketTypes, creator=graphene.ID())
     all_public_copies = graphene.List(CopyCasketTypes)
     all_users_copies = graphene.List(CopyCasketTypes, creator=graphene.ID())
+    filtered_copies = DjangoFilterConnectionField(CopyCasketTypes)
 
     all_users = graphene.List(CustomUserTypes)
     user = graphene.Field(CustomUserTypes, user_id=graphene.ID())
@@ -49,7 +53,7 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
         return CustomUser.objects.get(pk=user_id)
 
     def resolve_all_public_copies(self, info):
-        return CustomUser.objects.all().filter(private=False)
+        return CopyCasket.objects.all().filter(private=False)
 
     def resolve_all_private_copies(
         self, info, creator

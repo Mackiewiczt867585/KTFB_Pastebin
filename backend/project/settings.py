@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "graphql_jwt.refresh_token.apps.RefreshTokenConfig",
     "graphql_auth",
+    "django_filters",
 ]
 
 MIDDLEWARE = [
