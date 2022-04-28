@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { CREATE_PASTE_MUTATION } from "../GraphQL/Mutations";
 import { useMutation } from "@apollo/client";
 import "./Pastes.css";
+import { AuthContext } from "./Context/Auth";
 
 const Pastes = () => {
-  let author, title, content, type;
+  let author, title, content, privated, type;
   const [createPaste] = useMutation(CREATE_PASTE_MUTATION);
-
+  const { user } = useContext(AuthContext); 
+  const creator = user ? ( user.email ): ('annonymous')
   return (
     <div className="outer-box">
       <form
@@ -17,6 +19,8 @@ const Pastes = () => {
               author: author.value,
               content: content.value,
               type: type.value,
+              creator: creator,
+              private: document.getElementById('privated').checked
             },
           });
         }}
@@ -63,6 +67,15 @@ const Pastes = () => {
             placeholder="enter content"
             rows="25"
             cols="200"
+          />
+        </div>
+        <div>
+          <label for="private">private</label>
+          <br />
+          <input
+            type='checkbox'
+            ref={(value) => (privated = value)}
+            id="privated"
           />
         </div>
         <div>

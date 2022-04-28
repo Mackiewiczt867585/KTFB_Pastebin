@@ -4,22 +4,28 @@ const CREATE_PASTE_MUTATION = gql`
   mutation createCopy(
     $author: String!
     $content: String!
+    $creator: String!
     $title: String!
     $type: String!
+    $private: Boolean!
   ) {
-    createCopy(author: $author, title: $title, content: $content, type: $type) {
+    createCopy(author: $author, title: $title, creator:$creator,private:$private, content: $content, type: $type) {
       copycasket {
         author
         title
         content
         type
+        private
+        creator{
+          id
+        }
       }
     }
   }
 `;
 
 const CREATE_USER_MUTATION = gql`
-  mutation createUser(
+  mutation register(
     $email: String!
     $firstName: String!
     $username: String!
@@ -42,7 +48,7 @@ const CREATE_USER_MUTATION = gql`
 `;
 
 const LOGIN_USER = gql`
-  mutation loginUser(
+  mutation tokenAuth(
     $username: String
     $password: String!
   ) {
@@ -78,4 +84,31 @@ mutation passwordChange(
   }
 }`
 
-export { CREATE_PASTE_MUTATION, CREATE_USER_MUTATION, LOGIN_USER};
+const UPDATE_USER = gql`
+mutation updateUser(
+  $id: ID!
+  $email: String
+  $firstName: String
+  $organisation: String
+  $username: String
+){
+  updateUser(
+    id:$id
+    email:$email
+    firstName:$firstName
+    organisation:$organisation
+    username:$username
+  )
+  {
+    user{
+      username
+      firstName
+      email
+      organisation
+    }
+  }
+}`
+
+
+
+export { CREATE_PASTE_MUTATION, CREATE_USER_MUTATION, LOGIN_USER, PASSWORD_CHANGE, UPDATE_USER};

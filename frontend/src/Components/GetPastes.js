@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useQuery, gql } from "@apollo/client";
-import { LOAD_PASTES } from "../GraphQL/Queries";
+import { LOAD_PUBLIC_PASTES } from "../GraphQL/Queries";
 import "./GetPastes.css";
 import { Link } from "react-router-dom";
 import TimeAgo from "javascript-time-ago";
@@ -47,8 +47,7 @@ function GetPastes({ currentItems }) {
 }
 
 function PaginatedItems() {
-  const { error, loading, data } = useQuery(LOAD_PASTES);
-  console.log(data);
+  const { error, loading, data } = useQuery(LOAD_PUBLIC_PASTES);
   const [pastes, setPastes] = useState([]);
   const itemsPerPage = 10;
   const [currentItems, setCurrentItems] = useState([]);
@@ -57,7 +56,7 @@ function PaginatedItems() {
 
   useEffect(() => {
     if (data) {
-      setPastes(data.allCopies);
+      setPastes(data.allPublicCopies);
 
       const endOffset = itemOffset + itemsPerPage;
 
@@ -65,14 +64,11 @@ function PaginatedItems() {
       setPageCount(Math.ceil(pastes.length / itemsPerPage));
     }
   }, [data, loading, error, pastes, itemOffset]);
-
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % pastes.length;
     setItemOffset(newOffset);
   };
   if (loading) return <h1>loading</h1>;
-  console.log(currentItems);
-  console.log(pastes);
   if (currentItems)
     return (
       <>

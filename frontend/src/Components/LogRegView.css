@@ -1,5 +1,6 @@
 .inner-box {
   text-align: center;
+  padding: 0;
 }
 .login-box {
   background-color: rgb(224, 220, 220);
@@ -9,4 +10,7 @@
   border-radius: 5px;
   text-align: left;
   margin-top: 50px;
+}
+.field{
+  padding: 0;
 }
