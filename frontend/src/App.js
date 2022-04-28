@@ -14,7 +14,7 @@ import EditProfile from "./Components/pages/EditProfile";
 import ChangePass from "./Components/pages/ChangePass";
 import Paste from "./Components/pages/Paste";
 import { AuthProvider } from './Components/Context/Auth'
-// import AuthRoute from "./Components/AuthRoute";
+import PrivateRoute from "./Components/util/PrivateRoute";
 
 function App() {
   return (
@@ -30,7 +30,12 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/register" element={<Register />} />
           <Route path='/login' element={<Login />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={
+            <PrivateRoute>
+              <Profile /> 
+            </PrivateRoute>
+          }
+          />
           <Route path="/profile/edit" element={<EditProfile />} />
           <Route path="/profile/changepass" element={<ChangePass />} />
           <Route path="/paste/:id" element={<Paste />} />

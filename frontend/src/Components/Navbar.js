@@ -10,7 +10,6 @@ function Navbar() {
   const {user, logout } = useContext(AuthContext);
   const pathname = window.location.pathname;
 
-
   const navbar = user ? (
     <>
     <nav className="fixed-nav-bar">
@@ -19,7 +18,7 @@ function Navbar() {
           KTFB
         </Link>
         <Link to="/" className="nav-item">
-          Utwórz
+          Utwórztest
         </Link>
         <Link to="/recent" className="nav-item">
           Aktualne
@@ -47,7 +46,7 @@ function Navbar() {
             KTFB
           </Link>
           <Link to="/" className="nav-item">
-            Utwórz
+            Utwórztest
           </Link>
           <Link to="/recent" className="nav-item">
             Aktualne

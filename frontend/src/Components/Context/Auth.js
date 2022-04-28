@@ -1,8 +1,12 @@
-import React, { useReducer, createContext} from 'react'
+import React, { useReducer, useState,useEffect, createContext, useContext} from 'react'
 import jwtDecode from 'jwt-decode';
+import { USER_BY_EMAIL } from '../../GraphQL/Queries';
+import { useQuery} from "@apollo/client";
+import { useNavigate} from 'react-router-dom';
 
 const initialState = {
-    user: null
+    user: null,
+    // userInfo: null
 };
 
 if (localStorage.getItem('jwtToken')){
@@ -15,11 +19,28 @@ if (localStorage.getItem('jwtToken')){
     }
 }
 
+console.log(initialState)
 const AuthContext = createContext({
     user: null,
+    // userInfo: null,
     login: (userData) => {},
     logout: () => {}
 });
+
+// function UserInfo() {
+//     const {user} = useContext(AuthContext);
+//     const {error, loading, data } = useQuery( USER_BY_EMAIL, {
+//     variables: { email: user.email},
+//   });
+//   const [profile, setProfile] = useState([]);
+//   useEffect(() => {
+//     if (data) {
+//       setProfile(data.userEmail);
+//       initialState.userInfo = data
+//     } else { 
+//     }
+//   }, [data, loading, error]);
+// }
 
 
 
@@ -29,12 +50,12 @@ function authReducer(state, action){
             return{
                 ...state,
                 user: action.payload
-            }
+            };
             case 'LOGOUT':
                 return {
                     ...state,
                     user: null
-                }
+                };
         default:
             return state;
         }
@@ -55,7 +76,6 @@ function logout(){
     localStorage.removeItem('jwtToken');
     dipsatch({ type: 'LOGOUT'});
 }
-
 return (
     <AuthContext.Provider
             value={{ user: state.user, login, logout}}

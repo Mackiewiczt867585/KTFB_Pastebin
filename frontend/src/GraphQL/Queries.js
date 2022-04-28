@@ -9,9 +9,22 @@ const LOAD_PASTES = gql`
       content
       creationDate
       type
+      private
     }
   }
 `;
+const LOAD_PUBLIC_PASTES = gql`
+  query{
+    allPublicCopies{
+      id
+      title
+      author
+      creationDate
+      type
+      content
+      type
+    }
+  }`
 
 const PASTE_BY_ID = gql`
   query copy($copyId: ID!) {
@@ -22,8 +35,40 @@ const PASTE_BY_ID = gql`
       creationDate
       type
       content
+      creator{
+        id
+        email
+      }
     }
   }
 `;
 
-export { LOAD_PASTES, PASTE_BY_ID };
+
+const USER_BY_EMAIL = gql`
+  query userEmail($email: String!) {
+    userEmail(email: $email){
+      id
+      email
+      username
+      creationDate
+      firstName
+      organisation
+  }
+}
+`;
+
+const ALL_USER_PASTES = gql`
+  query allUsersCopies($creator: ID!) {
+    allUsersCopies(creator: $creator){
+      id
+      title
+      author
+      creationDate
+      type
+      content
+    }
+  }`
+
+
+
+export { LOAD_PASTES, PASTE_BY_ID, USER_BY_EMAIL, ALL_USER_PASTES, LOAD_PUBLIC_PASTES };

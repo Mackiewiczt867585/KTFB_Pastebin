@@ -12,7 +12,7 @@ from .models import CopyCasket, CustomUser
 class CopyCasketTypes(DjangoObjectType):
     class Meta:
         model = CopyCasket
-        fields = ("id", "title", "author", "creation_date", "type", "content")
+        fields = ("id", "title", "private", "creator", "author", "creation_date", "type", "content")
         filter_fields = ["title", "author", "type", "creation_date"]
         interfaces = (graphene.relay.Node, )
 
@@ -21,6 +21,7 @@ class CustomUserTypes(DjangoObjectType):
     class Meta:
         model = CustomUser
         fields = (
+            "id",
             "email",
             "username",
             "first_name",
@@ -39,7 +40,7 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
     filtered_copies = DjangoFilterConnectionField(CopyCasketTypes)
 
     all_users = graphene.List(CustomUserTypes)
-    user = graphene.Field(CustomUserTypes, user_id=graphene.ID())
+    user_email = graphene.Field(CustomUserTypes, email=graphene.String())
 
     def resolve_all_copies(self, info):
         return CopyCasket.objects.all()
@@ -50,6 +51,9 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
     def resolve_all_users(self, info):
         return CustomUser.objects.all()
 
+    def resolve_user_email(self, info, email):
+        return CustomUser.objects.get(email=email)
+
     def resolve_user(self, info, user_id):
         return CustomUser.objects.get(pk=user_id)
 
@@ -59,10 +63,10 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
     def resolve_all_private_copies(
         self, info, creator
     ):  # take logged in user from context to show his private pastes
-        return CustomUser.objects.all().filter(private=True, creator=creator)
+        return CopyCasket.objects.all().filter(private=True, creator=creator)
 
     def resolve_all_users_copies(self, info, creator):
-        return CustomUser.objects.all().filter(creator=creator)
+        return CopyCasket.objects.all().filter(creator=creator)
 
 
 class CopyCasketUpdateMutation(graphene.Mutation):
