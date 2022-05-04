@@ -15,7 +15,7 @@ class CopyCasketTypes(DjangoObjectType):
         model = CopyCasket
         fields = ("id", "title", "private", "creator", "author", "creation_date", "type", "content", "image")
         filter_fields = ["title", "author", "type", "creation_date"]
-        interfaces = (graphene.relay.Node, )
+        interfaces = (graphene.relay.Node,)
 
 
 class CustomUserTypes(DjangoObjectType):
@@ -35,7 +35,6 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
     all_accounts = DjangoFilterConnectionField(CopyCasketTypes)
     all_copies = graphene.List(CopyCasketTypes)
     copy = graphene.Field(CopyCasketTypes, copy_id=graphene.ID())
-
 
     all_private_copies = graphene.List(CopyCasketTypes, creator=graphene.ID())
     all_public_copies = graphene.List(CopyCasketTypes)
@@ -64,7 +63,7 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
         return CopyCasket.objects.all().filter(private=False)
 
     def resolve_all_private_copies(
-        self, info, creator
+            self, info, creator
     ):  # take logged in user from context to show his private pastes
         return CopyCasket.objects.all().filter(private=True, creator=creator)
 
