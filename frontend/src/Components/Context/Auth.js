@@ -1,12 +1,11 @@
 import React, { useReducer, useState,useEffect, createContext, useContext} from 'react'
 import jwtDecode from 'jwt-decode';
-import { USER_BY_EMAIL } from '../../GraphQL/Queries';
-import { useQuery} from "@apollo/client";
+import { ME, USER_BY_EMAIL } from '../../GraphQL/Queries';
+import { useQuery, useLazyQuery} from "@apollo/client";
 import { useNavigate} from 'react-router-dom';
 
 const initialState = {
     user: null,
-    // userInfo: null
 };
 
 if (localStorage.getItem('jwtToken')){
@@ -19,27 +18,36 @@ if (localStorage.getItem('jwtToken')){
     }
 }
 
-console.log(initialState)
+
 const AuthContext = createContext({
     user: null,
-    // userInfo: null,
+    userInfo: null,
     login: (userData) => {},
     logout: () => {}
 });
 
-// function UserInfo() {
-//     const {user} = useContext(AuthContext);
-//     const {error, loading, data } = useQuery( USER_BY_EMAIL, {
-//     variables: { email: user.email},
-//   });
-//   const [profile, setProfile] = useState([]);
-//   useEffect(() => {
-//     if (data) {
-//       setProfile(data.userEmail);
-//       initialState.userInfo = data
+
+
+// function UserInfo(looking) {
+    
+//     const {error, loading, data } = useQuery(
+//         ['users', looking.email],
+//         USER_BY_EMAIL,
+//         {
+//         enabled: !! looking==null}
+//     );
+    
+//     const [profile, setProfile] = useState([]);
+//     useEffect(() => {
+//         if (data) {
+//             setProfile(data.userEmail);
+//             initialState.userInfo = data
+//             console.log(profile)
+
 //     } else { 
 //     }
 //   }, [data, loading, error]);
+//   return profile;
 // }
 
 
@@ -54,7 +62,7 @@ function authReducer(state, action){
             case 'LOGOUT':
                 return {
                     ...state,
-                    user: null
+                    user: null,
                 };
         default:
             return state;
@@ -65,10 +73,11 @@ function authReducer(state, action){
         const[state, dipsatch] = useReducer(authReducer, initialState);
 
         function login (userData){
+            console.log(userData)
             localStorage.setItem('jwtToken', userData.token)
             dipsatch({
                 type: 'LOGIN',
-            payload: userData
+            payload: jwtDecode(userData.token)
         });
     }
 

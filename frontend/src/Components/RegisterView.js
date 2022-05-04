@@ -23,6 +23,7 @@ function RegisterView(props) {
     username: ''
   });
 
+
   const [addUser, { loading }] = useMutation(CREATE_USER_MUTATION, {
     update(
       _,
@@ -30,10 +31,14 @@ function RegisterView(props) {
        data: { register: userData }
     }
     ) {
+      if(userData.token != null){
+        console.log(userData)
       context.login(userData);
       navigate('/profile');
+      }
     },
     onError(err) {
+      console.log(err.graphQLErrors[0].extensions.exception.errors);
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
     },
     variables: values

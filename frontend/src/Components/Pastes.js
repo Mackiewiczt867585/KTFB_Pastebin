@@ -5,14 +5,18 @@ import "./Pastes.css";
 import { AuthContext } from "./Context/Auth";
 
 const Pastes = () => {
-  let author, title, content, privated, type;
+  let author, title, content, privated, type, image;
   const [createPaste] = useMutation(CREATE_PASTE_MUTATION);
   const { user } = useContext(AuthContext); 
-  const creator = user ? ( user.email ): ('annonymous')
+  const [selectedImage, setSelectedImage] = useState();
+  console.log(selectedImage)
+  
+  const creator = user ? ( user.email ): null
   return (
     <div className="outer-box">
       <form
         onSubmit={(e) => {
+          e.preventDefault()
           createPaste({
             variables: {
               title: title.value,
@@ -20,6 +24,7 @@ const Pastes = () => {
               content: content.value,
               type: type.value,
               creator: creator,
+              image: selectedImage,
               private: document.getElementById('privated').checked
             },
           });
@@ -78,6 +83,25 @@ const Pastes = () => {
             id="privated"
           />
         </div>
+        <div>
+        {selectedImage && (
+        <div>
+        <img alt="not fount" width={"250px"} src={URL.createObjectURL(selectedImage)} />
+        <br />
+        <button onClick={()=>setSelectedImage(null)}>Remove</button>
+        </div>
+      )}
+      <br />
+   
+      <br /> 
+      <input
+        type="file"
+        name="myImage"
+        onChange={(event) => {
+          setSelectedImage(event.target.files[0]);
+        }}
+      />
+    </div>
         <div>
           <button type="submit">add</button>
         </div>

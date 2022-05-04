@@ -4,6 +4,7 @@ from graphene_django.filter import DjangoFilterConnectionField
 from graphene_file_upload.scalars import Upload
 from graphql_auth import mutations
 from graphql_auth.schema import MeQuery, UserQuery
+from graphql_relay import from_global_id
 
 from .models import CopyCasket, CustomUser
 
@@ -11,7 +12,7 @@ from .models import CopyCasket, CustomUser
 class CopyCasketTypes(DjangoObjectType):
     class Meta:
         model = CopyCasket
-        fields = ("id", "title", "private", "creator", "author", "creation_date", "type", "content")
+        fields = ("id", "title", "private", "creator", "author", "creation_date", "type", "content", "image")
         filter_fields = ["title", "author", "type", "creation_date"]
         interfaces = (graphene.relay.Node, )
 
@@ -30,8 +31,10 @@ class CustomUserTypes(DjangoObjectType):
 
 
 class Query(UserQuery, MeQuery, graphene.ObjectType):
+    all_accounts = DjangoFilterConnectionField(CopyCasketTypes)
     all_copies = graphene.List(CopyCasketTypes)
     copy = graphene.Field(CopyCasketTypes, copy_id=graphene.ID())
+
 
     all_private_copies = graphene.List(CopyCasketTypes, creator=graphene.ID())
     all_public_copies = graphene.List(CopyCasketTypes)
@@ -104,13 +107,13 @@ class CopyCasketCreateMutation(graphene.Mutation):
         type = graphene.String(required=False)
         content = graphene.String(required=False)
         private = graphene.Boolean(required=False)
-        creator = graphene.String(required=True)
+        creator = graphene.String(required=False)
         image = Upload(required=False)
 
     copycasket = graphene.Field(CopyCasketTypes)
 
     @classmethod
-    def mutate(cls, root, info, creator, **kwargs):
+    def mutate(cls, root, info, creator=None, **kwargs):
         instance = CopyCasket.objects.create(**kwargs)
         instance.creator = CustomUser.objects.get(email=creator)
         instance.save()

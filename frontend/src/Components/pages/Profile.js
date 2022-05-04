@@ -13,23 +13,29 @@ import ReactPaginate from "react-paginate";
 
 
 TimeAgo.addDefaultLocale(en);
-function Profile() {
-  const {user} = useContext(AuthContext);
-  const {error, loading, data } = useQuery( USER_BY_EMAIL, {
-    variables: { email: user.email},
-  });
-  const [profile, setProfile] = useState([]);
-  useEffect(() => {
-    if (data) {
-      setProfile(data.userEmail);
-    } else { 
-    }
-  }, [profile,data, loading, error]);
 
-  if (profile)
+
+function GetUser() {
+  const {user} = useContext(AuthContext);
+  const {data, loading, error} = useQuery(USER_BY_EMAIL, {
+    variables: { email: user.email }
+})
+const [profile, setProfile] = useState([]);
+    useEffect(() => {
+        if (data) {
+            setProfile(data.userEmail);
+    }
+  }, [data, loading, error]);
+  return profile;
+};
+
+
+
+function Profile({ user }) {
   return(
     <div>
-    <h1 className="title">{profile.username}</h1>
+
+    <h1 className="title">{user.username}</h1>
     
     <h2 className="title">Your pastes</h2>
     <div className="settings-box">
@@ -85,9 +91,9 @@ function GetPastes({ currentItems }) {
     );
 }
   function PaginatedItems() {
-    const {user} = useContext(AuthContext);
+    const user = GetUser(); 
     const { error, loading, data } = useQuery(ALL_USER_PASTES, {
-      variables: {creator: 3},
+      variables: {creator: user.id},
     });
     const [pastes, setPastes] = useState([]);
     const itemsPerPage = 10;
@@ -113,7 +119,7 @@ function GetPastes({ currentItems }) {
       return (
 
       <>
-        <Profile/>
+        <Profile user = {user}/>
         <GetPastes currentItems={userPastes} />
         <div className="page-select">
           <ReactPaginate

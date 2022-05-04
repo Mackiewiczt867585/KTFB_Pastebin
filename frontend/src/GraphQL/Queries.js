@@ -1,5 +1,20 @@
 import { gql } from "@apollo/client";
 
+
+const ME = gql`
+  query{
+    me{
+      id
+      email
+      username
+      firstName
+      lastName
+      organisation
+      creationDate
+    }
+  }`
+
+
 const LOAD_PASTES = gql`
   query {
     allCopies {
@@ -63,6 +78,9 @@ const ALL_USER_PASTES = gql`
       id
       title
       author
+      creator{
+        id
+      }
       creationDate
       type
       content
@@ -71,4 +89,4 @@ const ALL_USER_PASTES = gql`
 
 
 
-export { LOAD_PASTES, PASTE_BY_ID, USER_BY_EMAIL, ALL_USER_PASTES, LOAD_PUBLIC_PASTES };
+export { LOAD_PASTES, PASTE_BY_ID, USER_BY_EMAIL, ALL_USER_PASTES, LOAD_PUBLIC_PASTES, ME };
