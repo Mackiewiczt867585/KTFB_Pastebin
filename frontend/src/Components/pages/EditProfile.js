@@ -31,6 +31,7 @@ function EditProfile() {
 
   const [errors, setErrors] = useState({});
   const { onChange, onSubmit, values } = useForm(editProfileCallback, {
+    id: profile.id,
     email:'',
     username: '',
     firstName: '',

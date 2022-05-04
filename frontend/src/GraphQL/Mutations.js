@@ -2,14 +2,15 @@ import { gql } from "@apollo/client";
 
 const CREATE_PASTE_MUTATION = gql`
   mutation createCopy(
-    $author: String!
-    $content: String!
-    $creator: String!
-    $title: String!
-    $type: String!
-    $private: Boolean!
+    $author: String
+    $content: String
+    $creator: String
+    $title: String
+    $type: String
+    $private: Boolean
+    $image: Upload
   ) {
-    createCopy(author: $author, title: $title, creator:$creator,private:$private, content: $content, type: $type) {
+    createCopy(author: $author, title: $title, creator: $creator ,image: $image, private: $private, content: $content, type: $type) {
       copycasket {
         author
         title
@@ -19,6 +20,7 @@ const CREATE_PASTE_MUTATION = gql`
         creator{
           id
         }
+        image
       }
     }
   }

@@ -2,22 +2,28 @@ import React, { useContext, useState } from "react";
 import { CREATE_PASTE_MUTATION } from "../GraphQL/Mutations";
 import { useMutation } from "@apollo/client";
 import "./Pastes.css";
-<<<<<<< HEAD
+
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
 const Pastes = () => {
   let author, title, content, type, expirationTime;
   const [createPaste] = useMutation(CREATE_PASTE_MUTATION);
   const [startDate, setStartDate] = useState(new Date());
-=======
+
 import { AuthContext } from "./Context/Auth";
 
 const Pastes = () => {
-  let author, title, content, privated, type;
+  let author, title, content, privated, type, image;
   const [createPaste] = useMutation(CREATE_PASTE_MUTATION);
   const { user } = useContext(AuthContext); 
+
   const creator = user ? ( user.email ): ('annonymous')
->>>>>>> 179e3e8 (edit userinfo, logout, profile,privatepastes)
+
+  const [selectedImage, setSelectedImage] = useState();
+  console.log(selectedImage)
+  
+  const creator = user ? ( user.email ): null
+
   return (
     <div className="outer-box">
       <form
@@ -29,12 +35,9 @@ const Pastes = () => {
               author: author.value,
               content: content.value,
               type: type.value,
-<<<<<<< HEAD
-              expirationTime: startDate,
-=======
               creator: creator,
+              image: selectedImage,
               private: document.getElementById('privated').checked
->>>>>>> 179e3e8 (edit userinfo, logout, profile,privatepastes)
             },
           });
         }}
@@ -98,6 +101,25 @@ const Pastes = () => {
             id="privated"
           />
         </div>
+        <div>
+        {selectedImage && (
+        <div>
+        <img alt="not fount" width={"250px"} src={URL.createObjectURL(selectedImage)} />
+        <br />
+        <button onClick={()=>setSelectedImage(null)}>Remove</button>
+        </div>
+      )}
+      <br />
+   
+      <br /> 
+      <input
+        type="file"
+        name="myImage"
+        onChange={(event) => {
+          setSelectedImage(event.target.files[0]);
+        }}
+      />
+    </div>
         <div>
           <button type="submit">add</button>
         </div>
