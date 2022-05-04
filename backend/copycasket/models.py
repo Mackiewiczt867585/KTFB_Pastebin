@@ -62,7 +62,7 @@ class CustomAccountManager(BaseUserManager):
 
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(unique=True, verbose_name="email")  # type: str
+    email = models.EmailField(unique=True, verbose_name="email")
     username = models.CharField(
         max_length=30,
         unique=True,
@@ -106,7 +106,7 @@ class CopyCasket(models.Model):
         choices=COPY_TYPE_CHOICES,
     )
     content = models.TextField(blank=True)
-    image = models.ImageField(upload_to="images/", null=True)
+    image = models.ImageField(upload_to="images/", null=True, blank=True)
 
     creator = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.SET_DEFAULT, default=1
