@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useQuery, gql } from "@apollo/client";
+import React, { useEffect, useState, useContext } from "react";
+import {Button, Icon} from 'semantic-ui-react'
+import { useQuery, useMutation, gql } from "@apollo/client";
 import { LOAD_PUBLIC_PASTES } from "../GraphQL/Queries";
+import { DELETE_PASTE } from "../GraphQL/Mutations";
 import "./GetPastes.css";
 import { Link } from "react-router-dom";
 import TimeAgo from "javascript-time-ago";
@@ -8,11 +10,24 @@ import {Button} from 'semantic-ui-react'
 import en from "javascript-time-ago/locale/en.json";
 import ReactTimeAgo from "react-time-ago";
 import ReactPaginate from "react-paginate";
+import { AuthContext } from "./Context/Auth";
+import { FaTrash, FaPen } from 'react-icons/fa';
+
 TimeAgo.addDefaultLocale(en);
 
-function GetPastes({ currentItems }) {
+
+  
+  
+  
+  function GetPastes({ currentItems }) {
+    const { user } = useContext(AuthContext)
+    
+    const [deletePaste] = useMutation(
+      DELETE_PASTE
+    )
   if (currentItems)
     return (
+      
       <div className="table-box">
         <table>
           <thead>
@@ -37,6 +52,26 @@ function GetPastes({ currentItems }) {
                       onClick={() => console.log('report post')}
                       />
                         </Link>
+                    {(user && val.creator) && user.email === val.creator.email &&(
+                      <div>
+                        <Link to = {'/paste/'+ val.id + '/edit/'}>
+                      <Button
+                      color="red"
+                      floated="right"
+                      onClick={() => Linkconsole.log('Delete post')}
+                      >
+                        <FaPen/>
+                      </Button>
+                        </Link>
+                    <Button
+                    color="red"
+                    floated="right"
+                    onClick={() => deletePaste({variables: {id: val.id}})}
+                    >
+                      <FaTrash/>
+                    </Button>
+                      </div>
+                  )}
                   </td>
                   <td> {val.author}</td>
                   <td> {val.type}</td>

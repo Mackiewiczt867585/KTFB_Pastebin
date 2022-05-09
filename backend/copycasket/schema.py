@@ -70,6 +70,7 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
     def resolve_all_copies(self, info):
         return CopyCasket.objects.all().order_by("-creation_date")
 
+    
     def resolve_copy(self, info, copy_id):
         global_id = from_global_id(copy_id)[-1]
         return CopyCasket.objects.get(pk=global_id)
@@ -159,7 +160,7 @@ class CopyCasketCreateMutation(graphene.Mutation):
     @classmethod
     def mutate(cls, root, info, creator=None, **kwargs):
         instance = CopyCasket.objects.create(**kwargs)
-        instance.creator = CustomUser.objects.get(email=creator)
+        instance.creator = CustomUser.objects.filter(email=creator).first()
         instance.save()
         return CopyCasketCreateMutation(copycasket=instance)
 

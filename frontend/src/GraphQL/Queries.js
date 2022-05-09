@@ -15,6 +15,8 @@ const ME = gql`
   }`
 
 
+
+
 const LOAD_PASTES = gql`
   query {
     allCopies {
@@ -25,6 +27,9 @@ const LOAD_PASTES = gql`
       creationDate
       type
       private
+      creator{
+        email
+      }
     }
   }
 `;
@@ -38,6 +43,9 @@ const LOAD_PUBLIC_PASTES = gql`
       type
       content
       type
+      creator{
+        email
+      }
     }
   }`
 

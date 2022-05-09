@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import "../../App.css";
 import "../Profile.css";
 import { Link, useParams } from "react-router-dom";
-import { ALL_USER_PASTES, USER_BY_EMAIL } from '../../GraphQL/Queries';
+import { ALL_USER_PASTES, USER_BY_EMAIL, ME } from '../../GraphQL/Queries';
 import { AuthContext} from '../Context/Auth'
 import { useQuery, gql } from "@apollo/client";
 import TimeAgo from "javascript-time-ago";
@@ -13,6 +13,25 @@ import ReactPaginate from "react-paginate";
 
 
 TimeAgo.addDefaultLocale(en);
+
+
+// function GetUser() {
+//   const {user} = useContext(AuthContext);
+//   const {data, loading, error} = useQuery(ME)
+// const [profile, setProfile] = useState([]);
+//     useEffect(() => {
+//         if (data) {
+//             setProfile(data.userEmail);
+//     }
+//   }, [data, loading, error]);
+//   return profile;
+// };
+
+
+
+
+
+
 
 
 function GetUser() {
@@ -42,9 +61,9 @@ function Profile({ user }) {
       <Link to="edit" className="settings-item">
         Edit profile
       </Link>
-      <Link to="changepass" className="settings-item">
+      {/* <Link to="changepass" className="settings-item">
         ChangePassword
-      </Link>
+      </Link> */}
       <Link to="/" className="settings-item">
         LogOut
       </Link>

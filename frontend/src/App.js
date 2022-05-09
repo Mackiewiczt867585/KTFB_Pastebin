@@ -13,10 +13,12 @@ import Profile from "./Components/pages/Profile";
 import EditProfile from "./Components/pages/EditProfile";
 import ChangePass from "./Components/pages/ChangePass";
 import Paste from "./Components/pages/Paste";
+import EditPaste from "./Components/pages/EditPaste";
 import { AuthProvider } from './Components/Context/Auth'
 import PrivateRoute from "./Components/util/PrivateRoute";
 import ReportPaste from "./Components/pages/ReportPaste"
 
+import 'font-awesome/css/font-awesome.min.css';
 function App() {
   return (
     <>
@@ -32,6 +34,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path='/login' element={<Login />} />
           <Route path='/paste/:id/report' element={<ReportPaste/>}/>
+          <Route path='/paste/:id/edit' element={<EditPaste/>}/>
           <Route path="/profile" element={
             <PrivateRoute>
               <Profile /> 
@@ -39,7 +42,7 @@ function App() {
           }
           />
           <Route path="/profile/edit" element={<EditProfile />} />
-          <Route path="/profile/changepass" element={<ChangePass />} />
+          {/* <Route path="/profile/changepass" element={<ChangePass />} /> */}
           <Route path="/paste/:id" element={<Paste />} />
         </Routes>
       </Router>

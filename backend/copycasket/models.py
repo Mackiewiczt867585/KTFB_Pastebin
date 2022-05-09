@@ -116,7 +116,7 @@ class CopyCasket(models.Model):
     image = models.ImageField(upload_to="static/images/", null=True, blank=True)
 
     creator = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.SET_DEFAULT, default=1, related_name="creator",
+        settings.AUTH_USER_MODEL, on_delete=models.SET_DEFAULT, default=1, null=True
     )
     private = models.BooleanField(default=False)
     likes = models.ManyToManyField(CustomUser, related_name="likes")
