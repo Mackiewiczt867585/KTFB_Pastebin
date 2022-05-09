@@ -4,10 +4,13 @@ COPY package.json package-lock.json ./
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 1a968e7 (Heroku docker deploy 4)
 =======
 >>>>>>> af5c05b (Heroku docker deploy 4)
+=======
+>>>>>>> 55061ed (Heroku docker deploy)
 RUN npm install
 RUN npm install react-scripts@5.0.0 -g
 RUN npm install javascript-time-ago
@@ -15,12 +18,16 @@ RUN npm install react-time-ago
 RUN npm install react-paginate
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 55061ed (Heroku docker deploy)
 =======
 RUN npm install && \
     npm install react-scripts@5.0.0 -g && \
     npm install javascript-time-ago && \
     npm install react-time-ago && \
     npm install react-paginate
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> d05254a (Heroku docker deploy)
 =======
@@ -29,6 +36,9 @@ RUN npm install && \
 >>>>>>> 83cacc1 (Heroku docker deploy)
 =======
 >>>>>>> af5c05b (Heroku docker deploy 4)
+=======
+>>>>>>> d05254a (Heroku docker deploy)
+>>>>>>> 55061ed (Heroku docker deploy)
 COPY . ./
 RUN npm run build
 
