@@ -154,7 +154,7 @@ mutation deleteCopy(
   }
 }`
 
-<<<<<<< HEAD
+
 const EDIT_PASTE = gql`
 mutation updateCopy(
   $author: String
@@ -187,6 +187,5 @@ mutation updateCopy(
 
 
 export { CREATE_PASTE_MUTATION, CREATE_USER_MUTATION, LOGIN_USER, PASSWORD_CHANGE, UPDATE_USER,VERIFY, DELETE_PASTE, EDIT_PASTE};
-=======
+
 export { CREATE_PASTE_MUTATION, CREATE_USER_MUTATION, LOGIN_USER, PASSWORD_CHANGE, UPDATE_USER, CREATE_PASTE_REPORT};
->>>>>>> 45a8445 (frontend added)

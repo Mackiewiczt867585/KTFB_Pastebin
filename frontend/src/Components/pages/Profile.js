@@ -65,6 +65,9 @@ function Profile({ user }) {
       {/* <Link to="changepass" className="settings-item">
         ChangePassword
       </Link> */}
+      <Link to="/" className="settings-item">
+        LogOut
+      </Link>
     </div>
     </div>
 

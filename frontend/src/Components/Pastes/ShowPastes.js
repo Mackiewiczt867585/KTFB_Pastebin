@@ -72,6 +72,28 @@ TimeAgo.addDefaultLocale(en);
                       onClick={() => console.log('report post')}
                       />
                         </Link>
+
+                    {(user && val.creator) && user.email === val.creator.email &&(
+                      <div>
+                        <Link to = {'/paste/'+ val.id + '/edit/'}>
+                      <Button
+                      color="red"
+                      floated="right"
+                      onClick={() => Linkconsole.log('Delete post')}
+                      >
+                        <FaPen/>
+                      </Button>
+                        </Link>
+                    <Button
+                    color="red"
+                    floated="right"
+                    onClick={() => deletePaste({variables: {id: val.id}})}
+                    >
+                      <FaTrash/>
+                    </Button>
+                      </div>
+                  )}
+
                   </td>
                   <td> {val.author}</td>
                   <td> {val.type}</td>
