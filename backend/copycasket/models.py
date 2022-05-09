@@ -106,10 +106,10 @@ class CopyCasket(models.Model):
         choices=COPY_TYPE_CHOICES,
     )
     content = models.TextField(blank=True)
-    image = models.ImageField(upload_to="images/", null=True, blank=True)
+    image = models.ImageField(upload_to="static/images/", null=True, blank=True)
 
     creator = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.SET_DEFAULT, default=1
+        settings.AUTH_USER_MODEL, on_delete=models.SET_DEFAULT, default=1, null=True
     )
     private = models.BooleanField(default=False)
 

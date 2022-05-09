@@ -8,11 +8,11 @@ const initialState = {
     user: null,
 };
 
-if (localStorage.getItem('jwtToken')){
-    const decodedToken = jwtDecode(localStorage.getItem('jwtToken'));
+if (localStorage.getItem('token')){
+    const decodedToken = jwtDecode(localStorage.getItem('token'));
 
     if (decodedToken.exp * 1000 < Date.now()) {
-        localStorage.removeItem('jwtToken');
+        localStorage.removeItem('token');
     } else {
         initialState.user = decodedToken;
     }
@@ -74,7 +74,7 @@ function authReducer(state, action){
 
         function login (userData){
             console.log(userData)
-            localStorage.setItem('jwtToken', userData.token)
+            localStorage.setItem('token', userData.token)
             dipsatch({
                 type: 'LOGIN',
             payload: jwtDecode(userData.token)
@@ -82,7 +82,7 @@ function authReducer(state, action){
     }
 
 function logout(){
-    localStorage.removeItem('jwtToken');
+    localStorage.removeItem('token');
     dipsatch({ type: 'LOGOUT'});
 }
 return (

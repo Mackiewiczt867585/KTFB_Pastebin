@@ -17,7 +17,7 @@ function LoginView(props) {
     password: ''
   });
 
-  const [loginUser, { loading }] = useMutation(LOGIN_USER, {
+  const [loginUser, { loading, error }] = useMutation(LOGIN_USER, {
     update(
       _, 
       {
