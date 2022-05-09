@@ -17,9 +17,12 @@ RUN npm install && \
     npm install javascript-time-ago && \
     npm install react-time-ago && \
     npm install react-paginate
+<<<<<<< HEAD
 >>>>>>> d05254a (Heroku docker deploy)
 =======
 >>>>>>> 1a968e7 (Heroku docker deploy 4)
+=======
+>>>>>>> 83cacc1 (Heroku docker deploy)
 COPY . ./
 RUN npm run build
 
