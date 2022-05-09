@@ -13,7 +13,7 @@ from .models import CopyCasket, CustomUser
 class CopyCasketTypes(DjangoObjectType):
     class Meta:
         model = CopyCasket
-        fields = ("id", "title", "private", "creator", "author", "creation_date", "type", "content", "image")
+        fields = "__all__"
         filter_fields = ["title", "author", "type", "creation_date"]
         interfaces = (graphene.relay.Node,)
 
@@ -47,8 +47,10 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
     def resolve_all_copies(self, info):
         return CopyCasket.objects.all()
 
+    
     def resolve_copy(self, info, copy_id):
-        return CopyCasket.objects.get(pk=copy_id)
+        global_id = from_global_id(copy_id)[-1]
+        return CopyCasket.objects.get(pk=global_id)
 
     def resolve_all_users(self, info):
         return CustomUser.objects.all()
@@ -84,7 +86,8 @@ class CopyCasketUpdateMutation(graphene.Mutation):
 
     @classmethod
     def mutate(cls, root, info, id, **kwargs):
-        instance = CopyCasket.objects.get(pk=id)
+        global_id = from_global_id(id)[-1]
+        instance = CopyCasket.objects.get(pk=global_id)
         instance.update(**kwargs)
         return CopyCasketUpdateMutation(copycasket=instance)
 
@@ -97,7 +100,8 @@ class CopyCasketDeleteMutation(graphene.Mutation):
 
     @classmethod
     def mutate(cls, root, info, id):
-        CopyCasket.objects.get(pk=id).delete()
+        global_id = from_global_id(id)[-1]
+        CopyCasket.objects.get(pk=global_id).delete()
 
 
 class CopyCasketCreateMutation(graphene.Mutation):

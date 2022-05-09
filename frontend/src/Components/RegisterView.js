@@ -24,14 +24,15 @@ function RegisterView(props) {
   });
 
 
-  const [addUser, { loading }] = useMutation(CREATE_USER_MUTATION, {
+  const [addUser, { loading,error}] = useMutation(CREATE_USER_MUTATION, {
     update(
       _,
       {
        data: { register: userData }
-    }
-    ) {
-      if(userData.token != null){
+      }
+      ) {
+        console.log(errors)
+        if(userData.token != null){
         console.log(userData)
       context.login(userData);
       navigate('/profile');

@@ -26,6 +26,14 @@ const CREATE_PASTE_MUTATION = gql`
   }
 `;
 
+
+const VERIFY = gql`
+mutation VerifyToken($token: String!) {
+  verifyToken(token: $token){
+    payload
+  }
+}`
+
 const CREATE_USER_MUTATION = gql`
   mutation register(
     $email: String!
@@ -45,6 +53,7 @@ const CREATE_USER_MUTATION = gql`
     )
       {
         token
+        errors
       }
   }
 `;
@@ -112,5 +121,49 @@ mutation updateUser(
 }`
 
 
+const DELETE_PASTE = gql`
+mutation deleteCopy(
+  $id: ID!
+){
+  deleteCopy(
+    id:$id
+  )
+  {
+    copycasket{
+      title
+    }
+  }
+}`
 
-export { CREATE_PASTE_MUTATION, CREATE_USER_MUTATION, LOGIN_USER, PASSWORD_CHANGE, UPDATE_USER};
+const EDIT_PASTE = gql`
+mutation updateCopy(
+  $author: String
+  $content: String
+  $id: ID!
+  $private: Boolean
+  $title: String
+  $type: String
+)
+{
+  updateCopy(
+    author: $author
+    content: $content
+    id: $id
+    private: $private
+    title: $title
+    type: $type
+  )
+  {
+    copycasket{
+      id
+      author
+      content
+      private
+      title
+      type
+    }
+  }
+}`
+
+
+export { CREATE_PASTE_MUTATION, CREATE_USER_MUTATION, LOGIN_USER, PASSWORD_CHANGE, UPDATE_USER,VERIFY, DELETE_PASTE, EDIT_PASTE};
