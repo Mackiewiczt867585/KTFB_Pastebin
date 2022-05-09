@@ -1,11 +1,19 @@
 FROM node:17-alpine3.14 as build
 WORKDIR /frontend
 COPY package.json package-lock.json ./
+<<<<<<< HEAD
 RUN npm install
 RUN npm install react-scripts@5.0.0 -g
 RUN npm install javascript-time-ago
 RUN npm install react-time-ago
 RUN npm install react-paginate
+=======
+RUN npm install && \
+    npm install react-scripts@5.0.0 -g && \
+    npm install javascript-time-ago && \
+    npm install react-time-ago && \
+    npm install react-paginate
+>>>>>>> d05254a (Heroku docker deploy)
 COPY . ./
 RUN npm run build
 
