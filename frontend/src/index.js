@@ -15,9 +15,13 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 
+
+
+
 const httpLink = createHttpLink({
   uri: "http://localhost:5432/graphql"
 });
+
 
 
 
@@ -45,8 +49,18 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 
 const client = new ApolloClient({
   link: from([errorLink, httpLink]),
-  cache: new InMemoryCache(),
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Basic ${token}` : "",
+    }
+  }
 });
+
+
+
 
 ReactDOM.render(
   <ApolloProvider client={client}>

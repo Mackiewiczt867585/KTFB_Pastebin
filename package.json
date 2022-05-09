@@ -1,11 +1,20 @@
 {
   "dependencies": {
     "font-awesome": "^4.7.0"
+<<<<<<< HEAD
 
   },
   "devDependencies": {
     "cypress": "^9.6.1"
 
+=======
+<<<<<<< HEAD
+  },
+  "devDependencies": {
+    "cypress": "^9.6.1"
+=======
+>>>>>>> 683e323 (update fn)
+>>>>>>> b18d65e (update fn)
   }
 
 }

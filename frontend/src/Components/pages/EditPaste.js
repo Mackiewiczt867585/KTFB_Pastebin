@@ -93,7 +93,6 @@ function EditPaste() {
         </Button>
         </div>
       </Form>
-          </div>
       </>
     );
 }
