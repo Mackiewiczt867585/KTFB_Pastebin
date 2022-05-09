@@ -5,7 +5,7 @@ RUN npm install && \
     npm install react-scripts@5.0.0 -g && \
     npm install javascript-time-ago && \
     npm install react-time-ago && \
-    npm install react-paginate 
+    npm install react-paginate
 COPY . ./
 RUN npm run build
 

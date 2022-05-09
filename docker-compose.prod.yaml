@@ -23,7 +23,7 @@ services:
   backend:
     build:
       context: ./backend/
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.backend
     command: sh -c "python manage.py makemigrations &&
       python manage.py migrate &&
       python manage.py collectstatic --noinput &&
@@ -39,7 +39,7 @@ services:
   frontend:
     build:
       context: ./frontend/
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.frontend
     volumes:
       - react_build:/frontend/build
     ports:
