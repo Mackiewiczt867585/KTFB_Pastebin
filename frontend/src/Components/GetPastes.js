@@ -21,6 +21,7 @@ function GetPastes({ currentItems }) {
   const [deletePaste] = useMutation(DELETE_PASTE);
   if (currentItems)
     return (
+      
       <div className="table-box">
         <table>
           <thead>
@@ -38,7 +39,6 @@ function GetPastes({ currentItems }) {
                 <tr key={pos}>
                   <td>
                     <Link to={"/paste/" + val.id}>{val.title}</Link>
-<<<<<<< HEAD
                     {user && val.creator && user.email === val.creator.email && (
                       <div>
                         <Link to = {'/paste/'+ val.id + '/edit/'}>
@@ -61,7 +61,6 @@ function GetPastes({ currentItems }) {
                         </Button>
                       </div>
                     )}
-=======
                     <Link to = {'/paste/'+ val.id + '/report/'}>
                       <Button
                       color="red"
@@ -69,7 +68,28 @@ function GetPastes({ currentItems }) {
                       onClick={() => console.log('report post')}
                       />
                         </Link>
->>>>>>> 45a8445 (frontend added)
+
+                    {(user && val.creator) && user.email === val.creator.email &&(
+                      <div>
+                        <Link to = {'/paste/'+ val.id + '/edit/'}>
+                      <Button
+                      color="red"
+                      floated="right"
+                      onClick={() => Linkconsole.log('Delete post')}
+                      >
+                        <FaPen/>
+                      </Button>
+                        </Link>
+                    <Button
+                    color="red"
+                    floated="right"
+                    onClick={() => deletePaste({variables: {id: val.id}})}
+                    >
+                      <FaTrash/>
+                    </Button>
+                      </div>
+                  )}
+
                   </td>
                   <td> {val.author}</td>
                   <td> {val.type}</td>
