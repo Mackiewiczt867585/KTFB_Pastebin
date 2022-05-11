@@ -84,13 +84,15 @@ TimeAgo.addDefaultLocale(en);
                         <FaPen/>
                       </Button>
                         </Link>
-                    <Button
-                    color="red"
-                    floated="right"
-                    onClick={() => deletePaste({variables: {id: val.id}})}
-                    >
-                      <FaTrash/>
-                    </Button>
+                        <Button
+                          color="red"
+                          floated="right"
+                          onClick={() =>
+                            deletePaste({ variables: { id: val.id } })
+                          }
+                        >
+                          <FaTrash />
+                        </Button>
                       </div>
                   )}
 
