@@ -6,6 +6,7 @@
     "@apollo/client": "^3.5.10",
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
     "@fortawesome/react-fontawesome": "^0.1.18",
+<<<<<<< HEAD
 
     "@semantic-ui-react/css-patch": "^1.0.0",
 
@@ -13,6 +14,16 @@
 
     "@semantic-ui-react/css-patch": "^1.0.0",
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+    "@semantic-ui-react/css-patch": "^1.0.0",
+=======
+>>>>>>> 683e323 (update fn)
+=======
+    "@semantic-ui-react/css-patch": "^1.0.0",
+>>>>>>> cda914f (errors for login and register)
+>>>>>>> f239ed2 (errors for login and register)
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.3",
     "@testing-library/user-event": "^13.5.0",
