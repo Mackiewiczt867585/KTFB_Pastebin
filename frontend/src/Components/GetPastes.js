@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import {Button, Icon} from 'semantic-ui-react'
+import { Button, Icon } from "semantic-ui-react";
 import { useQuery, useMutation, gql } from "@apollo/client";
 import { LOAD_PUBLIC_PASTES } from "../GraphQL/Queries";
 import { DELETE_PASTE } from "../GraphQL/Mutations";
@@ -11,23 +11,16 @@ import en from "javascript-time-ago/locale/en.json";
 import ReactTimeAgo from "react-time-ago";
 import ReactPaginate from "react-paginate";
 import { AuthContext } from "./Context/Auth";
-import { FaTrash, FaPen } from 'react-icons/fa';
+import { FaTrash, FaPen } from "react-icons/fa";
 
 TimeAgo.addDefaultLocale(en);
 
+function GetPastes({ currentItems }) {
+  const { user } = useContext(AuthContext);
 
-  
-  
-  
-  function GetPastes({ currentItems }) {
-    const { user } = useContext(AuthContext)
-    
-    const [deletePaste] = useMutation(
-      DELETE_PASTE
-    )
+  const [deletePaste] = useMutation(DELETE_PASTE);
   if (currentItems)
     return (
-      
       <div className="table-box">
         <table>
           <thead>
@@ -63,15 +56,17 @@ TimeAgo.addDefaultLocale(en);
                         <FaPen/>
                       </Button>
                         </Link>
-                    <Button
-                    color="red"
-                    floated="right"
-                    onClick={() => deletePaste({variables: {id: val.id}})}
-                    >
-                      <FaTrash/>
-                    </Button>
+                        <Button
+                          color="red"
+                          floated="right"
+                          onClick={() =>
+                            deletePaste({ variables: { id: val.id } })
+                          }
+                        >
+                          <FaTrash />
+                        </Button>
                       </div>
-                  )}
+                    )}
                   </td>
                   <td> {val.author}</td>
                   <td> {val.type}</td>
