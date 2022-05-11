@@ -21,7 +21,6 @@ function GetPastes({ currentItems }) {
   const [deletePaste] = useMutation(DELETE_PASTE);
   if (currentItems)
     return (
-      
       <div className="table-box">
         <table>
           <thead>
@@ -80,13 +79,15 @@ function GetPastes({ currentItems }) {
                         <FaPen/>
                       </Button>
                         </Link>
-                    <Button
-                    color="red"
-                    floated="right"
-                    onClick={() => deletePaste({variables: {id: val.id}})}
-                    >
-                      <FaTrash/>
-                    </Button>
+                        <Button
+                          color="red"
+                          floated="right"
+                          onClick={() =>
+                            deletePaste({ variables: { id: val.id } })
+                          }
+                        >
+                          <FaTrash />
+                        </Button>
                       </div>
                   )}
 
