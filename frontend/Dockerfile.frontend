@@ -3,13 +3,17 @@ WORKDIR /frontend
 COPY package.json package-lock.json ./
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 1a968e7 (Heroku docker deploy 4)
+=======
+>>>>>>> af5c05b (Heroku docker deploy 4)
 RUN npm install
 RUN npm install react-scripts@5.0.0 -g
 RUN npm install javascript-time-ago
 RUN npm install react-time-ago
 RUN npm install react-paginate
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 RUN npm install && \
@@ -23,6 +27,8 @@ RUN npm install && \
 >>>>>>> 1a968e7 (Heroku docker deploy 4)
 =======
 >>>>>>> 83cacc1 (Heroku docker deploy)
+=======
+>>>>>>> af5c05b (Heroku docker deploy 4)
 COPY . ./
 RUN npm run build
 
