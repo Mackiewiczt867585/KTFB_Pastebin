@@ -75,7 +75,7 @@ function GetPastes({ currentItems }) {
                       <Button
                       color="red"
                       floated="right"
-                      onClick={() => Linkconsole.log('Delete post')}
+                      onClick={() => console.log('Delete post')}
                       >
                         <FaPen/>
                       </Button>
