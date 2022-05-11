@@ -113,6 +113,13 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
         global_id = from_global_id(copy_id)[-1]
         return CopyCasket.objects.get(pk=global_id).number_of_likes()
 
+    def resolve_all_reports(self, info):
+        return Report.objects.all()
+
+    def resolve_report(self, info, id):
+        global_id = from_global_id(id)[-1]
+        return Report.objects.get(global_id)
+
 
 class CopyCasketUpdateMutation(graphene.Mutation):
     class Arguments:
