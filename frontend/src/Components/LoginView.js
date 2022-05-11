@@ -6,12 +6,12 @@ import { Button, Form } from 'semantic-ui-react';
 import { useNavigate } from "react-router-dom";
 import {AuthContext} from './Context/Auth';
 import { useForm } from './util/hooks';
-
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 function LoginView(props) {
   const navigate = useNavigate();
   const context = useContext(AuthContext);
-  const [errors, setErrors] = useState({});
-
+  const notify = () => {toast()}
   const { onChange, onSubmit, values } = useForm(loginUserCallback, {
     username: '',
     password: ''
@@ -24,22 +24,35 @@ function LoginView(props) {
         data: { tokenAuth: userData}
       }
     ) {
+      if (userData.errors != null){
+        const check = Object.keys(userData.errors).map(key => {
+          return userData.errors[key].map((dataItem) => {
+            return [key, dataItem.message]
+          });
+        })
+  
+        var step;
+        var lengtht = Object.keys(userData.errors).length
+        for (step =0; step < lengtht;step++){
+          toast.error(<div>{check[step]}</div>)
+        }
+      }
+        if(userData.token != null){
         context.login(userData);
         navigate('/profile');
+        }
       },
-    onError(err){
-      setErrors(err.graphQLErrors[0].extensions.exception.errors);
-    },
       variables: values
   });
   
-
+  // console.log(error)
 
   function loginUserCallback() {
     loginUser();
   }
   return (
-    
+    <div>
+
     <div className="login-box">
       <Form onSubmit={onSubmit} noValidate className={loading ? 'loading' : ''}>
         <div className='inner-box'>
@@ -49,7 +62,6 @@ function LoginView(props) {
           name="username"
           type="text"
           value={values.username}
-          error={errors.username ? true : false}
           onChange={onChange}
           />
           </div>
@@ -60,29 +72,18 @@ function LoginView(props) {
           name="password"
           type="password"
           value={values.password}
-          error={errors.password ? true : false}
           onChange={onChange}
           />
           </div>
         <div className='inner-box'>
-        <Button type="submit" primary>
+        <Button type="submit" onClick={notify} primary>
           Login
         </Button>
+        <ToastContainer/>
         </div>
       </Form>
-      {Object.keys(errors).length > 0 && (
-        <div className="ui error message">
-          <ul className="list">
-            {Object.values(errors).map((value) => (
-              <li key={value}>{value}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
-  );
-}
-
+          </div>
+              </div>)}
 
 
 export default LoginView;
