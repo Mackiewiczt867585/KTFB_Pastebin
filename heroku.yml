@@ -1,0 +1,15 @@
+setup:
+  addons:
+    - plan: heroku-postgresql
+      as: DATABASE
+build:
+  docker:
+    backend: ./backend/Dockerfile.backend
+    frontend: ./frontend/Dockerfile.frontend
+    nginx: ./nginx/Dockerfile.nginx
+# release:
+# copy resources
+# skip in this example
+# run:
+# startup script
+# skip in this example
