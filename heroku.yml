@@ -7,9 +7,8 @@ build:
     backend: ./backend/Dockerfile.backend
     frontend: ./frontend/Dockerfile.frontend
     nginx: ./nginx/Dockerfile.nginx
-# release:
-# copy resources
-# skip in this example
+release:
+  image: frontend
+  command: npm run start
 # run:
 # startup script
-# skip in this example

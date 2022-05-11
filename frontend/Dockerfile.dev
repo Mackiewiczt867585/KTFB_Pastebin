@@ -8,6 +8,6 @@ RUN npm install && \
     npm install react-paginate
 
 COPY . /
-RUN chmod 777 node_modules -R
+RUN mkdir -p node_modules/.cache && chmod -R 777 node_modules/.cache
 EXPOSE 3000
 CMD npm start
