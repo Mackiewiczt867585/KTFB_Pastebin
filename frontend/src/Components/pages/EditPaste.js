@@ -56,6 +56,7 @@ function EditPaste() {
     return (
       <>
         <h1 className="title">Wklejka</h1>
+        <div className="outer-box">
       <Form onSubmit={onSubmit} noValidate>
       <Form.Input
           label="author:"
@@ -63,29 +64,32 @@ function EditPaste() {
           name="author"
           type="text"
           value={values.author}
-          error={errors.author ? true : false}
           onChange={onChange}
           />
-        <div className="outer-box">
-          <div>
+          <Form.Input
+          label="title:"
+          placeholder="title.."
+          name="title"
+          type="text"
+          value={values.title}
+          onChange={onChange}
+          />
             <h1>content:</h1>
-          </div>
           <Form.Input
           label="content:"
           placeholder="content.."
           name="content"
           type="text"
           value={values.content}
-          error={errors.content ? true : false}
           onChange={onChange}
           />
-          </div>
           <div className='inner-box'>
         <Button type="submit" primary>
           Edit
         </Button>
         </div>
       </Form>
+          </div>
       </>
     );
 }

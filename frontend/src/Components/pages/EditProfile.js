@@ -8,10 +8,12 @@ import { USER_BY_EMAIL } from '../../GraphQL/Queries';
 import { useMutation } from '@apollo/client';
 import { useQuery} from "@apollo/client";
 import { AuthContext } from '../Context/Auth';
-
+import { useNavigate } from "react-router-dom";
 
 
 function EditProfile() {
+  const { logout } = useContext(AuthContext);
+  const navigate = useNavigate();
   const {user} = useContext(AuthContext);
     const {error, loading, data } = useQuery( USER_BY_EMAIL, {
     variables: { email: user.email},
@@ -39,8 +41,11 @@ function EditProfile() {
   });
   values.id = profile.id
   const [editProfile] = useMutation(UPDATE_USER, {
-    onError(err){
-      setErrors(err.graphQLErrors[0].extensions.exception.errors);
+    update(
+      _,
+    ){
+    navigate('/profile');
+    logout();
     },
       variables: values
   });
@@ -62,7 +67,6 @@ function EditProfile() {
           name="email"
           type="text"
           value={values.email}
-          error={errors.email ? true : false}
           onChange={onChange}
           />
         <Form.Input
@@ -71,7 +75,6 @@ function EditProfile() {
           name="username"
           type="username"
           value={values.username}
-          error={errors.username ? true : false}
           onChange={onChange}
           />
         <Form.Input
@@ -80,7 +83,6 @@ function EditProfile() {
           name="firstName"
           type="firstName"
           value={values.firstName}
-          error={errors.firstName ? true : false}
           onChange={onChange}
           />
         <Form.Input
@@ -89,7 +91,6 @@ function EditProfile() {
           name="organisation"
           type="organisation"
           value={values.organisation}
-          error={errors.organisation ? true : false}
           onChange={onChange}
           />
         <div className='inner-box'>

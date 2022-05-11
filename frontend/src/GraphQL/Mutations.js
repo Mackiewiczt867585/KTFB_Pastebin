@@ -72,7 +72,8 @@ const LOGIN_USER = gql`
         email
         username
         creationDate
-      }
+      },
+      errors
     }
   }`
 

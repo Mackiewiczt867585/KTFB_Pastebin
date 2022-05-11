@@ -16,7 +16,7 @@ const Pastes = () => {
     <div className="outer-box">
       <form
         onSubmit={(e) => {
-          e.preventDefault()
+          
           createPaste({
             variables: {
               title: title.value,
