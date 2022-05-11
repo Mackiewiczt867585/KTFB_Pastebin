@@ -12,6 +12,13 @@ COPY_TYPE_CHOICES = [
     ("us", "Unspecified"),
 ]
 
+REPORT_TYPE_CHOICES = [
+    ("us", "Unspecified"),
+    ("hs", "Hate speech"),
+    ("rc", "Racism"),
+    ("pl", "Plagiarism"),
+]
+
 
 class CustomAccountManager(BaseUserManager):
     def create_superuser(
@@ -97,7 +104,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 class CopyCasket(models.Model):
     id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=100, blank=False)
+    title = models.CharField(max_length=100, blank=False, null=True)
     author = models.CharField(max_length=30, blank=False)
     creation_date = models.DateTimeField(auto_now_add=True)
     type = models.CharField(
@@ -122,3 +129,14 @@ class CopyCasket(models.Model):
                 val = getattr(self, key)
             setattr(self, key, val)
         self.save()
+
+
+class Report(models.Model):
+    id = models.AutoField(primary_key=True)
+    copy = models.ForeignKey(CopyCasket, on_delete=models.CASCADE, null=True)
+    reason = models.CharField(
+        max_length=2,
+        default="us",
+        choices=REPORT_TYPE_CHOICES,
+    )
+    note = models.TextField(blank=True, null=True)

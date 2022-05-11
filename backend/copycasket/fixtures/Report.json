@@ -1,0 +1,20 @@
+[
+  {
+    "model": "copycasket.Report",
+    "pk": 1,
+    "fields": {
+      "copy": "1",
+      "reason": "rc",
+      "note": "very bad language"
+    }
+  },
+  {
+    "model": "copycasket.Report",
+    "pk": 2,
+    "fields": {
+      "copy": "2",
+      "reason": "pl",
+      "note": "stole my code"
+    }
+  }
+]
