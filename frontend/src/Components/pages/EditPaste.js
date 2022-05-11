@@ -5,7 +5,7 @@ import { PASTE_BY_ID } from "../../GraphQL/Queries";
 import { useQuery, useMutation, gql } from "@apollo/client";
 import { Form, Button, Icon} from 'semantic-ui-react';
 
-
+import { useNavigate } from "react-router-dom";
 import { useForm } from '../util/hooks'
 import { EDIT_PASTE } from '../../GraphQL/Mutations';
 
@@ -15,6 +15,7 @@ import { EDIT_PASTE } from '../../GraphQL/Mutations';
 
 
 function EditPaste() {
+  const navigate = useNavigate();
     const params = useParams();
     const { error, loading, data } = useQuery(PASTE_BY_ID, {
         variables: { copyId: params.id },
@@ -41,8 +42,11 @@ function EditPaste() {
     });
     values.id = pastes.id
     const [editPaste] = useMutation(EDIT_PASTE, {
-        onError(err){
-            setErrors(err.graphQLErrors[0].extensions.exception.errors);
+      update(
+        _,
+      )
+        {
+          navigate('/');
         },
         variables: values
   });
