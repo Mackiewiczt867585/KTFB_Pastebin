@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import {Button, Icon} from 'semantic-ui-react'
+import { Button, Icon } from "semantic-ui-react";
 import { useQuery, useMutation, gql } from "@apollo/client";
 import { LOAD_PUBLIC_PASTES } from "../../GraphQL/Queries";
 import { DELETE_PASTE } from "../../GraphQL/Mutations";
@@ -10,12 +10,20 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import ReactTimeAgo from "react-time-ago";
 import ReactPaginate from "react-paginate";
+<<<<<<< HEAD:frontend/src/Components/Pastes/ShowPastes.js
 import { AuthContext } from "../Context/Auth";
 import { FaTrash, FaPen } from 'react-icons/fa';
+=======
+import { AuthContext } from "./Context/Auth";
+import { FaTrash, FaPen } from "react-icons/fa";
+>>>>>>> 810896a (Heroku docker deploy 2):frontend/src/Components/GetPastes.js
 
 TimeAgo.addDefaultLocale(en);
 
+function GetPastes({ currentItems }) {
+  const { user } = useContext(AuthContext);
 
+<<<<<<< HEAD:frontend/src/Components/Pastes/ShowPastes.js
   
   
   
@@ -25,9 +33,11 @@ TimeAgo.addDefaultLocale(en);
     const [deletePaste] = useMutation(
       DELETE_PASTE
     )
+=======
+  const [deletePaste] = useMutation(DELETE_PASTE);
+>>>>>>> 810896a (Heroku docker deploy 2):frontend/src/Components/GetPastes.js
   if (currentItems)
     return (
-      
       <div className="table-box">
         <table>
           <thead>
@@ -45,7 +55,7 @@ TimeAgo.addDefaultLocale(en);
                 <tr key={pos}>
                   <td>
                     <Link to={"/paste/" + val.id}>{val.title}</Link>
-                    {(user && val.creator) && user.email === val.creator.email &&(
+                    {user && val.creator && user.email === val.creator.email && (
                       <div>
                         <Link to = {'/paste/'+ val.id + '/edit/'}>
                       <Button
@@ -56,15 +66,17 @@ TimeAgo.addDefaultLocale(en);
                         <FaPen/>
                       </Button>
                         </Link>
-                    <Button
-                    color="red"
-                    floated="right"
-                    onClick={() => deletePaste({variables: {id: val.id}})}
-                    >
-                      <FaTrash/>
-                    </Button>
+                        <Button
+                          color="red"
+                          floated="right"
+                          onClick={() =>
+                            deletePaste({ variables: { id: val.id } })
+                          }
+                        >
+                          <FaTrash />
+                        </Button>
                       </div>
-                  )}
+                    )}
                   </td>
                   <td> {val.author}</td>
                   <td> {val.type}</td>
