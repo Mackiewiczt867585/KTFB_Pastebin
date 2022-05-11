@@ -2,7 +2,7 @@ from django.apps import apps
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import CopyCasket, CustomUser
+from .models import CopyCasket, CustomUser, Report
 
 
 @admin.register(CopyCasket)
@@ -39,6 +39,16 @@ class CustomUserAdmin(UserAdmin):
             )},
         ),
     )
+
+
+@admin.register(Report)
+class ReportAdmin(admin.ModelAdmin):
+    list_display = [
+        "id",
+        "copy",
+        "reason",
+        "note",
+    ]
 
 
 app = apps.get_app_config("graphql_auth")
