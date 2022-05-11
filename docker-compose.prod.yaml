@@ -48,7 +48,9 @@ services:
     depends_on:
       - backend
   nginx:
-    build: ./nginx
+    build:
+      context: ./nginx/
+      dockerfile: Dockerfile.nginx
     ports:
       - 5432:80
     volumes:
