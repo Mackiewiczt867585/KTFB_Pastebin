@@ -30,6 +30,7 @@ function Paste() {
           <h1>content:</h1>
         </div>
         <p>{pastes.content}</p>
+        <img src={"..\backend\images" +pastes.image}></img>
         </div>
     </>
   );

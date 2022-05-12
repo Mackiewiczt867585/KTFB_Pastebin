@@ -20,8 +20,7 @@ const Pastes = () => {
   const creator = user ? ( user.email ): ('annonymous')
 
   const [selectedImage, setSelectedImage] = useState();
-  console.log(selectedImage)
-  
+
   const creator = user ? ( user.email ): null
 
   return (
