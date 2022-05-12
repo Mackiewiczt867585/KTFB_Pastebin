@@ -62,6 +62,7 @@ const PASTE_BY_ID = gql`
         id
         email
       }
+      image
     }
   }
 `;

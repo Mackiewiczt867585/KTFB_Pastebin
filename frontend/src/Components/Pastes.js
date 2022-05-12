@@ -9,8 +9,7 @@ const Pastes = () => {
   const [createPaste] = useMutation(CREATE_PASTE_MUTATION);
   const { user } = useContext(AuthContext); 
   const [selectedImage, setSelectedImage] = useState();
-  console.log(selectedImage)
-  
+
   const creator = user ? ( user.email ): null
   return (
     <div className="outer-box">
