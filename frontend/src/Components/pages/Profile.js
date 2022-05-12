@@ -4,14 +4,14 @@ import "../Profile.css";
 import { Link, useParams } from "react-router-dom";
 import { ALL_USER_PASTES, USER_BY_EMAIL, ME } from '../../GraphQL/Queries';
 import { AuthContext} from '../Context/Auth'
-import { useQuery, gql } from "@apollo/client";
+import { useQuery, useMutation, gql } from "@apollo/client";
 import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import ReactTimeAgo from "react-time-ago";
 import ReactPaginate from "react-paginate";
-
-
-
+import {Button, Icon} from 'semantic-ui-react'
+import { FaTrash, FaPen } from 'react-icons/fa';
+import { DELETE_PASTE } from "../../GraphQL/Mutations";
 TimeAgo.addDefaultLocale(en);
 
 
@@ -70,6 +70,10 @@ function Profile({ user }) {
   )
 }
 function GetPastes({ currentItems }) {
+  
+  const [deletePaste] = useMutation(
+    DELETE_PASTE
+  )
   if (currentItems)
     return (
       <>
@@ -90,6 +94,26 @@ function GetPastes({ currentItems }) {
                 <tr key={pos}>
                   <td>
                     <Link to={"/paste/" + val.id}>{val.title}</Link>
+                    
+                      <div>
+                        <Link to = {'/paste/'+ val.id + '/edit/'}>
+                      <Button
+                      color="red"
+                      floated="right"
+                      onClick={() => console.log('Delete post')}
+                      >
+                        <FaPen/>
+                      </Button>
+                        </Link>
+                    <Button
+                    color="red"
+                    floated="right"
+                    onClick={() => deletePaste({variables: {id: val.id}})}
+                    >
+                      <FaTrash/>
+                    </Button>
+                      </div>
+                  
                   </td>
                   <td> {val.author}</td>
                   <td> {val.type}</td>
