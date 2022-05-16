@@ -6,6 +6,10 @@ __pycache__/
 # C extensions
 *.so
 
+#Cypress sample test files
+cypress/integration/1-getting-started
+cypress/integration/2-advanced-examples
+
 # Distribution / packaging
 .Python
 build/
@@ -134,6 +138,9 @@ venv.bak/
 .mypy_cache/
 .dmypy.json
 dmypy.json
+
+#node_modules
+node_modules/
 
 # Pyre type checker
 .pyre/

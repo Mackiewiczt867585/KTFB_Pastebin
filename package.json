@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "font-awesome": "^4.7.0"
+  },
+  "devDependencies": {
+    "cypress": "^9.6.1"
   }
 }
