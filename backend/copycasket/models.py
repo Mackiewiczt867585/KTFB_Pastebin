@@ -168,7 +168,7 @@ class UserReport(models.Model):
 
 class UserReport(models.Model):
     id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=False, default=1)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=False, default=1, related_name="userReport")
     reason = models.CharField(
         max_length=2,
         default="us",
