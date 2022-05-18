@@ -1,16 +1,16 @@
 import React, { useEffect, useState, useContext } from "react";
 import {Button, Icon} from 'semantic-ui-react'
 import { useQuery, useMutation, gql } from "@apollo/client";
-import { LOAD_PUBLIC_PASTES } from "../GraphQL/Queries";
-import { DELETE_PASTE } from "../GraphQL/Mutations";
-import "./GetPastes.css";
+import { LOAD_PUBLIC_PASTES } from "../../GraphQL/Queries";
+import { DELETE_PASTE } from "../../GraphQL/Mutations";
+import "./ShowPastes.css";
 import { Link } from "react-router-dom";
 import TimeAgo from "javascript-time-ago";
 
 import en from "javascript-time-ago/locale/en.json";
 import ReactTimeAgo from "react-time-ago";
 import ReactPaginate from "react-paginate";
-import { AuthContext } from "./Context/Auth";
+import { AuthContext } from "../Context/Auth";
 import { FaTrash, FaPen } from 'react-icons/fa';
 
 TimeAgo.addDefaultLocale(en);
@@ -19,7 +19,7 @@ TimeAgo.addDefaultLocale(en);
   
   
   
-  function GetPastes({ currentItems }) {
+  export function ShowPastes({ currentItems }) {
     const { user } = useContext(AuthContext)
     
     const [deletePaste] = useMutation(
@@ -107,7 +107,7 @@ function PaginatedItems() {
   if (currentItems)
     return (
       <>
-        <GetPastes currentItems={currentItems} />
+        <ShowPastes currentItems={currentItems} />
         <div className="page-select">
           <ReactPaginate
             breakLabel="..."

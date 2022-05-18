@@ -1,6 +1,6 @@
 import React from "react";
 import "../../App.css";
-import RegisterView from "../RegisterView";
+import RegisterView from "../Login-Register/RegisterView";
 
 function Register() {
   return (

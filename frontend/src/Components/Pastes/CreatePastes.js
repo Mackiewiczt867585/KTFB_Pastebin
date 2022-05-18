@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import { CREATE_PASTE_MUTATION } from "../GraphQL/Mutations";
+import { CREATE_PASTE_MUTATION } from "../../GraphQL/Mutations";
 import { useMutation } from "@apollo/client";
-import "./Pastes.css";
-import { AuthContext } from "./Context/Auth";
+import "./CreatePastes.css";
+import { AuthContext } from "../Context/Auth";
 
-const Pastes = () => {
+const CreatePastes = () => {
   let author, title, content, privated, type, image;
   const [createPaste] = useMutation(CREATE_PASTE_MUTATION);
   const { user } = useContext(AuthContext); 
@@ -62,7 +62,7 @@ const Pastes = () => {
             </option>
           </select>
         </div>
-        <div>
+        <div className="textarea">
           <label for="content">Content</label>
           <br />
           <textarea
@@ -73,7 +73,7 @@ const Pastes = () => {
             cols="200"
           />
         </div>
-        <div>
+        <div className="private">
           <label for="private">private</label>
           <br />
           <input
@@ -109,4 +109,4 @@ const Pastes = () => {
   );
 };
 
-export default Pastes;
+export default CreatePastes;

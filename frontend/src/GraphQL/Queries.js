@@ -88,7 +88,7 @@ const ALL_USER_PASTES = gql`
       title
       author
       creator{
-        id
+        email
       }
       creationDate
       type

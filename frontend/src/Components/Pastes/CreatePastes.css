@@ -2,21 +2,25 @@
   font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 div {
-  padding: 15px 0 15px 0;
+  padding: 0px 0px 0px 0px;
 }
 .outer-box {
-  background-color: rgb(224, 220, 220);
-  box-shadow: 0 0 1em rgb(121, 113, 113);
+  background-color: rgb(87, 78, 78);
   max-width: 60%;
   margin: auto;
   border-radius: 5px;
   text-align: left;
   margin-top: 50px;
 }
+.outer-box:hover{
+  box-shadow: 0 0 1em rgb(99, 93, 93);
+
+}
 .input-item-top {
   display: inline-block;
   min-height: 1px;
   padding: 10px 20px 10px 20px;
+  color:#dbdce2;
 }
 input,
 select {
@@ -27,7 +31,12 @@ textarea {
   box-shadow: 1em 1em 1em rgb(121, 113, 113);
   border-radius: 5px;
   max-width: 90%;
-  max-height: 90%;
+  max-height: 50%;
+  background-color: #858585;
+}
+.textarea{
+  text-align: center;
+  padding: 0%;
 }
 button {
   display: inline-block;
@@ -55,4 +64,7 @@ button:hover {
 button:active {
   box-shadow: inset 0px 3px 7px #31323d;
   transform: translateY(2px);
+}
+.private{
+  padding-left: 20px;
 }

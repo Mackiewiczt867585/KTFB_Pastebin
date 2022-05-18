@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 
-import { AuthContext} from './Context/Auth'
+import { AuthContext} from '../Context/Auth'
 
 
 function Navbar() {
