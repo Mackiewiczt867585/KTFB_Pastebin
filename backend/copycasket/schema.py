@@ -125,7 +125,14 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
 
     def resolve_report(self, info, id):
         global_id = from_global_id(id)[-1]
-        return Report.objects.get(global_id)
+        return Report.objects.get(pk=global_id)
+
+    def resolve_all_user_reports(self, info):
+        return UserReport.objects.all()
+
+    def resolve_user_report(self, info, user_report_id):
+        global_id = from_global_id(user_report_id)[-1]
+        return UserReport.objects.get(pk=global_id)
 
 
 class CopyCasketUpdateMutation(graphene.Mutation):
