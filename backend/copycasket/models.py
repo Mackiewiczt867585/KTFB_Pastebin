@@ -140,3 +140,14 @@ class Report(models.Model):
         choices=REPORT_TYPE_CHOICES,
     )
     note = models.TextField(blank=True, null=True)
+
+
+class UserReport(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=False, default=1)
+    reason = models.CharField(
+        max_length=2,
+        default="us",
+        choices=REPORT_TYPE_CHOICES,
+    )
+    note = models.TextField(blank=True, null=True)

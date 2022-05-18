@@ -2,7 +2,7 @@ from django.apps import apps
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 
-from .models import CopyCasket, CustomUser, Report
+from .models import CopyCasket, CustomUser, Report, UserReport
 
 
 @admin.register(CopyCasket)
@@ -46,6 +46,16 @@ class ReportAdmin(admin.ModelAdmin):
     list_display = [
         "id",
         "copy",
+        "reason",
+        "note",
+    ]
+
+
+@admin.register(UserReport)
+class UserReportAdmin(admin.ModelAdmin):
+    list_display = [
+        "id",
+        "user",
         "reason",
         "note",
     ]
