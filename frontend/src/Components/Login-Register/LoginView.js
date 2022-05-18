@@ -1,11 +1,11 @@
 
 import React, { useContext, useState } from 'react';
-import { LOGIN_USER } from '../GraphQL/Mutations';
+import { LOGIN_USER } from '../../GraphQL/Mutations';
 import { useMutation } from '@apollo/client';
 import { Button, Form } from 'semantic-ui-react';
 import { useNavigate } from "react-router-dom";
-import {AuthContext} from './Context/Auth';
-import { useForm } from './util/hooks';
+import {AuthContext} from '../Context/Auth';
+import { useForm } from '../util/hooks';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 function LoginView(props) {

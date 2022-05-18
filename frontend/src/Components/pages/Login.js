@@ -1,6 +1,6 @@
 import React from "react";
 import "../../App.css";
-import LoginView from "../LoginView";
+import LoginView from "../Login-Register/LoginView";
 
 function Login() {
   return (

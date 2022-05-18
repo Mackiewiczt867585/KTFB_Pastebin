@@ -12,6 +12,7 @@ import ReactPaginate from "react-paginate";
 import {Button, Icon} from 'semantic-ui-react'
 import { FaTrash, FaPen } from 'react-icons/fa';
 import { DELETE_PASTE } from "../../GraphQL/Mutations";
+import {ShowPastes} from "../Pastes/ShowPastes" 
 TimeAgo.addDefaultLocale(en);
 
 
@@ -69,67 +70,7 @@ function Profile({ user }) {
 
   )
 }
-function GetPastes({ currentItems }) {
-  
-  const [deletePaste] = useMutation(
-    DELETE_PASTE
-  )
-  if (currentItems)
-    return (
-      <>
-      <div className="table-box">
-        <table>
-          <thead>
-            <tr>
-              <th>Tytuł</th>
-              <th>Autor</th>
-              <th>typ</th>
-              <th>Dodano</th>
-            </tr>
-          </thead>
 
-          <tbody>
-            {currentItems.map((val, pos) => {
-              return (
-                <tr key={pos}>
-                  <td>
-                    <Link to={"/paste/" + val.id}>{val.title}</Link>
-                    
-                      <div>
-                        <Link to = {'/paste/'+ val.id + '/edit/'}>
-                      <Button
-                      color="red"
-                      floated="right"
-                      onClick={() => console.log('Delete post')}
-                      >
-                        <FaPen/>
-                      </Button>
-                        </Link>
-                    <Button
-                    color="red"
-                    floated="right"
-                    onClick={() => deletePaste({variables: {id: val.id}})}
-                    >
-                      <FaTrash/>
-                    </Button>
-                      </div>
-                  
-                  </td>
-                  <td> {val.author}</td>
-                  <td> {val.type}</td>
-                  <td>
-                    {" "}
-                    <ReactTimeAgo date={val.creationDate} locale="en-US" />
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-            </>
-    );
-}
   function PaginatedItems() {
     const user = GetUser(); 
     const { error, loading, data } = useQuery(ALL_USER_PASTES, {
@@ -160,7 +101,7 @@ function GetPastes({ currentItems }) {
 
       <>
         <Profile user = {user}/>
-        <GetPastes currentItems={userPastes} />
+        <ShowPastes currentItems={userPastes} />
         <div className="page-select">
           <ReactPaginate
             breakLabel="..."

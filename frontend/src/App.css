@@ -18,9 +18,7 @@ html {
 body {
   height: 100%;
   margin: 0;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-image: linear-gradient(rgb(167, 161, 161), rgb(68, 68, 67));
+  background-color: rgb(20, 20, 31);
 }
 .App-header {
   background-color: #282c34;
@@ -42,6 +40,7 @@ body {
   border-radius: 5px;
   text-align: left;
   margin-top: 50px;
+  color: rgb(196, 190, 190);
 }
 
 .info {
@@ -52,9 +51,6 @@ body {
   margin-top: 50px;
 }
 
-body {
-  background-color: rgb(207, 203, 203);
-}
 
 @keyframes App-logo-spin {
   from {

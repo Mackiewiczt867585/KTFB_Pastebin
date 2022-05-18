@@ -1,11 +1,11 @@
 import React from "react";
 import "../../App.css";
-import Pastes from "../Pastes";
+import CreatePastes from "../Pastes/CreatePastes";
 function Home() {
   return (
     <>
       <h1 className="title">Utwórz nową wklejkę</h1>
-      <Pastes />
+      <CreatePastes />
     </>
   );
 }

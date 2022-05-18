@@ -1,15 +1,15 @@
 import React, { useState, useContext } from "react";
 import { Button, Form, Message } from 'semantic-ui-react';
-import { CREATE_USER_MUTATION } from "../GraphQL/Mutations";
+import { CREATE_USER_MUTATION } from "../../GraphQL/Mutations";
 import { useMutation } from "@apollo/client";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./LogRegView.css";
 
-import { AuthContext } from './Context/Auth'
-import { useForm } from './util/hooks';
-import { ME } from "../GraphQL/Queries";
+import { AuthContext } from '../Context/Auth'
+import { useForm } from '../util/hooks';
+import { ME } from "../../GraphQL/Queries";
 
 
 
