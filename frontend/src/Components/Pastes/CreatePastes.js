@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { CREATE_PASTE_MUTATION } from "../../GraphQL/Mutations";
 import { useMutation } from "@apollo/client";
 import "./CreatePastes.css";

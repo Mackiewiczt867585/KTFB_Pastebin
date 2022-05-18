@@ -10,6 +10,7 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import ReactTimeAgo from "react-time-ago";
 import ReactPaginate from "react-paginate";
+<<<<<<< HEAD
 <<<<<<< HEAD:frontend/src/Components/Pastes/ShowPastes.js
 import { AuthContext } from "../Context/Auth";
 import { FaTrash, FaPen } from 'react-icons/fa';
@@ -17,13 +18,20 @@ import { FaTrash, FaPen } from 'react-icons/fa';
 import { AuthContext } from "./Context/Auth";
 import { FaTrash, FaPen } from "react-icons/fa";
 >>>>>>> 810896a (Heroku docker deploy 2):frontend/src/Components/GetPastes.js
+=======
+import { AuthContext } from "../Context/Auth";
+import { FaTrash, FaPen } from 'react-icons/fa';
+>>>>>>> dc95d0c (sorting files)
 
 TimeAgo.addDefaultLocale(en);
 
 function GetPastes({ currentItems }) {
   const { user } = useContext(AuthContext);
 
+<<<<<<< HEAD
 <<<<<<< HEAD:frontend/src/Components/Pastes/ShowPastes.js
+=======
+>>>>>>> dc95d0c (sorting files)
   
   
   
@@ -33,9 +41,12 @@ function GetPastes({ currentItems }) {
     const [deletePaste] = useMutation(
       DELETE_PASTE
     )
+<<<<<<< HEAD
 =======
   const [deletePaste] = useMutation(DELETE_PASTE);
 >>>>>>> 810896a (Heroku docker deploy 2):frontend/src/Components/GetPastes.js
+=======
+>>>>>>> dc95d0c (sorting files)
   if (currentItems)
     return (
       <div className="table-box">
