@@ -6,7 +6,7 @@ from graphql_auth import mutations
 from graphql_auth.schema import MeQuery, UserQuery
 from graphql_relay import from_global_id
 
-from .models import CopyCasket, CustomUser, Report
+from .models import CopyCasket, CustomUser, Report, UserReport
 
 
 class CopyCasketTypes(DjangoObjectType):
@@ -38,6 +38,14 @@ class ReportTypes(DjangoObjectType):
         interfaces = (graphene.relay.Node,)
 
 
+class UserReportTypes(DjangoObjectType):
+    class Meta:
+        model = UserReport
+        fields = "__all__"
+        filter_fields = ["user", "reason"]
+        interfaces = (graphene.relay.Node,)
+
+
 class Query(UserQuery, MeQuery, graphene.ObjectType):
     all_accounts = DjangoFilterConnectionField(CopyCasketTypes)
     all_copies = graphene.List(CopyCasketTypes)
@@ -53,6 +61,9 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
 
     all_reports = graphene.List(ReportTypes)
     report = graphene.Field(ReportTypes, report_id=graphene.ID())
+
+    all_user_reports = graphene.List(UserReportTypes)
+    user_report = graphene.Field(UserReportTypes, user_report_id=graphene.ID())
 
     def resolve_all_copies(self, info):
         return CopyCasket.objects.all()
@@ -87,7 +98,14 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
 
     def resolve_report(self, info, id):
         global_id = from_global_id(id)[-1]
-        return Report.objects.get(global_id)
+        return Report.objects.get(pk=global_id)
+
+    def resolve_all_user_reports(self, info):
+        return UserReport.objects.all()
+
+    def resolve_user_report(self, info, user_report_id):
+        global_id = from_global_id(user_report_id)[-1]
+        return UserReport.objects.get(pk=global_id)
 
 
 class CopyCasketUpdateMutation(graphene.Mutation):
@@ -219,6 +237,37 @@ class ReportDeleteMutation(graphene.Mutation):
         return ReportDeleteMutation(report=instance)
 
 
+class UserReportCreateMutation(graphene.Mutation):
+    class Arguments:
+        reason = graphene.String(required=True)
+        note = graphene.String(required=False)
+        user = graphene.ID(required=True)
+
+    user_report = graphene.Field(UserReportTypes)
+
+    @classmethod
+    def mutate(cls, root, info, user, **kwargs):
+        instance = UserReport.objects.create(**kwargs)
+        global_id = from_global_id(user)[-1]
+        instance.user = CustomUser.objects.get(pk=global_id)
+        instance.save()
+        return UserReportCreateMutation(user_report=instance)
+
+
+class UserReportDeleteMutation(graphene.Mutation):
+    class Arguments:
+        id = graphene.ID(required=True)
+
+    user_report = graphene.Field(UserReportTypes)
+
+    @classmethod
+    def mutate(cls, root, info, id, **kwargs):
+        global_id = from_global_id(id)[-1]
+        instance = Report.objects.get(pk=global_id)
+        instance.delete()
+        return ReportDeleteMutation(user_report=instance)
+
+
 class Mutation(graphene.ObjectType):
     update_copy = CopyCasketUpdateMutation.Field()
     delete_copy = CopyCasketDeleteMutation.Field()
@@ -231,8 +280,11 @@ class Mutation(graphene.ObjectType):
     create_report = ReportCreateMutation.Field()
     delete_report = ReportDeleteMutation.Field()
 
+    create_user_report = UserReportCreateMutation.Field()
+    delete_user_report = UserReportDeleteMutation.Field()
+
     register = mutations.Register.Field()  # register
-    verify_account = mutations.VerifyAccount.Field()  # veryfication
+    verify_account = mutations.VerifyAccount.Field()  # verification
     resend_activation_email = mutations.ResendActivationEmail.Field()
     reset_email = mutations.SendPasswordResetEmail.Field()
     password_reset = mutations.PasswordReset.Field()
