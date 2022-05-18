@@ -15,6 +15,10 @@ function Navbar() {
 import { AuthContext} from '../Context/Auth'
 
 
+import { AuthContext} from '../Context/Auth'
+
+
+
 function Navbar() {
   const { user, logout } = useContext(AuthContext);
   const pathname = window.location.pathname;
