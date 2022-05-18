@@ -10,13 +10,19 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import ReactTimeAgo from "react-time-ago";
 import ReactPaginate from "react-paginate";
+
+
+
 import { AuthContext } from "../Context/Auth";
 import { FaTrash, FaPen } from 'react-icons/fa';
 
+
 TimeAgo.addDefaultLocale(en);
 
-function GetPastes({ currentItems }) {
-  const { user } = useContext(AuthContext);
+
+
+
+
 
   
   
@@ -27,6 +33,8 @@ function GetPastes({ currentItems }) {
     const [deletePaste] = useMutation(
       DELETE_PASTE
     )
+
+
   if (currentItems)
     return (
       <div className="table-box">
