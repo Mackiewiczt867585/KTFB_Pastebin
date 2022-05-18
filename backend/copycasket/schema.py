@@ -65,6 +65,8 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
     all_user_reports = graphene.List(UserReportTypes)
     user_report = graphene.Field(UserReportTypes, user_report_id=graphene.ID())
 
+    likes = graphene.Int(copy_id=graphene.ID())
+
     def resolve_all_copies(self, info):
         return CopyCasket.objects.all()
 
@@ -106,6 +108,10 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
     def resolve_user_report(self, info, user_report_id):
         global_id = from_global_id(user_report_id)[-1]
         return UserReport.objects.get(pk=global_id)
+
+    def resolve_likes(self, info, copy_id):
+        global_id = from_global_id(copy_id)[-1]
+        return CopyCasket.objects.get(pk=global_id).number_of_likes()
 
 
 class CopyCasketUpdateMutation(graphene.Mutation):
@@ -268,6 +274,36 @@ class UserReportDeleteMutation(graphene.Mutation):
         return ReportDeleteMutation(user_report=instance)
 
 
+class LikeMutation(graphene.Mutation):
+    class Arguments:
+        user_id = graphene.ID()
+        copy_id = graphene.ID()
+
+    success = graphene.String()
+
+    @classmethod
+    def mutate(cls, root, info, user_id, copy_id):
+        instance = CopyCasket.objects.get(pk=copy_id)
+        instance.likes.add(user_id)
+        instance.save()
+        return LikeMutation(success="Liked")
+
+
+class DislikeMutation(graphene.Mutation):
+    class Arguments:
+        user_id = graphene.ID()
+        copy_id = graphene.ID()
+
+    success = graphene.String()
+
+    @classmethod
+    def mutate(cls, root, info, user_id, copy_id):
+        instance = CopyCasket.objects.get(pk=copy_id)
+        instance.likes.remove(user_id)
+        instance.save()
+        return LikeMutation(success="Disliked")
+
+
 class Mutation(graphene.ObjectType):
     update_copy = CopyCasketUpdateMutation.Field()
     delete_copy = CopyCasketDeleteMutation.Field()
@@ -282,6 +318,9 @@ class Mutation(graphene.ObjectType):
 
     create_user_report = UserReportCreateMutation.Field()
     delete_user_report = UserReportDeleteMutation.Field()
+
+    like = LikeMutation.Field()
+    dislike = DislikeMutation.Field()
 
     register = mutations.Register.Field()  # register
     verify_account = mutations.VerifyAccount.Field()  # verification
