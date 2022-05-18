@@ -119,6 +119,7 @@ class CopyCasket(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.SET_DEFAULT, default=1, null=True
     )
     private = models.BooleanField(default=False)
+    likes = models.ManyToManyField(CustomUser, related_name="likes")
 
     def __str__(self):
         return self.title
@@ -130,10 +131,13 @@ class CopyCasket(models.Model):
             setattr(self, key, val)
         self.save()
 
+    def number_of_likes(self):
+        return self.likes.count()
+
 
 class Report(models.Model):
     id = models.AutoField(primary_key=True)
-    copy = models.ForeignKey(CopyCasket, on_delete=models.CASCADE, null=True)
+    copy = models.ForeignKey(CopyCasket, on_delete=models.CASCADE, default=1, related_name="copyReport")
     reason = models.CharField(
         max_length=2,
         default="us",
@@ -144,7 +148,7 @@ class Report(models.Model):
 
 class UserReport(models.Model):
     id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=False, default=1)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, null=False, default=1, related_name="userReport")
     reason = models.CharField(
         max_length=2,
         default="us",
