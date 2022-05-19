@@ -65,6 +65,13 @@ TimeAgo.addDefaultLocale(en);
                         </Button>
                       </div>
                     )}
+                    <Link to = {'/paste/'+ val.id + '/report/'}>
+                      <Button
+                      color="red"
+                      floated="right"
+                      onClick={() => console.log('report post')}
+                      />
+                        </Link>
                   </td>
                   <td> {val.author}</td>
                   <td> {val.type}</td>
