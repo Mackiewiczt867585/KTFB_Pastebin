@@ -121,6 +121,11 @@ class CopyCasket(models.Model):
     private = models.BooleanField(default=False)
     likes = models.ManyToManyField(CustomUser, related_name="likes")
 
+    @classmethod
+    def get_default_pk(cls):
+        exam, created = cls.objects.get_or_create(
+            id=1, defaults=dict(title='this is not copy',author='anonnymous'))
+        return exam.pk
     def __str__(self):
         return self.title
 
@@ -137,13 +142,15 @@ class CopyCasket(models.Model):
 
 class Report(models.Model):
     id = models.AutoField(primary_key=True)
-    copy = models.ForeignKey(CopyCasket, on_delete=models.CASCADE, default=1, related_name="copyReport")
+    copy = models.ForeignKey(CopyCasket, on_delete=models.CASCADE, default=CopyCasket.get_default_pk, related_name="copyReport")
     reason = models.CharField(
         max_length=2,
         default="us",
         choices=REPORT_TYPE_CHOICES,
     )
     note = models.TextField(blank=True, null=True)
+
+
 
 
 class UserReport(models.Model):
