@@ -120,6 +120,25 @@ mutation updateUser(
     }
   }
 }`
+const CREATE_PASTE_REPORT = gql`
+mutation createReport(
+  $copyId: ID!
+  $note: String
+  $reason: String!
+){
+  createReport(
+    copyId: $copyId
+    note: $note
+    reason: $reason
+  )
+  {
+    report{
+      id
+      note
+      reason
+    }
+  }
+}`
 
 
 const DELETE_PASTE = gql`
@@ -136,6 +155,7 @@ mutation deleteCopy(
   }
 }`
 
+<<<<<<< HEAD
 const EDIT_PASTE = gql`
 mutation updateCopy(
   $author: String
@@ -168,3 +188,6 @@ mutation updateCopy(
 
 
 export { CREATE_PASTE_MUTATION, CREATE_USER_MUTATION, LOGIN_USER, PASSWORD_CHANGE, UPDATE_USER,VERIFY, DELETE_PASTE, EDIT_PASTE};
+=======
+export { CREATE_PASTE_MUTATION, CREATE_USER_MUTATION, LOGIN_USER, PASSWORD_CHANGE, UPDATE_USER, CREATE_PASTE_REPORT};
+>>>>>>> 45a8445 (frontend added)
