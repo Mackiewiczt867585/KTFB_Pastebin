@@ -18,9 +18,7 @@ const CREATE_PASTE_MUTATION = gql`
         content
         type
         private
-        creator{
-          id
-        }
+        
         image
       }
     }
