@@ -5,7 +5,6 @@ import RegisterView from "../Login-Register/RegisterView";
 function Register() {
   return (
     <>
-      <h1 className="title">Rejestracja</h1>
       <RegisterView />
     </>
   );
