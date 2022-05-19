@@ -60,20 +60,44 @@ describe("Test new paste page", () => {
     cy.get("input#title").type("Paste" + pastetitleid);
     cy.get("input#author").type("Author" + authorid);
     cy.get("textarea#content").type("Content: " + contentid);
-    /*
-    cy.get('button').contains('add').click();
-    cy.get('a.nav-item').contains('Aktualne').click();
+    cy.get("button").contains("add").click();
+    cy.get("a.nav-item").contains("Aktualne").click();
+    /* TODO: going through pagination (stopping on last page)
     const findInPage = () => {
-      cy.get('a.page-link').contains('next >').then((el) => {
-          if (el.hasClass('disabled')) {
-              // on last page, break out
-              return
-          }
-          cy.wrap(el).click()
-          findInPage()
+      cy.get('li.page-item > a.page-link').contains('next >').then((el) => {
+        if (cy.get('ul > li.page-item.disabled').then((off) =>
+            off.hasClass('page-item disabled')))
+        {
+          // on last page, break out
+          return
+        }
+        cy.wrap(el).click()
+        findInPage()
       })
     }
     findInPage()
     */
+
+    cy.get("div.table-box > table > tbody")
+      .find("tr")
+      .should("not.have.length", 0); //weak check
+  });
+  it("should successfully add new private paste (logged in)", () => {
+    cy.visit("/");
+    cy.get("a.nav-item").contains("Login").click();
+    cy.get('input[name="username"]').type("cypressUser" + registerid);
+    cy.get('input[name="password"]').type("zaq1@WSX");
+    cy.get("button.ui.primary.button").contains("Login").click();
+    cy.wait(1000); //doesnt work without wait
+    cy.get("a.nav-item").contains("KTFB").click();
+    cy.get("input#title").type("Paste" + makeid(4));
+    cy.get("input#author").type("Author" + makeid(4));
+    cy.get("textarea#content").type("Content: " + makeid(20));
+    cy.get("input#privated").check();
+    cy.get("button").contains("add").click();
+    cy.get("a.nav-item").contains("profile").click();
+    cy.get("div.table-box > table > tbody")
+      .find("tr")
+      .should("not.have.length", 0); //weak check
   });
 });
