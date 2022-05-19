@@ -4,7 +4,7 @@ import { LOAD_PUBLIC_PASTES } from "../GraphQL/Queries";
 import "./GetPastes.css";
 import { Link } from "react-router-dom";
 import TimeAgo from "javascript-time-ago";
-
+import {Button} from 'semantic-ui-react'
 import en from "javascript-time-ago/locale/en.json";
 import ReactTimeAgo from "react-time-ago";
 import ReactPaginate from "react-paginate";
@@ -30,6 +30,13 @@ function GetPastes({ currentItems }) {
                 <tr key={pos}>
                   <td>
                     <Link to={"/paste/" + val.id}>{val.title}</Link>
+                    <Link to = {'/paste/'+ val.id + '/report/'}>
+                      <Button
+                      color="red"
+                      floated="right"
+                      onClick={() => console.log('report post')}
+                      />
+                        </Link>
                   </td>
                   <td> {val.author}</td>
                   <td> {val.type}</td>

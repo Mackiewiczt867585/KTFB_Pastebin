@@ -15,6 +15,7 @@ import ChangePass from "./Components/pages/ChangePass";
 import Paste from "./Components/pages/Paste";
 import { AuthProvider } from './Components/Context/Auth'
 import PrivateRoute from "./Components/util/PrivateRoute";
+import ReportPaste from "./Components/pages/ReportPaste"
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/register" element={<Register />} />
           <Route path='/login' element={<Login />} />
+          <Route path='/paste/:id/report' element={<ReportPaste/>}/>
           <Route path="/profile" element={
             <PrivateRoute>
               <Profile /> 
