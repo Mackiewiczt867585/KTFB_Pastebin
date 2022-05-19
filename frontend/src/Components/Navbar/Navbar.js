@@ -12,6 +12,14 @@ import { AuthContext} from '../Context/Auth'
 function Navbar() {
   const { user, logout } = useContext(AuthContext);
 
+import { AuthContext} from '../Context/Auth'
+
+
+function Navbar() {
+  const { user, logout } = useContext(AuthContext);
+  const pathname = window.location.pathname;
+
+
   const navbar = user ? (
     <>
       <nav className="fixed-nav-bar">
