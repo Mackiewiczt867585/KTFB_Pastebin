@@ -16,12 +16,7 @@ import Paste from "./Components/pages/Paste";
 import EditPaste from "./Components/pages/EditPaste";
 import { AuthProvider } from './Components/Context/Auth'
 import PrivateRoute from "./Components/util/PrivateRoute";
-
-
 import ReportPaste from "./Components/pages/ReportPaste"
-
-
-import 'font-awesome/css/font-awesome.min.css';
 
 
 function App() {
@@ -40,10 +35,13 @@ function App() {
           <Route path='/login' element={<Login />} />
 
 
+
           <Route path='/paste/:id/report' element={<ReportPaste/>}/>
 
 
           <Route path='/paste/:id/edit' element={<EditPaste/>}/>
+
+          <Route path='/paste/:id/report' element={<ReportPaste/>}/>
 
           <Route path="/profile" element={
             <PrivateRoute>
