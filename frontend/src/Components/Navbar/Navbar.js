@@ -18,12 +18,6 @@ function Navbar() {
 import { AuthContext} from '../Context/Auth'
 
 
-import { AuthContext} from '../Context/Auth'
-
-
-
-import { AuthContext} from '../Context/Auth'
-
 
 
 function Navbar() {
