@@ -12,7 +12,14 @@ import { AuthContext} from '../Context/Auth'
 function Navbar() {
   const { user, logout } = useContext(AuthContext);
 
+
+
+
 import { AuthContext} from '../Context/Auth'
+
+
+import { AuthContext} from '../Context/Auth'
+
 
 
 import { AuthContext} from '../Context/Auth'
