@@ -121,11 +121,15 @@ class CopyCasket(models.Model):
     private = models.BooleanField(default=False)
     likes = models.ManyToManyField(CustomUser, related_name="likes")
 
+    class Meta:
+        ordering = ["-creation_date"]
+
     @classmethod
     def get_default_pk(cls):
         exam, created = cls.objects.get_or_create(
             id=1, defaults=dict(title='this is not copy',author='anonnymous'))
         return exam.pk
+
     def __str__(self):
         return self.title
 
@@ -149,8 +153,6 @@ class Report(models.Model):
         choices=REPORT_TYPE_CHOICES,
     )
     note = models.TextField(blank=True, null=True)
-
-
 
 
 class UserReport(models.Model):
