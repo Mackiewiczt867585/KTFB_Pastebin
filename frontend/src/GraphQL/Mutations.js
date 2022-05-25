@@ -6,8 +6,9 @@ const CREATE_PASTE_MUTATION = gql`
     $content: String!
     $title: String!
     $type: String!
+    $expirationTime: DateTime
   ) {
-    createCopy(author: $author, title: $title, content: $content, type: $type) {
+    createCopy(author: $author, title: $title, content: $content, type: $type, expirationTime: $expirationTime) {
       copycasket {
         author
         title
