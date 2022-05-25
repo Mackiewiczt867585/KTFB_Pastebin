@@ -6,7 +6,7 @@ import { DELETE_PASTE } from "../GraphQL/Mutations";
 import "./GetPastes.css";
 import { Link } from "react-router-dom";
 import TimeAgo from "javascript-time-ago";
-import {Button} from 'semantic-ui-react'
+
 import en from "javascript-time-ago/locale/en.json";
 import ReactTimeAgo from "react-time-ago";
 import ReactPaginate from "react-paginate";
