@@ -129,6 +129,7 @@ class CopyCasket(models.Model):
         exam, created = cls.objects.get_or_create(
             id=1, defaults=dict(title='this is not copy',author='anonnymous'))
         return exam.pk
+
     def __str__(self):
         return self.title
 
