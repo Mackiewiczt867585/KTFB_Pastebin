@@ -6,7 +6,6 @@ import { AuthContext } from "../Context/Auth";
 import { Redirect, useNavigate } from 'react-router-dom';
 const CreatePastes = () => {
   const navigate = useNavigate();
-  const [link, setLink] = useState([]);
   let id, author, title, content, privated, type, image;
   const [createPaste, {data}] = useMutation(CREATE_PASTE_MUTATION,{
     onCompleted : (data) => {
@@ -22,7 +21,6 @@ const CreatePastes = () => {
     <div className="outer-box">
       <form
         onSubmit={(e) => {
-          e.preventDefault();
           createPaste({
             variables: {
               title: title.value,

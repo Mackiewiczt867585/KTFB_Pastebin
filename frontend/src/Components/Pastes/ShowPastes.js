@@ -6,50 +6,26 @@ import { DELETE_PASTE } from "../../GraphQL/Mutations";
 import "./ShowPastes.css";
 import { Link } from "react-router-dom";
 import TimeAgo from "javascript-time-ago";
-
+import { useNavigate } from 'react-router-dom';
 import en from "javascript-time-ago/locale/en.json";
 import ReactTimeAgo from "react-time-ago";
 import ReactPaginate from "react-paginate";
-<<<<<<< HEAD
-<<<<<<< HEAD:frontend/src/Components/Pastes/ShowPastes.js
 import { AuthContext } from "../Context/Auth";
 import { FaTrash, FaPen } from 'react-icons/fa';
-=======
-import { AuthContext } from "./Context/Auth";
-import { FaTrash, FaPen } from "react-icons/fa";
->>>>>>> 810896a (Heroku docker deploy 2):frontend/src/Components/GetPastes.js
-=======
-import { AuthContext } from "../Context/Auth";
-import { FaTrash, FaPen } from 'react-icons/fa';
->>>>>>> dc95d0c (sorting files)
+
 
 TimeAgo.addDefaultLocale(en);
 
-function GetPastes({ currentItems }) {
-  const { user } = useContext(AuthContext);
-
-<<<<<<< HEAD
-<<<<<<< HEAD:frontend/src/Components/Pastes/ShowPastes.js
-=======
->>>>>>> dc95d0c (sorting files)
-  
-  
   
   export function ShowPastes({ currentItems }) {
-    const { user } = useContext(AuthContext)
-    
     const [deletePaste] = useMutation(
       DELETE_PASTE
-    )
-<<<<<<< HEAD
-=======
-  const [deletePaste] = useMutation(DELETE_PASTE);
->>>>>>> 810896a (Heroku docker deploy 2):frontend/src/Components/GetPastes.js
-=======
->>>>>>> dc95d0c (sorting files)
-  if (currentItems)
-    return (
-      <div className="table-box">
+      )
+      const { user } = useContext(AuthContext)
+      
+      if (currentItems)
+      return (
+        <div className="table-box">
         <table>
           <thead>
             <tr>
@@ -82,8 +58,9 @@ function GetPastes({ currentItems }) {
                           floated="right"
                           onClick={() =>
                             deletePaste({ variables: { id: val.id } })
+                            
                           }
-                        >
+                          >
                           <FaTrash />
                         </Button>
                       </div>
@@ -105,7 +82,7 @@ function GetPastes({ currentItems }) {
 }
 
 function PaginatedItems() {
-  const { error, loading, data } = useQuery(LOAD_PUBLIC_PASTES);
+  const { error, loading, data, refetch } = useQuery(LOAD_PUBLIC_PASTES);
   const [pastes, setPastes] = useState([]);
   const itemsPerPage = 10;
   const [currentItems, setCurrentItems] = useState([]);
