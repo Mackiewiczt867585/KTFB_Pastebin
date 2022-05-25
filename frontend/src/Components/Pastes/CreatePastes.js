@@ -1,21 +1,28 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { CREATE_PASTE_MUTATION } from "../../GraphQL/Mutations";
 import { useMutation } from "@apollo/client";
 import "./CreatePastes.css";
 import { AuthContext } from "../Context/Auth";
-
+import { Redirect, useNavigate } from 'react-router-dom';
 const CreatePastes = () => {
-  let author, title, content, privated, type, image;
-  const [createPaste] = useMutation(CREATE_PASTE_MUTATION);
+  const navigate = useNavigate();
+  const [link, setLink] = useState([]);
+  let id, author, title, content, privated, type, image;
+  const [createPaste, {data}] = useMutation(CREATE_PASTE_MUTATION,{
+    onCompleted : (data) => {
+      navigate('/paste/'+ data.createCopy.copycasket.id)
+    }
+  })
   const { user } = useContext(AuthContext); 
   const [selectedImage, setSelectedImage] = useState();
-
   const creator = user ? ( user.email ): null
+
+
   return (
     <div className="outer-box">
       <form
         onSubmit={(e) => {
-          
+          e.preventDefault();
           createPaste({
             variables: {
               title: title.value,

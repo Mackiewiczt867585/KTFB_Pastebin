@@ -12,6 +12,7 @@ const CREATE_PASTE_MUTATION = gql`
   ) {
     createCopy(author: $author, title: $title, creator: $creator ,image: $image, private: $private, content: $content, type: $type) {
       copycasket {
+        id
         author
         title
         content
