@@ -18,6 +18,7 @@ TimeAgo.addDefaultLocale(en);
 
   
   export function ShowPastes({ currentItems }) {
+    const {user} = useContext(AuthContext);
     const [deletePaste] = useMutation(
       DELETE_PASTE
       )
