@@ -2,26 +2,12 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD:frontend/src/Components/Navbar/Navbar.js
+
+
 import { AuthContext} from '../Context/Auth'
 
-=======
-import { AuthContext } from "./Context/Auth";
->>>>>>> c78d897 (Added cypress add paste tests):frontend/src/Components/Navbar.js
-=======
-<<<<<<< HEAD:frontend/src/Components/Navbar.js
-import { AuthContext } from "./Context/Auth";
-=======
-import { AuthContext} from '../Context/Auth'
 
->>>>>>> e265a15 (sorting files):frontend/src/Components/Navbar/Navbar.js
->>>>>>> dc95d0c (sorting files)
-=======
-import { AuthContext} from '../Context/Auth'
 
->>>>>>> 80117dc (.)
 
 function Navbar() {
   const { user, logout } = useContext(AuthContext);
