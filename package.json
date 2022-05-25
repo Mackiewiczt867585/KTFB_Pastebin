@@ -1,17 +1,11 @@
 {
   "dependencies": {
     "font-awesome": "^4.7.0"
-<<<<<<< HEAD
-<<<<<<< HEAD
+
   },
   "devDependencies": {
     "cypress": "^9.6.1"
-=======
->>>>>>> 683e323 (update fn)
-=======
-  },
-  "devDependencies": {
-    "cypress": "^9.6.1"
->>>>>>> ff8243b (Cypress testing setup)
+
   }
+
 }
