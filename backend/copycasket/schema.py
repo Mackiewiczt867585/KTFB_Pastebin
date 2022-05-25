@@ -68,7 +68,7 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
     likes = graphene.Int(copy_id=graphene.ID())
 
     def resolve_all_copies(self, info):
-        return CopyCasket.objects.all()
+        return CopyCasket.objects.all().order_by("-creation_date")
 
     def resolve_copy(self, info, copy_id):
         global_id = from_global_id(copy_id)[-1]
@@ -84,15 +84,15 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
         return CustomUser.objects.get(pk=user_id)
 
     def resolve_all_public_copies(self, info):
-        return CopyCasket.objects.all().filter(private=False)
+        return CopyCasket.objects.all().filter(private=False).order_by("-creation_date")
 
     def resolve_all_private_copies(
             self, info, creator
     ):  # take logged in user from context to show his private pastes
-        return CopyCasket.objects.all().filter(private=True, creator=creator)
+        return CopyCasket.objects.all().filter(private=True, creator=creator).order_by("-creation_date")
 
     def resolve_all_users_copies(self, info, creator):
-        return CopyCasket.objects.all().filter(creator=creator)
+        return CopyCasket.objects.all().filter(creator=creator).order_by("-creation_date")
 
     def resolve_all_reports(self, info):
         return Report.objects.all()
