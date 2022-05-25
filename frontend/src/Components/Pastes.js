@@ -27,11 +27,7 @@ const Pastes = () => {
     <div className="outer-box">
       <form
         onSubmit={(e) => {
-          
           createPaste({
-            variables: {
-              title: title.value,
-              author: author.value,
               content: content.value,
               type: type.value,
               creator: creator,
@@ -120,6 +116,12 @@ const Pastes = () => {
       />
     </div>
         <div>
+        <DatePicker
+      selected={startDate}
+      onChange={(date) => setStartDate(date)}
+      isClearable
+      placeholderText="I have been cleared!"
+    />
           <button type="submit">add</button>
         </div>
       </form>
