@@ -22,7 +22,7 @@ import ReportPaste from "./Components/pages/ReportPaste"
 
 
 import 'font-awesome/css/font-awesome.min.css';
-import ReportPaste from "./Components/pages/ReportPaste"
+
 
 function App() {
   return (
