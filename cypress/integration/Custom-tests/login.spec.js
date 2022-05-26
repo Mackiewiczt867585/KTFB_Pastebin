@@ -96,8 +96,34 @@ describe("Test new paste page", () => {
     cy.get("input#privated").check();
     cy.get("button").contains("add").click();
     cy.get("a.nav-item").contains("profile").click();
+    cy.wait(500);
     cy.get("div.table-box > table > tbody")
       .find("tr")
       .should("not.have.length", 0); //weak check
+  });
+});
+describe("Test paste actions", () => {
+  it("should edit a private paste", () => {
+    cy.visit("/");
+    cy.get("a.nav-item").contains("Login").click();
+    cy.get('input[name="username"]').type("cypressUser" + registerid);
+    cy.get('input[name="password"]').type("zaq1@WSX");
+    cy.get("button.ui.primary.button").contains("Login").click();
+    cy.wait(1000); //doesnt work without wait
+    cy.get("h2.title").should("contain.text", "Your pastes");
+    cy.get("div.table-box > table > tbody")
+      .find("tr")
+      .should("not.have.length", 0);
+    cy.get("button.ui.red.right.floated.button[name='edit']").click();
+    cy.get("input[name='author']").type("editedAuthor" + authorid);
+    cy.get("input[name='title']").type("editedTitle" + pastetitleid);
+    cy.get("input[name='content']").type("editedContent " + contentid);
+    cy.get("button.ui.primary.button").contains("Edit").click();
+    cy.wait(500);
+    cy.get("a.nav-item").contains("profile").click();
+    cy.wait(500);
+    cy.get("div.table-box > table > tbody")
+      .find("tr")
+      .should("contain.text", "editedAuthor" + authorid);
   });
 });
