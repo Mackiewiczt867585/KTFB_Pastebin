@@ -119,6 +119,7 @@ class CopyCasket(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.SET_DEFAULT, default=1, null=True,
     )
     private = models.BooleanField(default=False)
+    expiration_date = models.DateTimeField(blank=True, null=True)
     likes = models.ManyToManyField(CustomUser, related_name="likes")
 
     class Meta:

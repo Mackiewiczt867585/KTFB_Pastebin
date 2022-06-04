@@ -5,17 +5,15 @@ div {
   padding: 0px 0px 0px 0px;
 }
 .outer-box {
-  background-color: rgb(87, 78, 78);
+  background-color: rgb(223, 223, 223);
   max-width: 60%;
   margin: auto;
-  border-radius: 5px;
+  border-radius: 15px;
   text-align: left;
   margin-top: 50px;
 }
-.outer-box:hover{
-  box-shadow: 0 0 1em rgb(99, 93, 93);
 
-}
+
 .input-item-top {
   display: inline-block;
   min-height: 1px;
@@ -24,25 +22,85 @@ div {
 }
 input,
 select {
-  border-radius: 5px;
+  border-radius: 15px;
 }
 textarea {
-  resize: none;
-  box-shadow: 1em 1em 1em rgb(121, 113, 113);
+  resize: none !important;
   border-radius: 5px;
   max-width: 90%;
   max-height: 50%;
-  background-color: #858585;
+  background-color: #ffffff;
 }
 .textarea{
   text-align: center;
   padding: 0%;
 }
 
-
+.react-datepicker__input-container{
+  width:20% !important;
+}
 
 
 
 .private{
   padding-left: 20px;
+}
+
+
+/* body { */
+	/* height: 100vh;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #6dd6d1;
+} */
+
+.noselect {
+  -webkit-touch-callout: none;
+    -webkit-user-select: none;
+     -khtml-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+		-webkit-tap-highlight-color: transparent;
+}
+
+.button-add {
+	width: 150px;
+	height: 50px;
+  padding: 5px;
+	cursor: pointer !important;
+	background: #6dd6d1 !important;
+	border: none !important;
+	border-radius: 10px !important;
+	box-shadow: 0px 10px 25px #57aba7, 0px -10px 25px #a6fffa, inset 0px -5px 10px #57aba7, inset 0px 5px 10px #a6fffa;
+	font-family: 'Damion', cursive !important;
+	color: white;
+	font-size: 20px !important;
+	transition: 500ms;
+}
+.center{
+  padding-top: 5px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.button:hover {
+		border: 2px solid #6dd6d1;
+	animation: hueRotation 2s linear infinite;
+}
+
+@keyframes hueRotation {
+	to {filter: hue-rotate(360deg);}
+}
+
+.button:focus {
+	outline: none;
+}
+.cal{
+  float: right;
+}
+.right{
+  margin-left: 80%;
 }

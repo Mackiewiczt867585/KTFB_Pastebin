@@ -97,5 +97,12 @@ const ALL_USER_PASTES = gql`
   }`
 
 
+const LIKES = gql`
+query likes($copyId: ID){
+  likes(copyId: $copyId){
+    int
+  }
+}`
 
-export { LOAD_PASTES, PASTE_BY_ID, USER_BY_EMAIL, ALL_USER_PASTES, LOAD_PUBLIC_PASTES, ME };
+
+export { LOAD_PASTES, PASTE_BY_ID, USER_BY_EMAIL, ALL_USER_PASTES, LOAD_PUBLIC_PASTES, ME, LIKES };

@@ -4,23 +4,35 @@ import { useMutation } from "@apollo/client";
 import "./CreatePastes.css";
 import { AuthContext } from "../Context/Auth";
 import { Redirect, useNavigate } from 'react-router-dom';
+import moment from 'moment';
+import 'moment-timezone';
+import DatePicker from 'react-datepicker'
+import "react-datepicker/dist/react-datepicker.css";
+
+
 const CreatePastes = () => {
   const navigate = useNavigate();
-  let id, author, title, content, privated, type, image;
+  const [startDate, setStartDate] = useState(null);
+  var finalDate = moment.utc(startDate);
+  var final = finalDate.format();
+  console.log(finalDate.format())
+  let id, author, title, content, privated, type, image, expirationTime;
   const [createPaste, {data}] = useMutation(CREATE_PASTE_MUTATION,{
-    onCompleted : (data) => {
+    onCompleted(data) {
       navigate('/paste/'+ data.createCopy.copycasket.id)
     }
   })
   const { user } = useContext(AuthContext); 
-  const [selectedImage, setSelectedImage] = useState();
+  const [selectedImage, setSelectedImage] = useState(null);
   const creator = user ? ( user.email ): null
 
 
   return (
+    <>
     <div className="outer-box">
       <form
         onSubmit={(e) => {
+          e.preventDefault()
           createPaste({
             variables: {
               title: title.value,
@@ -29,7 +41,8 @@ const CreatePastes = () => {
               type: type.value,
               creator: creator,
               image: selectedImage,
-              private: document.getElementById('privated').checked
+              private: document.getElementById('privated').checked,
+              expirationTime: finalDate.format()
             },
           });
         }}
@@ -74,7 +87,7 @@ const CreatePastes = () => {
             ref={(value) => (content = value)}
             id="content"
             placeholder="enter content"
-            rows="25"
+            rows="10"
             cols="200"
           />
         </div>
@@ -104,13 +117,24 @@ const CreatePastes = () => {
         onChange={(event) => {
           setSelectedImage(event.target.files[0]);
         }}
-      />
-    </div>
+        />
         <div>
-          <button type="submit">add</button>
+      <label>Data wygasniecia</label>
+      <br/>
+        <DatePicker
+        selected={startDate}
+        onChange={(date) => setStartDate(date)}
+        isClearable
+        placeholderText="wybierz date wyasniecia"
+        />
         </div>
-      </form>
     </div>
+        <div className="center">
+          <button className="noselect button-add" type="submit">add</button>
+        </div>
+        </form>
+    </div>
+        </>
   );
 };
 

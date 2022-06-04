@@ -9,8 +9,9 @@ const CREATE_PASTE_MUTATION = gql`
     $type: String
     $private: Boolean
     $image: Upload
+    $expirationTime: DateTime
   ) {
-    createCopy(author: $author, title: $title, creator: $creator ,image: $image, private: $private, content: $content, type: $type) {
+    createCopy(author: $author, title: $title, creator: $creator ,image: $image, expirationTime:$expirationTime, private: $private, content: $content, type: $type) {
       copycasket {
         id
         author
@@ -157,11 +158,11 @@ mutation deleteCopy(
 
 const EDIT_PASTE = gql`
 mutation updateCopy(
-  $author: String
+  $author: String!
   $content: String
   $id: ID!
   $private: Boolean
-  $title: String
+  $title: String!
   $type: String
 )
 {
@@ -186,4 +187,19 @@ mutation updateCopy(
 }`
 
 
-export { CREATE_PASTE_MUTATION, CREATE_USER_MUTATION, LOGIN_USER, PASSWORD_CHANGE, UPDATE_USER,VERIFY, DELETE_PASTE, EDIT_PASTE, CREATE_PASTE_REPORT};
+const LIKE = gql`
+mutation like(
+  $copyId: ID
+  $userId: ID
+)
+{
+  like(
+    copyId: $copyId
+    userId: $userId
+  )
+}`
+
+
+
+
+export { CREATE_PASTE_MUTATION, CREATE_USER_MUTATION, LIKE, LOGIN_USER, PASSWORD_CHANGE, UPDATE_USER,VERIFY, DELETE_PASTE, EDIT_PASTE, CREATE_PASTE_REPORT};

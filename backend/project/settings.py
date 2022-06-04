@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "graphql_jwt.refresh_token.apps.RefreshTokenConfig",
     "graphql_auth",
     "django_filters",
+    "django_crontab",
 ]
 
 MIDDLEWARE = [
@@ -180,3 +181,7 @@ GRAPHQL_AUTH = {
 }
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+CRONJOBS = [
+    ('*/1 * * * *', 'copycasket.cron.delete_expired'),
+]

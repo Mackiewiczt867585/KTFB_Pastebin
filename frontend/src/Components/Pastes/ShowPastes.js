@@ -14,7 +14,7 @@ import ReactPaginate from "react-paginate";
 
 
 import { AuthContext } from "../Context/Auth";
-import { FaTrash, FaPen } from 'react-icons/fa';
+import { FaTrash, FaPen, FaBandAid } from 'react-icons/fa';
 
 
 TimeAgo.addDefaultLocale(en);
@@ -51,7 +51,9 @@ TimeAgo.addDefaultLocale(en);
               return (
                 <tr key={pos}>
                   <td>
-                    <Link to={"/paste/" + val.id}>{val.title}</Link>
+                    <Link className="titles" to={"/paste/" + val.id}>{val.title}</Link>
+                    
+                    <td>
                     {user && val.creator && user.email === val.creator.email && (
                       <div>
                         <Link to = {'/paste/'+ val.id + '/edit/'}>
@@ -80,32 +82,12 @@ TimeAgo.addDefaultLocale(en);
                       color="red"
                       floated="right"
                       onClick={() => console.log('report post')}
-                      />
-                        </Link>
-
-                    {(user && val.creator) && user.email === val.creator.email &&(
-                      <div>
-                        <Link to = {'/paste/'+ val.id + '/edit/'}>
-                      <Button
-                      color="red"
-                      floated="right"
-                      onClick={() => console.log('Delete post')}
                       >
-                        <FaPen/>
+                        <FaBandAid/>
                       </Button>
                         </Link>
-                        <Button
-                          color="red"
-                          floated="right"
-                          onClick={() =>
-                            deletePaste({ variables: { id: val.id } })
-                          }
-                        >
-                          <FaTrash />
-                        </Button>
-                      </div>
-                  )}
 
+</td>
                   </td>
                   <td> {val.author}</td>
                   <td> {val.type}</td>

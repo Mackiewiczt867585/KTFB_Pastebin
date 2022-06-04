@@ -61,15 +61,7 @@ function ReportPaste() {
       <>
         <h1 className="title">Report</h1>
         <div className="outer-box">
-      <Form onSubmit={onSubmit} noValidate>
-          <Form.Input
-          label="note:"
-          placeholder="note"
-          name="note"
-          type="text"
-          value={values.note}
-          onChange={onChange}
-          />
+        <Form onSubmit={onSubmit} noValidate>
           <Form.Input
           label="reason:"
           placeholder="reason"
@@ -77,6 +69,18 @@ function ReportPaste() {
           type="text"
           value={values.reason}
           onChange={onChange}
+          />
+          <br/>
+          <label>note:</label>
+          <br/>
+          <textarea
+          placeholder="note"
+          name="note"
+          type="textarea"
+          value={values.note}
+          onChange={onChange}
+          rows="5"
+          columns="50"
           />
           
           <div className='inner-box'>

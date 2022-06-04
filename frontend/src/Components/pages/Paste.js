@@ -6,6 +6,7 @@ import { useQuery, gql } from "@apollo/client";
 import { Form, Button, Icon} from 'semantic-ui-react';
 import {AuthContext} from '../Context/Auth'
 
+
 function Paste() {
   const {user} = useContext(AuthContext);
   const params = useParams();
@@ -31,6 +32,7 @@ function Paste() {
         </div>
         <p>{pastes.content}</p>
         <img src={"..\backend\images" +pastes.image}></img>
+        <button onClick={navigator.clipboard.writeText(window.location)}>Get Link</button>
         </div>
     </>
   );

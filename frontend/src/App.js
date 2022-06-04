@@ -57,7 +57,7 @@ function App() {
           <Route path="/paste/:id" element={<Paste />} />
         </Routes>
       </Router>
-      <Footer />
+      {/* <Footer /> */}
       </AuthProvider>
     </>
   );

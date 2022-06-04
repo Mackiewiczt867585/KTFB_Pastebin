@@ -21,15 +21,15 @@ const httpLink = createHttpLink({
 
 
 
-const errorLink = onError(({ graphQLErrors, networkError }) => {
-  if (graphQLErrors)
-    graphQLErrors.forEach(({ message, locations, path }) =>
-      console.log(
-        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
-      ),
-    );
-    if (networkError) console.log(`[Network error]: ${networkError}`);
-});
+// const errorLink = onError(({ graphQLErrors, networkError }) => {
+//   if (graphQLErrors)
+//     graphQLErrors.forEach(({ message, locations, path }) =>
+//       console.log(
+//         `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`,
+//       ),
+//     );
+//     if (networkError) console.log(`[Network error]: ${networkError}`);
+// });
 
 // const authLink = setContext((_, { headers }) => {
 //   const token = localStorage.getItem('token');
@@ -47,7 +47,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 
 
 const client = new ApolloClient({
-  link: from([errorLink, httpLink]),
+  link: from([httpLink]),
   cache: new InMemoryCache(),
 });
 
