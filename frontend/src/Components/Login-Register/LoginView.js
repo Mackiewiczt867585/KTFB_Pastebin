@@ -9,10 +9,9 @@ import { useForm } from '../util/hooks';
 import { Link, useParams } from "react-router-dom";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './css/main.css'
-import './css/util.css'
-import './css/select2.css'
-import './css/animate.css'
+
+
+
 
 
 function LoginView(props) {
@@ -52,7 +51,7 @@ function LoginView(props) {
       variables: values
   });
   
-  // console.log(error)
+
 
   function loginUserCallback() {
     loginUser();

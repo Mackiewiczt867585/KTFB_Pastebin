@@ -10,7 +10,7 @@ import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink, from} from
 import { setContext } from '@apollo/client/link/context'
 import { onError } from "@apollo/client/link/error";
 import 'react-toastify/dist/ReactToastify.css';
-
+import { createUploadLink} from "apollo-upload-client"
 
 
 
@@ -42,12 +42,14 @@ const httpLink = createHttpLink({
 // });
 
 
-
+const link = createUploadLink({
+  uri: "http://localhost:5432/graphql",
+});
 
 
 
 const client = new ApolloClient({
-  link: from([httpLink]),
+  link,
   cache: new InMemoryCache(),
 });
 

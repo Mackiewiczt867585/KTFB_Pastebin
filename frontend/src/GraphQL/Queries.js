@@ -46,6 +46,10 @@ const LOAD_PUBLIC_PASTES = gql`
       creator{
         email
       }
+      likes{
+        id
+        email
+      }
     }
   }`
 
@@ -104,5 +108,22 @@ query likes($copyId: ID){
   }
 }`
 
+const LOAD_POPULAR_PASTES = gql`
+  query{
+    popularCopies{
+      id
+      title
+      author
+      creationDate
+      type
+      content
+      type
+      creator{
+        email
+      }
+      likes
+    }
+  }`
 
-export { LOAD_PASTES, PASTE_BY_ID, USER_BY_EMAIL, ALL_USER_PASTES, LOAD_PUBLIC_PASTES, ME, LIKES };
+
+export { LOAD_PASTES, PASTE_BY_ID, USER_BY_EMAIL, ALL_USER_PASTES, LOAD_PUBLIC_PASTES, ME, LIKES, LOAD_POPULAR_PASTES };

@@ -13,16 +13,14 @@
   }
 }
 html {
-  height: 100%;
+  min-height: 100%;
 }
 body {
-  height: 100%;
-  margin: 0;
-  background: #9053c7 !important;
-    background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0) !important;
-    background: -o-linear-gradient(-135deg, #c850c0, #4158d0) !important;
-    background: -moz-linear-gradient(-135deg, #c850c0, #4158d0) !important;
-    background: linear-gradient(-135deg, #c850c0, #4158d0) !important;
+  background: #0d0514 ;
+    background: -webkit-linear-gradient(-135deg, #6b656b, #414144) ;
+    background: -o-linear-gradient(-135deg, #645f64, #d4d4d4) ;
+    background: -moz-linear-gradient(-135deg, #a3a1a3, #717275) ;
+    background: linear-gradient(332deg, #524f4f, #4c4a4a);
 }
 .App-header {
   background-color: #282c34;

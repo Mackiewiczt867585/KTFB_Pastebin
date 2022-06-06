@@ -8,6 +8,7 @@ import moment from 'moment';
 import 'moment-timezone';
 import DatePicker from 'react-datepicker'
 import "react-datepicker/dist/react-datepicker.css";
+import { LOAD_PUBLIC_PASTES } from "../../GraphQL/Queries";
 
 
 const CreatePastes = () => {
@@ -15,17 +16,17 @@ const CreatePastes = () => {
   const [startDate, setStartDate] = useState(null);
   var finalDate = moment.utc(startDate);
   var final = finalDate.format();
-  console.log(finalDate.format())
   let id, author, title, content, privated, type, image, expirationTime;
   const [createPaste, {data}] = useMutation(CREATE_PASTE_MUTATION,{
     onCompleted(data) {
       navigate('/paste/'+ data.createCopy.copycasket.id)
-    }
+    },
+    refetchQueries: [LOAD_PUBLIC_PASTES]
   })
   const { user } = useContext(AuthContext); 
   const [selectedImage, setSelectedImage] = useState(null);
   const creator = user ? ( user.email ): null
-
+  console.log(selectedImage)
 
   return (
     <>
@@ -47,10 +48,11 @@ const CreatePastes = () => {
           });
         }}
       >
-        <div className="input-item-top">
+        <div className="input-item-top" >
           <label for="title">Title</label>
           <br />
           <input
+          className="input-top"
             ref={(value) => (title = value)}
             id="title"
             placeholder="enter title"
@@ -60,6 +62,7 @@ const CreatePastes = () => {
           <label for="author">Author</label>
           <br />
           <input
+          className="input-top"
             ref={(value) => (author = value)}
             id="author"
             placeholder="enter author"
@@ -68,7 +71,7 @@ const CreatePastes = () => {
         <div className="input-item-top">
           <label for="type">Type</label>
           <br />
-          <select ref={(value) => (type = value)}>
+          <select classname="input-top" ref={(value) => (type = value)}>
             <label for="type">Type</label>
             <br />
             <option value="jk">Joke</option>
@@ -84,21 +87,21 @@ const CreatePastes = () => {
           <label for="content">Content</label>
           <br />
           <textarea
+            className="wrap-input100 validate-input"
             ref={(value) => (content = value)}
             id="content"
             placeholder="enter content"
-            rows="10"
+            rows="12"
             cols="200"
           />
         </div>
         <div className="private">
-          <label for="private">private</label>
-          <br />
           <input
             type='checkbox'
             ref={(value) => (privated = value)}
             id="privated"
           />
+          <label for="private" className="indented-checkbox-text">private</label>
         </div>
         <div>
         {selectedImage && (
@@ -110,7 +113,6 @@ const CreatePastes = () => {
       )}
       <br />
    
-      <br /> 
       <input
         type="file"
         name="myImage"
@@ -122,6 +124,7 @@ const CreatePastes = () => {
       <label>Data wygasniecia</label>
       <br/>
         <DatePicker
+        className="input-top input-top-longer"
         selected={startDate}
         onChange={(date) => setStartDate(date)}
         isClearable
@@ -130,7 +133,7 @@ const CreatePastes = () => {
         </div>
     </div>
         <div className="center">
-          <button className="noselect button-add" type="submit">add</button>
+          <button className="noselect button1-add" type="submit">add</button>
         </div>
         </form>
     </div>

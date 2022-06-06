@@ -42,14 +42,12 @@ function RegisterView(props) {
             });
           })
           var step;
-          console.log(check)
           var lengtht = Object.keys(userData.errors).length
           for (step =0; step < lengtht;step++){
             toast.error(<div>{check[step]}</div>)
           }
         }
         if(userData.token != null){
-          console.log(userData)
       context.login(userData);
       navigate('/profile');
       }

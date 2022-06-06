@@ -39,7 +39,7 @@ function Navbar() {
           <Link to="/profile" className="nav-item">
             profile
           </Link>
-          <button className="nav-item" onClick={logout}>
+          <button className="nav-item logout" onClick={logout}>
             Logout
           </button>
         </div>

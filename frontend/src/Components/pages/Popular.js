@@ -1,12 +1,12 @@
 import React from "react";
 import "../../App.css";
-import ShowPastes from "../Pastes/ShowPastes";
+import PopularPastes from "../Pastes/PopularPastes";
 
 function Popular() {
   return (
     <>
-      <h1 className="title">Często wyświetlane wklejki</h1>
-      <ShowPastes />
+      <h1 className="title">Najbardziej likowane wklejki</h1>
+      <PopularPastes />
     </>
   );
 }

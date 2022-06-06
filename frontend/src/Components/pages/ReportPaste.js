@@ -54,7 +54,6 @@ function ReportPaste() {
         
         
         function reportPasteCallback(){
-            console.log(pastes.id)
       reportPaste();
     }
     return (

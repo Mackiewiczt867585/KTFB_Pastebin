@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Button, Icon } from "semantic-ui-react";
 import { useQuery, useMutation, gql } from "@apollo/client";
-import { LOAD_PUBLIC_PASTES } from "../../GraphQL/Queries";
+import { LOAD_POPULAR_PASTES } from "../../GraphQL/Queries";
 import { DELETE_PASTE } from "../../GraphQL/Mutations";
 import "./ShowPastes.css";
 import { Link } from "react-router-dom";
@@ -15,7 +15,7 @@ import ReactPaginate from "react-paginate";
 
 import { AuthContext } from "../Context/Auth";
 import { FaTrash, FaPen, FaBandAid } from 'react-icons/fa';
-import LikeButton from "../LikeButton";
+
 
 
 TimeAgo.addDefaultLocale(en);
@@ -43,6 +43,7 @@ TimeAgo.addDefaultLocale(en);
               <div className="col col-1">Tytuł</div>
               <div className="col col-2">Autor</div>
               <div className="col col-3">typ</div>
+              <div className="col col-4">Liki</div>
               <div className="col col-4">Dodano</div>
             </li>
 
@@ -52,9 +53,6 @@ TimeAgo.addDefaultLocale(en);
             {currentItems.map((val, pos) => {
               return (
                 <li key={pos} className="table-row">
-                  {user &&(
-                    <LikeButton user={user} post={{id: val.id, likes: val.likes}}/>
-                  )}
                   <div className="col col-1">
                     <Link className="titles" to={"/paste/" + val.id}>{val.title}</Link>
                     
@@ -62,7 +60,8 @@ TimeAgo.addDefaultLocale(en);
 
                   <div className="col col-2"> {val.author}</div>
                   <div className="col col-3"> {val.type}</div>
-                  <div className="col col-4">
+                  <div className="col col-4"> {val.likes}</div>
+                  <div className="col col-5">
                     {" "}
                     <ReactTimeAgo date={val.creationDate} locale="en-US" />
                   </div>
@@ -108,7 +107,7 @@ TimeAgo.addDefaultLocale(en);
 }
 
 function PaginatedItems() {
-  const { error, loading, data, refetch } = useQuery(LOAD_PUBLIC_PASTES);
+  const { error, loading, data, refetch } = useQuery(LOAD_POPULAR_PASTES);
   const [pastes, setPastes] = useState([]);
   const itemsPerPage = 6;
   const [currentItems, setCurrentItems] = useState([]);
@@ -117,7 +116,7 @@ function PaginatedItems() {
 
   useEffect(() => {
     if (data) {
-      setPastes(data.allPublicCopies);
+      setPastes(data.popularCopies);
 
       const endOffset = itemOffset + itemsPerPage;
 

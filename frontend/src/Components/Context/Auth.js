@@ -73,7 +73,6 @@ function authReducer(state, action){
         const[state, dipsatch] = useReducer(authReducer, initialState);
 
         function login (userData){
-            console.log(userData)
             localStorage.setItem('token', userData.token)
             dipsatch({
                 type: 'LOGIN',

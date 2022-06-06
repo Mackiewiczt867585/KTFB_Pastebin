@@ -190,16 +190,32 @@ mutation updateCopy(
 const LIKE = gql`
 mutation like(
   $copyId: ID
-  $userId: ID
+  $email: String
 )
 {
   like(
     copyId: $copyId
-    userId: $userId
-  )
+    email: $email
+  ){
+    success
+  }
+}`
+
+const DISLIKE = gql`
+mutation dislike(
+  $copyId: ID
+  $email: String
+)
+{
+  dislike(
+    copyId: $copyId
+    email: $email
+  ){
+    success
+  }
 }`
 
 
 
 
-export { CREATE_PASTE_MUTATION, CREATE_USER_MUTATION, LIKE, LOGIN_USER, PASSWORD_CHANGE, UPDATE_USER,VERIFY, DELETE_PASTE, EDIT_PASTE, CREATE_PASTE_REPORT};
+export { CREATE_PASTE_MUTATION, CREATE_USER_MUTATION, LIKE, LOGIN_USER, PASSWORD_CHANGE, UPDATE_USER,VERIFY, DELETE_PASTE, EDIT_PASTE, CREATE_PASTE_REPORT, DISLIKE};

@@ -20,7 +20,7 @@ function Paste() {
     } else {
     }
   }, [data, loading, error]);
-
+  console.log(pastes.images)
  
   return (
     <>
@@ -31,8 +31,10 @@ function Paste() {
           <h1>content:</h1>
         </div>
         <p>{pastes.content}</p>
-        <img src={"..\backend\images" +pastes.image}></img>
-        <button onClick={navigator.clipboard.writeText(window.location)}>Get Link</button>
+          <p>{pastes.image}</p>
+        <img src={pastes.image}>
+        </img>
+        {/* <button onClick={navigator.clipboard.writeText(window.location)}>Get Link</button> */}
         </div>
     </>
   );
