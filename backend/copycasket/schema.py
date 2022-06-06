@@ -48,6 +48,9 @@ class CopyCasketLikesTypes(DjangoObjectType):
 
     likes = graphene.Int()
 
+    def resolve_likes(self, info):
+        return self._meta.model.objects.get(pk=self.id).number_of_likes()
+
 
 class UserReportTypes(DjangoObjectType):
     class Meta:
@@ -294,30 +297,34 @@ class UserReportDeleteMutation(graphene.Mutation):
 
 class LikeMutation(graphene.Mutation):
     class Arguments:
-        user_id = graphene.ID()
+        email = graphene.String()
         copy_id = graphene.ID()
 
     success = graphene.String()
 
     @classmethod
-    def mutate(cls, root, info, user_id, copy_id):
-        instance = CopyCasket.objects.get(pk=copy_id)
-        instance.likes.add(user_id)
+    def mutate(cls, root, info, email, copy_id):
+        global_id = from_global_id(copy_id)[-1]
+        instance = CopyCasket.objects.get(pk=global_id)
+        user = CustomUser.objects.get(email=email)
+        instance.likes.add(user)
         instance.save()
         return LikeMutation(success="Liked")
 
 
 class DislikeMutation(graphene.Mutation):
     class Arguments:
-        user_id = graphene.ID()
+        email = graphene.String()
         copy_id = graphene.ID()
 
     success = graphene.String()
 
     @classmethod
-    def mutate(cls, root, info, user_id, copy_id):
-        instance = CopyCasket.objects.get(pk=copy_id)
-        instance.likes.remove(user_id)
+    def mutate(cls, root, info, email, copy_id):
+        global_id = from_global_id(copy_id)[-1]
+        instance = CopyCasket.objects.get(pk=global_id)
+        user = CustomUser.objects.get(email=email)
+        instance.likes.remove(user)
         instance.save()
         return LikeMutation(success="Disliked")
 
