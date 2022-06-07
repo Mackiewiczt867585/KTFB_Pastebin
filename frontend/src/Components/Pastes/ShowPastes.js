@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Button, Icon } from "semantic-ui-react";
 import { useQuery, useMutation, gql } from "@apollo/client";
-import { LOAD_PUBLIC_PASTES } from "../../GraphQL/Queries";
+import { ALL_USER_PASTES, LOAD_POPULAR_PASTES, LOAD_PUBLIC_PASTES } from "../../GraphQL/Queries";
 import { DELETE_PASTE } from "../../GraphQL/Mutations";
 import "./ShowPastes.css";
 import { Link } from "react-router-dom";
@@ -31,7 +31,9 @@ TimeAgo.addDefaultLocale(en);
   export function ShowPastes({ currentItems }) {
     const {user} = useContext(AuthContext);
     const [deletePaste] = useMutation(
-      DELETE_PASTE
+      DELETE_PASTE,{
+      refetchQueries: [LOAD_PUBLIC_PASTES, LOAD_POPULAR_PASTES, ALL_USER_PASTES]
+    }
       )
       console.log(currentItems)
       

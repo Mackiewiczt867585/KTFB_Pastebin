@@ -65,12 +65,22 @@ const PASTE_BY_ID = gql`
       creator{
         id
         email
+        username
       }
       image
     }
   }
 `;
-
+const USER_BY_ID = gql`
+  query user($id: ID!) {
+    user(id: $id){
+      lastLogin
+      email
+      username
+      creationDate
+      organisation
+    }
+  }`
 
 const USER_BY_EMAIL = gql`
   query userEmail($email: String!) {
@@ -126,4 +136,4 @@ const LOAD_POPULAR_PASTES = gql`
   }`
 
 
-export { LOAD_PASTES, PASTE_BY_ID, USER_BY_EMAIL, ALL_USER_PASTES, LOAD_PUBLIC_PASTES, ME, LIKES, LOAD_POPULAR_PASTES };
+export { LOAD_PASTES, PASTE_BY_ID, USER_BY_EMAIL, ALL_USER_PASTES, LOAD_PUBLIC_PASTES, ME, LIKES, LOAD_POPULAR_PASTES, USER_BY_ID };

@@ -9,7 +9,7 @@ import { useMutation } from '@apollo/client';
 import { useQuery} from "@apollo/client";
 import { AuthContext } from '../Context/Auth';
 import { useNavigate } from "react-router-dom";
-
+import "../Pastes/ShowPastes.css"
 
 function EditProfile() {
   const { logout } = useContext(AuthContext);
@@ -59,9 +59,10 @@ function EditProfile() {
 
   return (
     <>
-      <div className="login-box">
+      <div className="login-box center">
       <Form onSubmit={onSubmit} noValidate>
         <Form.Input
+        className="edit-input"
           label="email:"
           placeholder="email.."
           name="email"
@@ -70,6 +71,7 @@ function EditProfile() {
           onChange={onChange}
           />
         <Form.Input
+        className="edit-input"
           label="username:"
           placeholder="username.."
           name="username"
@@ -78,6 +80,7 @@ function EditProfile() {
           onChange={onChange}
           />
         <Form.Input
+        className="edit-input"
           label="firstName:"
           placeholder="firstName.."
           name="firstName"
@@ -86,6 +89,7 @@ function EditProfile() {
           onChange={onChange}
           />
         <Form.Input
+        className="edit-input"
           label="organisation:"
           placeholder="organisation.."
           name="organisation"
@@ -94,7 +98,7 @@ function EditProfile() {
           onChange={onChange}
           />
         <div className='inner-box'>
-        <Button type="submit" primary>
+        <Button className="paste-link-btn" type="submit" primary>
           Edit
         </Button>
         </div>

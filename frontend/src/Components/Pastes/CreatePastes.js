@@ -26,7 +26,12 @@ const CreatePastes = () => {
   const { user } = useContext(AuthContext); 
   const [selectedImage, setSelectedImage] = useState(null);
   const creator = user ? ( user.email ): null
-  console.log(selectedImage)
+  if (startDate != null){
+    final = moment.utc(startDate)
+    final = final.format()
+  } else {
+    final = null
+  }
 
   return (
     <>
@@ -43,7 +48,7 @@ const CreatePastes = () => {
               creator: creator,
               image: selectedImage,
               private: document.getElementById('privated').checked,
-              expirationTime: finalDate.format()
+              expirationTime: final
             },
           });
         }}

@@ -7,11 +7,11 @@
 }
 .settings-item {
   display: inline-block;
-  color: rgb(138, 51, 189);
+  color: #c8cbd1;
   text-align: center;
   text-decoration: none;
   font-size: 1.3em;
 }
 .settings-item:hover {
-  color: rgb(214, 51, 214);
+  color: rgb(255, 255, 255);
 }

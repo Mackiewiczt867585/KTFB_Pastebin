@@ -34,60 +34,54 @@ function ReportPaste() {
     
     
     
-    const { onChange, onSubmit, values } = useForm(reportPasteCallback, {
-        copyId: pastes.id,
-        note:'',
-        reason:'',
-    });
-    values.copyId = pastes.id
+    let note, reason
     const [reportPaste] = useMutation(CREATE_PASTE_REPORT, {
-        update(
-            _,
-            )
-            {
-                navigate('/');
-            },
-            variables: values
+        onCompleted(){
+          navigate('/paste/' + pastes.id)
+        }
         });
         
         
-        
-        
-        function reportPasteCallback(){
-      reportPaste();
-    }
     return (
       <>
         <h1 className="title">Report</h1>
-        <div className="outer-box">
-        <Form onSubmit={onSubmit} noValidate>
-          <Form.Input
-          label="reason:"
-          placeholder="reason"
-          name="reason"
-          type="text"
-          value={values.reason}
-          onChange={onChange}
-          />
-          <br/>
+        <div className="outer-box report-box">
+        <form  onSubmit={(e) => {
+          e.preventDefault()
+          reportPaste({
+            variables: {
+              note: note.value,
+              reason: reason.value,
+              copyId: pastes.id
+            },
+          });
+        }}
+        >
           <label>note:</label>
+          <br/>
+          <select ref={(value) => (reason = value)}>
+          <option value="us">Unspecified</option>
+          <option value="hs">Hate speach</option>
+          <option value="rc">Racism</option>
+          <option value="pl">Plagiarism</option>
+          </select>
+          <br/>
           <br/>
           <textarea
           placeholder="note"
           name="note"
           type="textarea"
-          value={values.note}
-          onChange={onChange}
+          ref={(value) => (note = value)}
           rows="5"
           columns="50"
           />
           
           <div className='inner-box'>
-        <Button type="submit" primary>
+        <button className="paste-link-btn" type="submit" primary>
           Report
-        </Button>
+        </button>
         </div>
-      </Form>
+      </form>
           </div>
       </>
     );

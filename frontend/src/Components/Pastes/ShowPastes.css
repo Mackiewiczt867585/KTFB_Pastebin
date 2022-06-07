@@ -10,13 +10,59 @@
 .page-select ul li {
   display: inline-block;
 }
-
+.center{
+  padding: 10px 0 10px 0 !important;
+  text-align: center !important;
+}
+input{
+  border-radius: 15px !important;
+}
+.edit-input{
+  padding: 10px 0 10px 0;
+}
 .titles{
   color:rgb(5, 11, 24) !important;
   font-size: large;
 }
+.flex-display{
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 30px 20px 30px;
+}
+textarea{
+    width: 90%;
+    padding-left: 10px;
+    margin: 10px 0 10px 0;
+}
+.report-link{
+  color: white;
+  text-decoration: none;
+}
+.wklejka{
+  padding-left: 30px;
+}
+button.paste-link-btn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 15px;
+  background: #707070;
+  color: white;
+  position: relative;
+ 
+}
+.report-box{
+  text-align: center;
+  max-width: 40%;
+}
 
-
+.content {
+  background: #e6e6e6;
+  padding: 10px 30px 20px 30px;
+  border-radius: 15px;
+  width: 95%;
+  margin: auto;
+  height: fit-content;
+}
 .container {
   max-width: 1000px;
   margin-left: auto;
