@@ -50,8 +50,15 @@ const [profile, setProfile] = useState([]);
 };
 
 
-
 function Profile({ user }) {
+  
+  const admin = user.email =='admin@gmail.com' ? (
+    <a href="http://localhost:5432/admin" className="settings-item">
+          Admin panel
+        </a>
+  ) : (
+  <p></p>
+  )
   return(
     <div>
 
@@ -59,6 +66,7 @@ function Profile({ user }) {
     
     <h2 className="title">Your pastes</h2>
     <div className="settings-box">
+      {admin}
       <Link to="edit" className="settings-item">
         Edit profile
       </Link>
