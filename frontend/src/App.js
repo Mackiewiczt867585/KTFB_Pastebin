@@ -16,7 +16,7 @@ import Paste from "./Components/pages/Paste";
 import EditPaste from "./Components/pages/EditPaste";
 import { AuthProvider } from './Components/Context/Auth'
 import PrivateRoute from "./Components/util/PrivateRoute";
-
+import UserProfile from "./Components/pages/UserProfile" 
 
 import ReportPaste from "./Components/pages/ReportPaste"
 
@@ -41,7 +41,9 @@ function App() {
 
 
           <Route path='/paste/:id/report' element={<ReportPaste/>}/>
-
+          
+          <Route path='/user/:email/' element={<UserProfile/>}/>
+          
 
           <Route path='/paste/:id/edit' element={<EditPaste/>}/>
 
