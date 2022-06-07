@@ -18,13 +18,15 @@ const CreatePastes = () => {
   var final = finalDate.format();
   let id, author, title, content, privated, type, image, expirationTime;
   const [createPaste, {data}] = useMutation(CREATE_PASTE_MUTATION,{
+    refetchQueries: [LOAD_PUBLIC_PASTES],
     onCompleted(data) {
-      navigate('/paste/'+ data.createCopy.copycasket.id)
+      navigate('/paste/'+ data.createCopy.copycasket.id);
     },
-    refetchQueries: [LOAD_PUBLIC_PASTES]
   })
   const { user } = useContext(AuthContext); 
   const [selectedImage, setSelectedImage] = useState(null);
+ 
+
   const creator = user ? ( user.email ): null
   if (startDate != null){
     final = moment.utc(startDate)
@@ -38,6 +40,12 @@ const CreatePastes = () => {
     <div className="outer-box">
       <form
         onSubmit={(e) => {
+          if (title.value == ""){
+            title.value = 'untitled'
+          }
+          if (author.value == ""){
+            author.value = 'anonnymous'
+          }
           e.preventDefault()
           createPaste({
             variables: {

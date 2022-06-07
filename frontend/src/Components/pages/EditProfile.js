@@ -31,78 +31,83 @@ function EditProfile() {
 
 
 
-  const [errors, setErrors] = useState({});
-  const { onChange, onSubmit, values } = useForm(editProfileCallback, {
-    id: profile.id,
-    email:'',
-    username: '',
-    firstName: '',
-    organisation: ''
-  });
-  values.id = profile.id
+  let id, email, username, firstName, organisation
+
+
   const [editProfile] = useMutation(UPDATE_USER, {
-    update(
-      _,
-    ){
+    onCompleted(){
     navigate('/profile');
     logout();
-    },
-      variables: values
+    }
   });
 
 
 
 
-  function editProfileCallback(){
-    editProfile();
-  }
 
   return (
     <>
       <div className="login-box center">
-      <Form onSubmit={onSubmit} noValidate>
-        <Form.Input
+      <form 
+      onSubmit={(e) => {
+        if (email.value == ""){
+          email.value = profile.email
+        }
+        if (username.value == ""){
+          username.value = profile.username
+        }
+        if (firstName.value == ""){
+          firstName.value = profile.firstName
+        }
+        if (organisation.value == ""){
+          organisation.value = profile.organisation
+        }
+        e.preventDefault()
+        editProfile({
+          variables: {
+            id: profile.id,
+            email: email.value,
+            username: username.value,
+            firstName: firstName.value,
+            organisation: organisation.value
+          },
+        });
+      }}
+      >
+        <label for="title">email: </label>
+        <input
         className="edit-input"
-          label="email:"
           placeholder="email.."
-          name="email"
           type="text"
-          value={values.email}
-          onChange={onChange}
+          ref={(value) => (email = value)}
           />
-        <Form.Input
+          <label for="title">username: </label>
+        <input
         className="edit-input"
-          label="username:"
           placeholder="username.."
-          name="username"
           type="username"
-          value={values.username}
-          onChange={onChange}
+          ref={(value) => (username = value)}
           />
-        <Form.Input
+          <label for="title">firstName: </label>
+        <input
         className="edit-input"
-          label="firstName:"
           placeholder="firstName.."
-          name="firstName"
           type="firstName"
-          value={values.firstName}
-          onChange={onChange}
+          ref={(value) => (firstName = value)}
           />
-        <Form.Input
+          <label for="title">organisation: </label>
+        <input
         className="edit-input"
-          label="organisation:"
           placeholder="organisation.."
-          name="organisation"
           type="organisation"
-          value={values.organisation}
-          onChange={onChange}
+          ref={(value) => (organisation = value)}
           />
         <div className='inner-box'>
-        <Button className="paste-link-btn" type="submit" primary>
+        <button className="paste-link-btn" type="submit" primary>
           Edit
-        </Button>
+        </button>
         </div>
-      </Form>
+      </form>
       </div>
     </>
   );
