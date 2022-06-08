@@ -34,7 +34,7 @@ describe("Test register page", () => {
     );
     cy.get('input[name="password1"]').type("zaq1@WSX");
     cy.get('input[name="password2"]').type("zaq1@WSX");
-    cy.get("button.ui.primary.button").contains("Register").click();
+    cy.get("button.login-form-btn").contains("Register").click();
     cy.get("h2.title").should("contain.text", "Your pastes");
   });
 });
@@ -45,12 +45,12 @@ describe("Test login page", () => {
     cy.get("a.nav-item").contains("Login").click();
     cy.get('input[name="username"]').type("cypressUser" + registerid);
     cy.get('input[name="password"]').type("zaq1@WSX");
-    cy.get("button.ui.primary.button").contains("Login").click();
+    cy.get("button.login-form-btn").contains("Login").click();
     cy.get("h2.title").should("contain.text", "Your pastes");
   });
   it("should logout", () => {
     cy.get("button.nav-item").contains("Logout").click();
-    cy.get("h1.title").should("contain.text", "Logowanie");
+    cy.get("button.login-form-btn").should("contain.text", "Login");
   });
 });
 
@@ -61,7 +61,7 @@ describe("Test new paste page", () => {
     cy.get("input#author").type("Author" + authorid);
     cy.get("textarea#content").type("Content: " + contentid);
     cy.get("button").contains("add").click();
-    cy.get("a.nav-item").contains("Aktualne").click();
+    cy.get("div.content").should("contain.text", "Content: " + contentid);
     /* TODO: going through pagination (stopping on last page)
     const findInPage = () => {
       cy.get('li.page-item > a.page-link').contains('next >').then((el) => {
@@ -87,7 +87,7 @@ describe("Test new paste page", () => {
     cy.get("a.nav-item").contains("Login").click();
     cy.get('input[name="username"]').type("cypressUser" + registerid);
     cy.get('input[name="password"]').type("zaq1@WSX");
-    cy.get("button.ui.primary.button").contains("Login").click();
+    cy.get("button.login-form-btn").contains("Login").click();
     cy.wait(1000); //doesnt work without wait
     cy.get("a.nav-item").contains("KTFB").click();
     cy.get("input#title").type("Paste" + makeid(4));
