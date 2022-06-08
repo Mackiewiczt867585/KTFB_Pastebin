@@ -58,49 +58,49 @@ function LoginView(props) {
   }
   return (
     <div className="limiter">
-		<div className="container-login100">
-			<div className="wrap-login100">
-				<div className="login100-pic js-tilt" data-tilt>
+		<div className="container-login">
+			<div className="wrap-login">
+				<div className="login-pic js-tilt" data-tilt>
 					<img src={require('./images/logo.png')} alt="IMG"/>
 				</div>
 
-				<Form onSubmit={onSubmit} noValidate className="login100-form validate-form">
-					<span Name="login100-form-title">
+				<Form onSubmit={onSubmit} noValidate className="login-form validate-form">
+					<span Name="login-form-title">
 						Member Login
 					</span>
 
-					<div className="wrap-input100 validate-input" >
+					<div className="wrap-input validate-input" >
 						<input
-            className="input100"
+            className="input"
             type="text" 
             name="username" 
             placeholder="username"
             value={values.username}
             onChange={onChange}
             />
-						<span className="focus-input100"></span>
-						<span className="symbol-input100">
+						<span className="focus-input"></span>
+						<span className="symbol-input">
 							<i className="fa fa-envelope" aria-hidden="true"></i>
 						</span>
 					</div>
 
-					<div className="wrap-input100 validate-input">
+					<div className="wrap-input validate-input">
 						<input 
-            className="input100"
+            className="input"
             type="password"
             name="password"
             value={values.password}
             onChange={onChange}
             placeholder="Password"
             />
-						<span className="focus-input100"></span>
-						<span className="symbol-input100">
+						<span className="focus-input"></span>
+						<span className="symbol-input">
 							<i className="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
 					
-					<div className="container-login100-form-btn">
-						<button className="login100-form-btn" type='submit' onClick={notify} primary>
+					<div className="container-login-form-btn">
+						<button className="login-form-btn" type='submit' onClick={notify} primary>
 							Login
 						</button>
             <ToastContainer/>

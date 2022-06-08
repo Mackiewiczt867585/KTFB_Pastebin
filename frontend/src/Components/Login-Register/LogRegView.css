@@ -17,7 +17,7 @@
 *{
   box-sizing: border-box;
 }
-.wrap-login100{
+.wrap-login{
   width: 960px;
   background: #fff;
   border-radius: 10px;
@@ -27,27 +27,27 @@
   justify-content: space-between;
   padding: 177px 130px 33px 95px;
 }
-.login100-pic{
+.login-pic{
   width: 316px;
 }
-.login100-form{
+.login-form{
   width: 290px;
 }
-.wrap-input100{
+.wrap-input{
   margin-bottom: 10px;
   z-index: 1;
 }
 .validate-input{
   position: relative;
 }
-.container-login100-form-btn{
+.container-login-form-btn{
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   padding-top: 20px;
 }
-.login100-form-btn {
+.login-form-btn {
   font-family: Montserrat-Bold;
   font-size: 15px;
   line-height: 1.5;
@@ -62,8 +62,9 @@
   align-items: center;
   padding: 0 25px;
   transition: all 0.4s;
+  border: none;
 }
-.input100 {
+.input {
   font-family: Poppins-Medium;
   font-size: 15px;
   line-height: 1.5;
@@ -75,7 +76,7 @@
   border-radius: 25px;
   padding: 0 30px 0 68px;
 }
-.focus-input100 {
+.focus-input{
   display: block;
   position: absolute;
   border-radius: 25px;
@@ -87,7 +88,7 @@
   box-shadow: 0px 0px 0px 0px;
   color: rgba(87,184,70, 0.8);
 }
-.symbol-input100 {
+.symbol-input {
   font-size: 15px;
   display: flex;
   align-items: center;
@@ -102,7 +103,7 @@
   color: #666666;
   transition: all 0.4s;
 }
-.container-login100 {
+.container-login {
   width: 100%;
   min-height: 100vh;
   display: flex;
@@ -119,7 +120,7 @@ input{
   outline: none;
   border: none;
 }
-.input100:focus + .focus-input100 + .symbol-input100 {
+.input:focus + .focus-input + .symbol-input {
   color: #57b846;
   padding-left: 28px;
 }
@@ -148,7 +149,10 @@ input{
   font-family: Montserrat-Bold;
   src: url('./css/fonts/montserrat/Montserrat-Bold.ttf'); 
 }
-.input100:focus + .focus-input100 {
+.input:focus + .focus-input {
   -webkit-animation: anim-shadow 0.5s ease-in-out forwards;
   animation: anim-shadow 0.5s ease-in-out forwards;
 } 
+.txt2{
+  color: #4f555e;
+}

@@ -62,109 +62,109 @@ function registerUser() {
 
 return (
   <div className="limiter">
-  <div className="container-login100">
-    <div className="wrap-login100">
-      <div className="login100-pic js-tilt" data-tilt>
+  <div className="container-login">
+    <div className="wrap-login">
+      <div className="login-pic js-tilt" data-tilt>
         <img src={require('./images/logo.png')} alt="IMG"/>
       </div>
 
-      <Form onSubmit={onSubmit} noValidate className="login100-form validate-form">
-        <span Name="login100-form-title">
+      <Form onSubmit={onSubmit} noValidate className="login-form validate-form">
+        <span Name="login-form-title">
           Member Register
         </span>
 
-        <div className="wrap-input100 validate-input" >
+        <div className="wrap-input validate-input" >
           <input
-          className="input100"
+          className="input"
           type="text" 
           name="username" 
           placeholder="username"
           value={values.username}
           onChange={onChange}
           />
-          <span className="focus-input100"></span>
-          <span className="symbol-input100">
+          <span className="focus-input"></span>
+          <span className="symbol-input">
             <i className="fa fa-user" aria-hidden="true"></i>
           </span>
         </div>
 
-        <div className="wrap-input100 validate-input">
+        <div className="wrap-input validate-input">
           <input 
-          className="input100"
+          className="input"
           type="email"
           name="email"
           value={values.email}
           onChange={onChange}
           placeholder="email"
           />
-          <span className="focus-input100"></span>
-          <span className="symbol-input100">
+          <span className="focus-input"></span>
+          <span className="symbol-input">
             <i className="fa fa-envelope" aria-hidden="true"></i>
           </span>
         </div>
 
-        <div className="wrap-input100 validate-input">
+        <div className="wrap-input validate-input">
           <input
-          className="input100"
+          className="input"
           type="text" 
           name="firstName" 
           placeholder="firstName"
           value={values.firstName}
           onChange={onChange}
           />
-          <span className="focus-input100"></span>
-          <span className="symbol-input100">
+          <span className="focus-input"></span>
+          <span className="symbol-input">
             <i className="fa fa-child" aria-hidden="true"></i>
           </span>
         </div>
 
-        <div className="wrap-input100 validate-input">
+        <div className="wrap-input validate-input">
           <input 
-          className="input100"
+          className="input"
           type="text"
           name="organisation"
           value={values.organisation}
           onChange={onChange}
           placeholder="organisation"
           />
-          <span className="focus-input100"></span>
-          <span className="symbol-input100">
+          <span className="focus-input"></span>
+          <span className="symbol-input">
             <i className="fa fa-building" aria-hidden="true"></i>
           </span>
         </div>
 
-        <div className="wrap-input100 validate-input">
+        <div className="wrap-input validate-input">
             <input
-          className="input100"
+          className="input"
           type="password" 
           name="password2" 
           placeholder="Password"
           value={values.password2}
           onChange={onChange}
           />
-          <span className="focus-input100"></span>
-          <span className="symbol-input100">
+          <span className="focus-input"></span>
+          <span className="symbol-input">
             <i className="fa fa-lock" aria-hidden="true"></i>
           </span>
         </div>
 
-        <div className="wrap-input100 validate-input">
+        <div className="wrap-input validate-input">
           <input 
-          className="input100"
+          className="input"
           type="password"
           name="password1"
           value={values.password1}
           onChange={onChange}
           placeholder="Confirm password"
           />
-          <span className="focus-input100"></span>
-          <span className="symbol-input100">
+          <span className="focus-input"></span>
+          <span className="symbol-input">
             <i className="fa fa-lock" aria-hidden="true"></i>
           </span>
         </div>
         
-        <div className="container-login100-form-btn">
-          <button className="login100-form-btn" type='submit' onClick={notify} primary>
+        <div className="container-login-form-btn">
+          <button className="login-form-btn" type='submit' onClick={notify} primary>
             Login
           </button>
           <ToastContainer/>
@@ -174,7 +174,7 @@ return (
 
         <div className="text-center p-t-136">
           <Link to="/login" className="txt2">
-            LogIn
+            Register
             <i className="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
           </Link>
         </div>
