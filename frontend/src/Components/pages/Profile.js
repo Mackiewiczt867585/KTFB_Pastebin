@@ -70,9 +70,7 @@ function Profile({ user }) {
       <Link to="edit" className="settings-item">
         Edit profile
       </Link>
-      {/* <Link to="changepass" className="settings-item">
-        ChangePassword
-      </Link> */}
+
     </div>
     </div>
 

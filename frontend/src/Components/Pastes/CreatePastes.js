@@ -134,14 +134,14 @@ const CreatePastes = () => {
         }}
         />
         <div>
-      <label>Data wygasniecia</label>
+      <label>Data wygaśnięcia</label>
       <br/>
         <DatePicker
         className="input-top input-top-longer"
         selected={startDate}
         onChange={(date) => setStartDate(date)}
         isClearable
-        placeholderText="wybierz date wyasniecia"
+        placeholderText="wybierz date wygaśnięcia"
         />
         </div>
     </div>
