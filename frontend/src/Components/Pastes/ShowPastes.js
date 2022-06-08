@@ -46,6 +46,7 @@ TimeAgo.addDefaultLocale(en);
               <div className="col col-2">Autor</div>
               <div className="col col-3">typ</div>
               <div className="col col-4">Dodano</div>
+              <div className="col col-5"></div>
             </li>
 
 
@@ -68,9 +69,10 @@ TimeAgo.addDefaultLocale(en);
                     {" "}
                     <ReactTimeAgo date={val.creationDate} locale="en-US" />
                   </div>
-                      {user && val.creator && user.email === val.creator.email && (
-                        <div className="edit">
+                  <div  className="col col-5">
 
+                      {user && val.creator && user.email === val.creator.email && (
+                        <div>
                           <Link to = {'/paste/'+ val.id + '/edit/'}>
                         <Button
                         color="red"
@@ -93,7 +95,6 @@ TimeAgo.addDefaultLocale(en);
                       )}
                     <Link to = {'/paste/'+ val.id + '/report/'}>
                       <Button
-                      className="report"
                       color="red"
                       
                       onClick={() => console.log('report post')}
@@ -101,6 +102,7 @@ TimeAgo.addDefaultLocale(en);
                         <FaBandAid/>
                       </Button>
                         </Link>
+                        </div>
               </li>
               );
             })}

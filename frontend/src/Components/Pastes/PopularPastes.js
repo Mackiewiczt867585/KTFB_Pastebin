@@ -40,11 +40,12 @@ TimeAgo.addDefaultLocale(en);
         <div className="container">
           <ul className="responsive-table">
             <li className="table-header">
-              <div className="col col-1">Tytuł</div>
-              <div className="col col-2">Autor</div>
-              <div className="col col-3">typ</div>
-              <div className="col col-4">Liki</div>
-              <div className="col col-4">Dodano</div>
+              <div className="col col-1-pop">Tytuł</div>
+              <div className="col col-2-pop">Autor</div>
+              <div className="col col-3-pop">typ</div>
+              <div className="col col-4-pop">Liki</div>
+              <div className="col col-5-pop">Dodano</div>
+              <div className="col col-6-pop"></div>
             </li>
 
 
@@ -53,20 +54,22 @@ TimeAgo.addDefaultLocale(en);
             {currentItems.map((val, pos) => {
               return (
                 <li key={pos} className="table-row">
-                  <div className="col col-1">
+                  <div className="col col-1-pop">
                     <Link className="titles" to={"/paste/" + val.id}>{val.title}</Link>
                     
                     </div>
 
-                  <div className="col col-2"> {val.author}</div>
-                  <div className="col col-3"> {val.type}</div>
-                  <div className="col col-4"> {val.likes}</div>
-                  <div className="col col-5">
+                  <div className="col col-2-pop"> {val.author}</div>
+                  <div className="col col-3-pop"> {val.type}</div>
+                  <div className="col col-4-pop"> {val.likes}</div>
+                  <div className="col col-5-pop">
                     {" "}
                     <ReactTimeAgo date={val.creationDate} locale="en-US" />
                   </div>
+                  <div className="col col-6-pop">
+
                       {user && val.creator && user.email === val.creator.email && (
-                        <div className="edit">
+                        <div>
 
                           <Link to = {'/paste/'+ val.id + '/edit/'}>
                         <Button
@@ -90,7 +93,6 @@ TimeAgo.addDefaultLocale(en);
                       )}
                     <Link to = {'/paste/'+ val.id + '/report/'}>
                       <Button
-                      className="report"
                       color="red"
                       
                       onClick={() => console.log('report post')}
@@ -98,6 +100,7 @@ TimeAgo.addDefaultLocale(en);
                         <FaBandAid/>
                       </Button>
                         </Link>
+                        </div>
               </li>
               );
             })}
