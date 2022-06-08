@@ -5,6 +5,7 @@ import React, { useEffect, useState, useContext } from "react";
 
 
 
+
 function Profile() {
 
     const params = useParams();
@@ -24,16 +25,19 @@ function Profile() {
 
     return(
       <div>
-  
-      <h1 className="title">{profile.username}</h1>
-      <h1 className="title">{profile.email}</h1>
-      <h1 className="title">{profile.creationDate}</h1>
-      <h1 className="title">{profile.organisation}</h1>
-      
-      <h2 className="title">Your pastes</h2>
-      <div className="settings-box">
 
+        <div className="outer-box display">
+      <img src="/user.png"></img>
+      <div className="profile-info">
+      <h2 className="color">username: </h2><h3>{profile.username}</h3>
+
+      <h2 className="color">email: </h2><h3>{profile.email}</h3>
+
+
+      <h2 className="color">organisation: </h2><h3>{profile.organisation}</h3>
       </div>
+        </div>
+      
       </div>
   
     )
