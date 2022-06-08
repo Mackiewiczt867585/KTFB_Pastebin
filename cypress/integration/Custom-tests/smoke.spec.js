@@ -61,7 +61,9 @@ describe("Test new paste page", () => {
     cy.get("input#author").type("Author" + authorid);
     cy.get("textarea#content").type("Content: " + contentid);
     cy.get("button").contains("add").click();
-    cy.get("div.content").should("contain.text", "Content: " + contentid);
+    cy.wait(1000);
+    cy.visit("/");
+    cy.get("a.nav-item").contains("Aktualne").click();
     /* TODO: going through pagination (stopping on last page)
     const findInPage = () => {
       cy.get('li.page-item > a.page-link').contains('next >').then((el) => {
@@ -78,8 +80,8 @@ describe("Test new paste page", () => {
     findInPage()
     */
 
-    cy.get("div.table-box > table > tbody")
-      .find("tr")
+    cy.get("ul.responsive-table")
+      .find("li.table-row")
       .should("not.have.length", 0); //weak check
   });
   it("should successfully add new private paste (logged in)", () => {
@@ -95,9 +97,36 @@ describe("Test new paste page", () => {
     cy.get("textarea#content").type("Content: " + makeid(20));
     cy.get("input#privated").check();
     cy.get("button").contains("add").click();
+    cy.wait(1000);
+    cy.visit("/");
     cy.get("a.nav-item").contains("profile").click();
-    cy.get("div.table-box > table > tbody")
-      .find("tr")
+    cy.get("ul.responsive-table")
+      .find("li.table-row")
       .should("not.have.length", 0); //weak check
+  });
+});
+describe("Test paste actions", () => {
+  it("should edit a private paste", () => {
+    cy.visit("/");
+    cy.get("a.nav-item").contains("Login").click();
+    cy.get('input[name="username"]').type("cypressUser" + registerid);
+    cy.get('input[name="password"]').type("zaq1@WSX");
+    cy.get("button.login-form-btn").contains("Login").click();
+    cy.wait(1000); //doesnt work without wait
+    cy.get("h2.title").should("contain.text", "Your pastes");
+    cy.get("ul.responsive-table")
+      .find("li.table-row")
+      .should("not.have.length", 0); //weak check
+    cy.get(".col-5 > div > a > .ui").click();
+    cy.get("input[name='author']").type("editedAuthor" + authorid);
+    cy.get("input[name='title']").type("editedTitle" + pastetitleid);
+    cy.get("input[name='content']").type("editedContent " + contentid);
+    cy.get(".inner-box > .ui").contains("Edit").click();
+    cy.wait(500);
+    cy.get("a.nav-item").contains("profile").click();
+    cy.wait(500);
+    cy.get("ul.responsive-table")
+      .find("li.table-row")
+      .should("contain.text", "editedAuthor" + authorid);
   });
 });
