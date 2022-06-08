@@ -19,6 +19,8 @@ input{
 }
 .edit-input{
   padding: 10px 0 10px 0;
+  margin: 10px;
+  background-color: #c3c3c3;
 }
 .titles{
   color:rgb(5, 11, 24) !important;

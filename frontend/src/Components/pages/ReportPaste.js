@@ -57,7 +57,7 @@ function ReportPaste() {
           });
         }}
         >
-          <label>note:</label>
+          <label>reason:</label>
           <br/>
           <select ref={(value) => (reason = value)}>
           <option value="us">Unspecified</option>
@@ -66,6 +66,8 @@ function ReportPaste() {
           <option value="pl">Plagiarism</option>
           </select>
           <br/>
+          <br/>
+          <label>note:</label>
           <br/>
           <textarea
           placeholder="note"

@@ -47,8 +47,8 @@ function EditProfile() {
 
   return (
     <>
-      <div className="login-box center">
-      <form 
+      <div className="outer-box report-box">
+      <form
       onSubmit={(e) => {
         if (email.value == ""){
           email.value = profile.email
@@ -75,27 +75,34 @@ function EditProfile() {
       }}
       >
         <label for="title">email: </label>
+        <br/>
         <input
         className="edit-input"
           placeholder="email.."
           type="text"
           ref={(value) => (email = value)}
           />
+          <br/>
           <label for="title">username: </label>
+          <br/>
         <input
         className="edit-input"
           placeholder="username.."
           type="username"
           ref={(value) => (username = value)}
           />
+          <br/>
           <label for="title">firstName: </label>
+          <br/>
         <input
         className="edit-input"
           placeholder="firstName.."
           type="firstName"
           ref={(value) => (firstName = value)}
           />
+          <br/>
           <label for="title">organisation: </label>
+          <br/>
         <input
         className="edit-input"
           placeholder="organisation.."
