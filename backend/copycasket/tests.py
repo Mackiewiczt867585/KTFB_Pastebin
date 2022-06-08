@@ -4,7 +4,7 @@ from django.test import TestCase
 from django.utils.timezone import make_aware
 from graphql_relay import to_global_id
 
-from .models import CopyCasket, CustomUser
+from .models import CopyCasket, CustomUser, Report, UserReport
 from .schema import (
     CopyCasketCreateMutation,
     CopyCasketDeleteMutation,
@@ -12,47 +12,48 @@ from .schema import (
     CustomUserCreateMutation,
     CustomUserDeleteMutation,
     CustomUserUpdateMutation,
-
     Query,
+    ReportCreateMutation,
+    ReportDeleteMutation,
+    UserReportCreateMutation,
 )
-
 
 
 class CustomTestCase(TestCase):
     def setUp(self):
         naive_datetime = datetime.datetime.now()
         self.aware_datetime = make_aware(naive_datetime)
-        kowal= CustomUser.objects.create(
+        kowal = CustomUser.objects.create(
             id=1,
             email="kowalski@op.pl",
             username="kowal",
             first_name="adam",
             organisation="org1",
         )
-        nadol= CustomUser.objects.create(
+        nadol = CustomUser.objects.create(
             id=2,
             email="nadolny@op.pl",
             username="nadol",
             first_name="pawel",
             organisation="org2",
         )
-        CopyCasket.objects.create(
+        x = CopyCasket.objects.create(
             id=1,
             title="testowe_1",
             author="nadol",
             type="jk",
             content="lorem ipsum",
             private=False,
-            creator=nadol
+            creator=nadol,
         )
-        CopyCasket.objects.create(
+        y = CopyCasket.objects.create(
             id=2,
             title="testowe_2",
             author=2,
             type="jk",
             content="lorem ipsum",
             private=False,
-            creator=kowal
+            creator=kowal,
         )
         CopyCasket.objects.create(
             id=3,
@@ -61,7 +62,7 @@ class CustomTestCase(TestCase):
             type="as",
             content="lorem ipsum",
             private=True,
-            creator=kowal
+            creator=kowal,
         )
         CopyCasket.objects.create(
             id=4,
@@ -70,7 +71,7 @@ class CustomTestCase(TestCase):
             type="us",
             content="lorem ipsum",
             private=True,
-            creator=kowal
+            creator=kowal,
         )
         CopyCasket.objects.create(
             id=5,
@@ -79,9 +80,63 @@ class CustomTestCase(TestCase):
             type="us",
             content="lorem ipsum",
             private=True,
-            creator=nadol
+            creator=nadol,
         )
+        Report.objects.create(
+            id=1, copy=y, reason="us", note="jestesmy na dobrej drodze"
+        )
+        Report.objects.create(
+            id=2, copy=x, reason="us", note="nie mam pojęcia co robię"
+        )
+        UserReport.objects.create(
+            id=1, user=kowal, reason="us", note="niech juz dziala"
+        )
+        UserReport.objects.create(id=2, user=nadol, reason="us", note="prosze")
 
+    def test_resolve_all_reports(self):
+        query = Query()
+        self.assertEqual(2, len(query.resolve_all_reports(self)))
+
+    def test_res_report(self):
+        query = Query()
+        rep = Report.objects.get(id=1)
+        self.assertEqual(rep, query.resolve_report(self, to_global_id("id", 1)))
+
+    def test_def_all_user_reports(self):
+        query = Query()
+        self.assertEqual(2, len(query.resolve_all_user_reports(self)))
+
+    def test_res_user_report(self):
+        query = Query()
+        rep = UserReport.objects.get(id=1)
+        self.assertEqual(rep, query.resolve_user_report(self, to_global_id("id", 1)))
+
+    def test_report_create(self):
+        query = Query()
+        creater = ReportCreateMutation()
+        creater.mutate(
+            self,
+            None,
+            id=3,
+            reason="us",
+            note="no nie dziala",
+            copy_id=to_global_id("id", 1),
+        )
+        self.assertEqual(3, len(query.resolve_all_reports(self)))
+
+    def test_report_delete(self):
+        query = Query()
+        delr = ReportDeleteMutation()
+        delr.mutate(self, None, id=to_global_id("id", 1))
+        self.assertEqual(1, len(query.resolve_all_reports(self)))
+
+    def test_user_report_create(self):
+        query = Query()
+        creater = UserReportCreateMutation()
+        creater.mutate(
+            self, None, id=3, reason="us", note="dobry boże", user=to_global_id("id", 1)
+        )
+        self.assertEqual(3, len(query.resolve_all_user_reports(self)))
 
     def test_query_CopyCasket(self):
         query = Query()
@@ -142,7 +197,7 @@ class CustomTestCase(TestCase):
             creation_date=self.aware_datetime,
             type="cd",
             content="lorem ipsum",
-            creator="kowalski@op.pl"
+            creator="kowalski@op.pl",
         )
         self.assertEqual("createtest", CopyCasket.objects.get(id=6).title)
         self.assertEqual(6, len(query.resolve_all_copies(self)))
@@ -197,10 +252,7 @@ class CustomTestCase(TestCase):
             creation_date=self.aware_datetime,
             organisation="cukiernia",
         )
-        self.assertEqual(
-            "cukiernia",
-            CustomUser.objects.get(id=2).organisation
-        )
+        self.assertEqual("cukiernia", CustomUser.objects.get(id=2).organisation)
 
     def test_deleteuser_mut(self):
         query = Query()
