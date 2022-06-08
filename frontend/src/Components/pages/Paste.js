@@ -50,8 +50,6 @@ const creator = pastes.creator ? (
           <h1 className="wklejka">content:</h1>
         <div className="content">
         <p>{pastes.content}</p>
-        <img src={pastes.image}>
-        </img>
         </div>
         <div className="flex-display padding-bottom">
         <button className="paste-link-btn" onClick={navigator.clipboard.writeText(window.location)}>Skopiuj link do wklejki</button>
