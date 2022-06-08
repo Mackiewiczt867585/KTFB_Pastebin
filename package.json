@@ -1,18 +1,8 @@
 {
   "dependencies": {
     "font-awesome": "^4.7.0"
-<<<<<<< HEAD
-=======
-
->>>>>>> ec15e1d (cleanign)
   },
   "devDependencies": {
     "cypress": "^9.6.1"
-
   }
-
-<<<<<<< HEAD
-
-=======
->>>>>>> ec15e1d (cleanign)
 }
