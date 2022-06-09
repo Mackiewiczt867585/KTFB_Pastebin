@@ -7,13 +7,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('copycasket', '0010_copycasket_likes_alter_copycasket_creator_and_more'),
+        ("copycasket", "0010_copycasket_likes_alter_copycasket_creator_and_more"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='copycasket',
-            name='likes',
-            field=models.ManyToManyField(related_name='likes', to=settings.AUTH_USER_MODEL),
+            model_name="copycasket",
+            name="likes",
+            field=models.ManyToManyField(
+                related_name="likes", to=settings.AUTH_USER_MODEL
+            ),
         ),
     ]

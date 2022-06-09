@@ -5,21 +5,16 @@
 // import { PASSWORD_CHANGE } from "../../GraphQL/Mutations";
 // function EditProfile() {
 
-
-
-
-
 //   const { onChange, onSubmit, values } = useForm(resetPasswordCallback, {
 //     oldPassword: '',
 //     Password1: '',
 //     Password2: ''
 //   });
 
-
 //   // do zmiany*
 //   // const [resetPassword, { loading }] = useMutation(PASSWORD_CHANGE, {
 //   //   update(
-//   //     _, 
+//   //     _,
 //   //     {
 //   //       data: { tokenAuth: userData}
 //   //     }
@@ -33,16 +28,9 @@
 //   //     variables: values
 //   // });
 
-
-
 //   function resetPasswordCallback() {
 //     resetPassword();
 //   }
-
-
-
-
-
 
 //   return (
 //     <div className="login-box">

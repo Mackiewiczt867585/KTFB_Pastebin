@@ -10,37 +10,37 @@
 .page-select ul li {
   display: inline-block;
 }
-.center{
+.center {
   padding: 10px 0 10px 0 !important;
   text-align: center !important;
 }
-input{
+input {
   border-radius: 15px !important;
 }
-.edit-input{
+.edit-input {
   padding: 10px 0 10px 0;
   margin: 10px;
   background-color: #c3c3c3;
 }
-.titles{
-  color:rgb(5, 11, 24) !important;
+.titles {
+  color: rgb(5, 11, 24) !important;
   font-size: large;
 }
-.flex-display{
+.flex-display {
   display: flex;
   justify-content: space-between;
   padding: 20px 30px 20px 30px;
 }
-textarea{
-    width: 90%;
-    padding-left: 10px;
-    margin: 10px 0 10px 0;
+textarea {
+  width: 90%;
+  padding-left: 10px;
+  margin: 10px 0 10px 0;
 }
-.report-link{
+.report-link {
   color: white;
   text-decoration: none;
 }
-.wklejka{
+.wklejka {
   padding-left: 30px;
 }
 button.paste-link-btn {
@@ -50,9 +50,8 @@ button.paste-link-btn {
   background: #707070;
   color: white;
   position: relative;
- 
 }
-.report-box{
+.report-box {
   text-align: center;
   max-width: 40%;
 }
@@ -74,40 +73,40 @@ button.paste-link-btn {
 }
 
 .responsive-table li {
-    border-radius: 3px;
-    padding: 25px 30px;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 25px;
-  }
+  border-radius: 3px;
+  padding: 25px 30px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
 .table-header {
-    background-color: #95A5A6;
-    font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 0.03em;
+  background-color: #95a5a6;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 .table-row {
-    background-color: #ffffff;
-    box-shadow: 6px 8px 20px 3px rgb(118 116 116);
+  background-color: #ffffff;
+  box-shadow: 6px 8px 20px 3px rgb(118 116 116);
 }
 .col-1-pop {
-    flex-basis: 15%;
-}
-.col-2-pop {
-    flex-basis: 20%;
-}
-.col-3-pop{
   flex-basis: 15%;
 }
-.col-4-pop{
-    flex-basis: 15% ;
+.col-2-pop {
+  flex-basis: 20%;
+}
+.col-3-pop {
+  flex-basis: 15%;
+}
+.col-4-pop {
+  flex-basis: 15%;
 }
 .col-5-pop {
-    flex-basis: 25%;
+  flex-basis: 25%;
 }
 .col-6-pop {
-    flex-basis: 20%;
-    display: flex;
+  flex-basis: 20%;
+  display: flex;
 }
 .col-1 {
   flex-basis: 20%;
@@ -115,26 +114,26 @@ button.paste-link-btn {
 .col-2 {
   flex-basis: 20%;
 }
-.col-3{
-flex-basis: 10%;
+.col-3 {
+  flex-basis: 10%;
 }
-.col-4{
-  flex-basis: 25% ;
+.col-4 {
+  flex-basis: 25%;
 }
 .col-5 {
   display: flex;
   flex-basis: 15%;
 }
 
-.hearth{
+.hearth {
   border: none;
   background: white;
 }
-.report{
-  position:absolute;
+.report {
+  position: absolute;
   right: 26%;
 }
-.edit{
+.edit {
   position: absolute;
   right: 20%;
 }

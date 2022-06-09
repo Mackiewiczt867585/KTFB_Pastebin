@@ -100,6 +100,7 @@ describe("Test new paste page", () => {
     cy.wait(1000);
     cy.visit("/");
     cy.get("a.nav-item").contains("profile").click();
+    cy.wait(500);
     cy.get("ul.responsive-table")
       .find("li.table-row")
       .should("not.have.length", 0); //weak check

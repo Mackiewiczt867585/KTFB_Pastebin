@@ -6,12 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('copycasket', '0012_alter_report_copy'),
+        ("copycasket", "0012_alter_report_copy"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='copycasket',
-            options={'ordering': ['-creation_date']},
+            name="copycasket",
+            options={"ordering": ["-creation_date"]},
         ),
     ]

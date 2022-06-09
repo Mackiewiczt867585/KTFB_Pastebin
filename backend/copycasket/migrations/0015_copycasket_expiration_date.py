@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('copycasket', '0014_alter_copycasket_creator'),
+        ("copycasket", "0014_alter_copycasket_creator"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='copycasket',
-            name='expiration_date',
+            model_name="copycasket",
+            name="expiration_date",
             field=models.DateTimeField(blank=True, null=True),
         ),
     ]

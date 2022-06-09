@@ -15,21 +15,21 @@
 .settings-item:hover {
   color: rgb(255, 255, 255);
 }
-.profile-layout{
+.profile-layout {
   display: flex;
 }
-img{
+img {
   width: 300px;
   height: 300px;
   padding: 5px;
   border-radius: 15px;
 }
-.display{
+.display {
   display: flex;
 }
-.profile-info{
+.profile-info {
   display: block;
 }
-.color{
+.color {
   color: #959595;
 }

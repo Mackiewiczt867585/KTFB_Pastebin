@@ -3,12 +3,11 @@ import "../../App.css";
 import { Link, useParams } from "react-router-dom";
 import { PASTE_BY_ID } from "../../GraphQL/Queries";
 import { useQuery, gql } from "@apollo/client";
-import { Form, Button, Icon} from 'semantic-ui-react';
-import {AuthContext} from '../Context/Auth'
-
+import { Form, Button, Icon } from "semantic-ui-react";
+import { AuthContext } from "../Context/Auth";
 
 function Paste() {
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const params = useParams();
   const { error, loading, data } = useQuery(PASTE_BY_ID, {
     variables: { copyId: params.id },
@@ -20,24 +19,18 @@ function Paste() {
     } else {
     }
   }, [data, loading, error]);
-  console.log(pastes)
+  console.log(pastes);
 
-
-
-const creator = pastes.creator ? (
-  <p>creator: <Link to = {'/user/' + pastes.creator.email}>{pastes.creator.username}</Link></p>
-) : (
-  <p>creator: Guest</p>
-);
-
-
-
-
-
-
-
-
-
+  const creator = pastes.creator ? (
+    <p>
+      creator:{" "}
+      <Link to={"/user/" + pastes.creator.email}>
+        {pastes.creator.username}
+      </Link>
+    </p>
+  ) : (
+    <p>creator: Guest</p>
+  );
 
   return (
     <div>
@@ -47,17 +40,29 @@ const creator = pastes.creator ? (
           <p>author: {pastes.author}</p>
           {creator}
         </div>
-          <h1 className="wklejka">content:</h1>
+        <h1 className="wklejka">content:</h1>
         <div className="content">
-        <p>{pastes.content}</p>
+          <p>{pastes.content}</p>
         </div>
         <div className="flex-display padding-bottom">
-        <button className="paste-link-btn" onClick={navigator.clipboard.writeText(window.location)}>Skopiuj link do wklejki</button>
-        <button className="paste-link-btn"><Link className="report-link" to={'/paste/' + pastes.id + "/report"}>Report</Link></button>
+          <button
+            className="paste-link-btn"
+            onClick={navigator.clipboard.writeText(window.location)}
+          >
+            Skopiuj link do wklejki
+          </button>
+          <button className="paste-link-btn">
+            <Link
+              className="report-link"
+              to={"/paste/" + pastes.id + "/report"}
+            >
+              Report
+            </Link>
+          </button>
         </div>
-        </div>
-        </div>
-          )
+      </div>
+    </div>
+  );
 }
 
 export default Paste;

@@ -183,5 +183,5 @@ GRAPHQL_AUTH = {
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 CRONJOBS = [
-    ('*/1 * * * *', 'copycasket.cron.delete_expired'),
+    ("*/1 * * * *", "copycasket.cron.delete_expired"),
 ]

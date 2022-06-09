@@ -1,7 +1,6 @@
 import graphene
-from graphene_django import DjangoObjectType
-from django.db.models.functions import Now
 from django.db.models import Count
+from graphene_django import DjangoObjectType
 from graphene_django.filter import DjangoFilterConnectionField
 from graphene_file_upload.scalars import Upload
 from graphql_auth import mutations
@@ -38,6 +37,7 @@ class ReportTypes(DjangoObjectType):
         fields = "__all__"
         filter_fields = ["copy", "reason"]
         interfaces = (graphene.relay.Node,)
+
 
 class CopyCasketLikesTypes(DjangoObjectType):
     class Meta:
@@ -85,7 +85,6 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
     def resolve_all_copies(self, info):
         return CopyCasket.objects.all().order_by("-creation_date")
 
-    
     def resolve_copy(self, info, copy_id):
         global_id = from_global_id(copy_id)[-1]
         return CopyCasket.objects.get(pk=global_id)
@@ -103,12 +102,18 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
         return CopyCasket.objects.all().filter(private=False).order_by("-creation_date")
 
     def resolve_all_private_copies(
-            self, info, creator
+        self, info, creator
     ):  # take logged in user from context to show his private pastes
-        return CopyCasket.objects.all().filter(private=True, creator=creator).order_by("-creation_date")
+        return (
+            CopyCasket.objects.all()
+            .filter(private=True, creator=creator)
+            .order_by("-creation_date")
+        )
 
     def resolve_all_users_copies(self, info, creator):
-        return CopyCasket.objects.all().filter(creator=creator).order_by("-creation_date")
+        return (
+            CopyCasket.objects.all().filter(creator=creator).order_by("-creation_date")
+        )
 
     def resolve_all_reports(self, info):
         return Report.objects.all()
@@ -124,13 +129,11 @@ class Query(UserQuery, MeQuery, graphene.ObjectType):
         global_id = from_global_id(user_report_id)[-1]
         return UserReport.objects.get(pk=global_id)
 
-
     def resolve_likes(self, info):
         return self._meta.model.objects.get(pk=self.id).number_of_likes()
 
     def resolve_popular_copies(self, info):
-        return CopyCasket.objects.annotate(l_count=Count('likes')).order_by('-l_count')
-
+        return CopyCasket.objects.annotate(l_count=Count("likes")).order_by("-l_count")
 
 
 class CopyCasketUpdateMutation(graphene.Mutation):
@@ -181,7 +184,7 @@ class CopyCasketCreateMutation(graphene.Mutation):
     def mutate(cls, root, info, creator=None, expiration_time=None, **kwargs):
         instance = CopyCasket.objects.create(**kwargs)
         instance.creator = CustomUser.objects.filter(email=creator).first()
-        instance.expiration_date =expiration_time
+        instance.expiration_date = expiration_time
         instance.save()
         return CopyCasketCreateMutation(copycasket=instance)
 

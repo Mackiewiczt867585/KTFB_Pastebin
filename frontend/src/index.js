@@ -3,23 +3,21 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 
-
-
-
-import { ApolloProvider, ApolloClient, InMemoryCache, createHttpLink, from} from "@apollo/client";
-import { setContext } from '@apollo/client/link/context'
+import {
+  ApolloProvider,
+  ApolloClient,
+  InMemoryCache,
+  createHttpLink,
+  from,
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 import { onError } from "@apollo/client/link/error";
-import 'react-toastify/dist/ReactToastify.css';
-import { createUploadLink} from "apollo-upload-client"
-
-
+import "react-toastify/dist/ReactToastify.css";
+import { createUploadLink } from "apollo-upload-client";
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:5432/graphql"
+  uri: "http://localhost:5432/graphql",
 });
-
-
-
 
 // const errorLink = onError(({ graphQLErrors, networkError }) => {
 //   if (graphQLErrors)
@@ -41,12 +39,9 @@ const httpLink = createHttpLink({
 //   }
 // });
 
-
 const link = createUploadLink({
   uri: "http://localhost:5432/graphql",
 });
-
-
 
 const client = new ApolloClient({
   link,

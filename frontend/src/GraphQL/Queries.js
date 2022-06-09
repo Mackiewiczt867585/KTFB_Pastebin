@@ -1,9 +1,8 @@
 import { gql } from "@apollo/client";
 
-
 const ME = gql`
-  query{
-    me{
+  query {
+    me {
       id
       email
       username
@@ -12,10 +11,8 @@ const ME = gql`
       organisation
       creationDate
     }
-  }`
-
-
-
+  }
+`;
 
 const LOAD_PASTES = gql`
   query {
@@ -27,15 +24,15 @@ const LOAD_PASTES = gql`
       creationDate
       type
       private
-      creator{
+      creator {
         email
       }
     }
   }
 `;
 const LOAD_PUBLIC_PASTES = gql`
-  query{
-    allPublicCopies{
+  query {
+    allPublicCopies {
       id
       title
       author
@@ -43,15 +40,16 @@ const LOAD_PUBLIC_PASTES = gql`
       type
       content
       type
-      creator{
+      creator {
         email
       }
-      likes{
+      likes {
         id
         email
       }
     }
-  }`
+  }
+`;
 
 const PASTE_BY_ID = gql`
   query copy($copyId: ID!) {
@@ -62,7 +60,7 @@ const PASTE_BY_ID = gql`
       creationDate
       type
       content
-      creator{
+      creator {
         id
         email
         username
@@ -73,54 +71,56 @@ const PASTE_BY_ID = gql`
 `;
 const USER_BY_ID = gql`
   query user($id: ID!) {
-    user(id: $id){
+    user(id: $id) {
       lastLogin
       email
       username
       creationDate
       organisation
     }
-  }`
+  }
+`;
 
 const USER_BY_EMAIL = gql`
   query userEmail($email: String!) {
-    userEmail(email: $email){
+    userEmail(email: $email) {
       id
       email
       username
       creationDate
       firstName
       organisation
+    }
   }
-}
 `;
 
 const ALL_USER_PASTES = gql`
   query allUsersCopies($creator: ID!) {
-    allUsersCopies(creator: $creator){
+    allUsersCopies(creator: $creator) {
       id
       title
       author
-      creator{
+      creator {
         email
       }
       creationDate
       type
       content
     }
-  }`
-
+  }
+`;
 
 const LIKES = gql`
-query likes($copyId: ID){
-  likes(copyId: $copyId){
-    int
+  query likes($copyId: ID) {
+    likes(copyId: $copyId) {
+      int
+    }
   }
-}`
+`;
 
 const LOAD_POPULAR_PASTES = gql`
-  query{
-    popularCopies{
+  query {
+    popularCopies {
       id
       title
       author
@@ -128,12 +128,22 @@ const LOAD_POPULAR_PASTES = gql`
       type
       content
       type
-      creator{
+      creator {
         email
       }
       likes
     }
-  }`
+  }
+`;
 
-
-export { LOAD_PASTES, PASTE_BY_ID, USER_BY_EMAIL, ALL_USER_PASTES, LOAD_PUBLIC_PASTES, ME, LIKES, LOAD_POPULAR_PASTES, USER_BY_ID };
+export {
+  LOAD_PASTES,
+  PASTE_BY_ID,
+  USER_BY_EMAIL,
+  ALL_USER_PASTES,
+  LOAD_PUBLIC_PASTES,
+  ME,
+  LIKES,
+  LOAD_POPULAR_PASTES,
+  USER_BY_ID,
+};

@@ -11,13 +11,13 @@
   text-align: left;
   margin-top: 50px;
 }
-.field{
+.field {
   padding: 0;
 }
-*{
+* {
   box-sizing: border-box;
 }
-.wrap-login{
+.wrap-login {
   width: 960px;
   background: #fff;
   border-radius: 10px;
@@ -27,20 +27,20 @@
   justify-content: space-between;
   padding: 177px 130px 33px 95px;
 }
-.login-pic{
+.login-pic {
   width: 316px;
 }
-.login-form{
+.login-form {
   width: 290px;
 }
-.wrap-input{
+.wrap-input {
   margin-bottom: 10px;
   z-index: 1;
 }
-.validate-input{
+.validate-input {
   position: relative;
 }
-.container-login-form-btn{
+.container-login-form-btn {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -76,7 +76,7 @@
   border-radius: 25px;
   padding: 0 30px 0 68px;
 }
-.focus-input{
+.focus-input {
   display: block;
   position: absolute;
   border-radius: 25px;
@@ -86,7 +86,7 @@
   width: 100%;
   height: 100%;
   box-shadow: 0px 0px 0px 0px;
-  color: rgba(87,184,70, 0.8);
+  color: rgba(87, 184, 70, 0.8);
 }
 .symbol-input {
   font-size: 15px;
@@ -116,7 +116,7 @@
   width: 100%;
   margin: 0 auto;
 }
-input{
+input {
   outline: none;
   border: none;
 }
@@ -132,27 +132,27 @@ input{
 }
 @font-face {
   font-family: Poppins-Regular;
-  src: url('./css/fonts/poppins/Poppins-Regular.ttf'); 
+  src: url("./css/fonts/poppins/Poppins-Regular.ttf");
 }
 
 @font-face {
   font-family: Poppins-Bold;
-  src: url('./css/fonts/poppins/Poppins-Bold.ttf'); 
+  src: url("./css/fonts/poppins/Poppins-Bold.ttf");
 }
 
 @font-face {
   font-family: Poppins-Medium;
-  src: url('./css/fonts/poppins/Poppins-Medium.ttf'); 
+  src: url("./css/fonts/poppins/Poppins-Medium.ttf");
 }
 
 @font-face {
   font-family: Montserrat-Bold;
-  src: url('./css/fonts/montserrat/Montserrat-Bold.ttf'); 
+  src: url("./css/fonts/montserrat/Montserrat-Bold.ttf");
 }
 .input:focus + .focus-input {
   -webkit-animation: anim-shadow 0.5s ease-in-out forwards;
   animation: anim-shadow 0.5s ease-in-out forwards;
-} 
-.txt2{
+}
+.txt2 {
   color: #4f555e;
 }

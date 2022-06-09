@@ -31,12 +31,14 @@ class CustomUserAdmin(UserAdmin):
         ("Login data", {"fields": ("email", "password")}),
         (
             "Basic info",
-            {"fields": (
-                "username",
-                "first_name",
-                "creation_date",
-                "organisation",
-            )},
+            {
+                "fields": (
+                    "username",
+                    "first_name",
+                    "creation_date",
+                    "organisation",
+                )
+            },
         ),
     )
 

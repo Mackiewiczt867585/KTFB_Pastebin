@@ -14,52 +14,49 @@ import EditProfile from "./Components/pages/EditProfile";
 import ChangePass from "./Components/pages/ChangePass";
 import Paste from "./Components/pages/Paste";
 import EditPaste from "./Components/pages/EditPaste";
-import { AuthProvider } from './Components/Context/Auth'
+import { AuthProvider } from "./Components/Context/Auth";
 import PrivateRoute from "./Components/util/PrivateRoute";
-import UserProfile from "./Components/pages/UserProfile" 
+import UserProfile from "./Components/pages/UserProfile";
 
-import ReportPaste from "./Components/pages/ReportPaste"
+import ReportPaste from "./Components/pages/ReportPaste";
 
-
-import 'font-awesome/css/font-awesome.min.css';
-
+import "font-awesome/css/font-awesome.min.css";
 
 function App() {
   return (
     <>
       <AuthProvider>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" exact element={<Home />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/recent" element={<Recent />} />
-          <Route path="/popular" element={<Popular />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/register" element={<Register />} />
-          <Route path='/login' element={<Login />} />
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route path="/" exact element={<Home />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/recent" element={<Recent />} />
+            <Route path="/popular" element={<Popular />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
 
+            <Route path="/paste/:id/report" element={<ReportPaste />} />
 
-          <Route path='/paste/:id/report' element={<ReportPaste/>}/>
-          
-          <Route path='/user/:email/' element={<UserProfile/>}/>
-          
+            <Route path="/user/:email/" element={<UserProfile />} />
 
-          <Route path='/paste/:id/edit' element={<EditPaste/>}/>
+            <Route path="/paste/:id/edit" element={<EditPaste />} />
 
-
-          <Route path="/profile" element={
-            <PrivateRoute>
-              <Profile /> 
-            </PrivateRoute>
-          }
-          />
-          <Route path="/profile/edit" element={<EditProfile />} />
-          {/* <Route path="/profile/changepass" element={<ChangePass />} /> */}
-          <Route path="/paste/:id" element={<Paste />} />
-        </Routes>
-      </Router>
-      {/* <Footer /> */}
+            <Route
+              path="/profile"
+              element={
+                <PrivateRoute>
+                  <Profile />
+                </PrivateRoute>
+              }
+            />
+            <Route path="/profile/edit" element={<EditProfile />} />
+            {/* <Route path="/profile/changepass" element={<ChangePass />} /> */}
+            <Route path="/paste/:id" element={<Paste />} />
+          </Routes>
+        </Router>
+        {/* <Footer /> */}
       </AuthProvider>
     </>
   );
