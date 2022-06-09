@@ -11,7 +11,7 @@ When done type:
 # docker-compose up
 
 This command builds, (re)creates, starts, and attaches to containers for a service.
-# NOTE: sudo prefix may be needed for docker commands to function properly
+NOTE: sudo prefix may be needed for docker commands to function properly
 Containers should run successfully as all the necessary dependencies were included and installed in build step.
 Commands above were useful for creating development environment. If you would like to build production environment
 type:
