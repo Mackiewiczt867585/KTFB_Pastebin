@@ -64,25 +64,9 @@ describe("Test new paste page", () => {
     cy.wait(1000);
     cy.visit("/");
     cy.get("a.nav-item").contains("Aktualne").click();
-    /* TODO: going through pagination (stopping on last page)
-    const findInPage = () => {
-      cy.get('li.page-item > a.page-link').contains('next >').then((el) => {
-        if (cy.get('ul > li.page-item.disabled').then((off) =>
-            off.hasClass('page-item disabled')))
-        {
-          // on last page, break out
-          return
-        }
-        cy.wrap(el).click()
-        findInPage()
-      })
-    }
-    findInPage()
-    */
-
     cy.get("ul.responsive-table")
       .find("li.table-row")
-      .should("not.have.length", 0); //weak check
+      .should("not.have.length", 0);
   });
   it("should successfully add new private paste (logged in)", () => {
     cy.visit("/");
@@ -90,7 +74,7 @@ describe("Test new paste page", () => {
     cy.get('input[name="username"]').type("cypressUser" + registerid);
     cy.get('input[name="password"]').type("zaq1@WSX");
     cy.get("button.login-form-btn").contains("Login").click();
-    cy.wait(1000); //doesnt work without wait
+    cy.wait(1000);
     cy.get("a.nav-item").contains("KTFB").click();
     cy.get("input#title").type("Paste" + makeid(4));
     cy.get("input#author").type("Author" + makeid(4));
@@ -103,7 +87,7 @@ describe("Test new paste page", () => {
     cy.wait(500);
     cy.get("ul.responsive-table")
       .find("li.table-row")
-      .should("not.have.length", 0); //weak check
+      .should("not.have.length", 0);
   });
 });
 describe("Test paste actions", () => {
@@ -113,11 +97,11 @@ describe("Test paste actions", () => {
     cy.get('input[name="username"]').type("cypressUser" + registerid);
     cy.get('input[name="password"]').type("zaq1@WSX");
     cy.get("button.login-form-btn").contains("Login").click();
-    cy.wait(1000); //doesnt work without wait
+    cy.wait(1000);
     cy.get("h2.title").should("contain.text", "Your pastes");
     cy.get("ul.responsive-table")
       .find("li.table-row")
-      .should("not.have.length", 0); //weak check
+      .should("not.have.length", 0);
     cy.get(".col-5 > div > a > .ui").click();
     cy.get("input[name='author']").type("editedAuthor" + authorid);
     cy.get("input[name='title']").type("editedTitle" + pastetitleid);
